@@ -23,7 +23,7 @@ import java.util.Scanner;
 public class TCPCliente {
  
     public static void main(String[] args) {   
-        String endereco = "localhost";
+        String endereco = "172.16.103.9";
         int porta = 12345;
         ObjectOutputStream saida;
         ObjectInputStream entrada;

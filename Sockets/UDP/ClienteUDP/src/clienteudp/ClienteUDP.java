@@ -24,7 +24,7 @@ public class ClienteUDP {
 
         try {
             clientSocket = new DatagramSocket();
-            String servidor = "localhost";
+            String servidor = "172.16.103.9";
             int porta = 9876;
 
             //IP do Socket servidor - Formata para envio no DatagramPacket
