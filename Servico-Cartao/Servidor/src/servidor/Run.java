@@ -22,8 +22,9 @@ public class Run {
 
         try {
             Servidor server = new Servidor(12345);
+            server.executar();
         } catch (IOException ex) {
-            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Servidor não pode ser iniciado! " + ex.toString());
         }
     }
 

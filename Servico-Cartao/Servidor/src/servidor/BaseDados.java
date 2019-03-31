@@ -38,7 +38,11 @@ public class BaseDados {
             String linha;
             while ((linha = leitor.readLine()) != null) {
                 String[] partes = linha.split(";");
-                adicionar(partes[0] + partes[1], Boolean.getBoolean(partes[2]));
+                Boolean status = false;
+                if (partes[2].equals("true")) {
+                    status = true;
+                }
+                adicionar(partes[0] + partes[1], status);
             }
         } catch (Exception e) {
             System.out.println("Erro de Arquivo! " + e.toString());

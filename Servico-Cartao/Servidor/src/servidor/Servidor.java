@@ -54,9 +54,9 @@ public class Servidor {
                 try {
                     String mensagem = (String) entrada.readObject();
                     System.out.println("Cliente>> " + mensagem);
-                    boolean status = processarRequisicao(mensagem);
+                    Boolean status = processarRequisicao(mensagem);
                     System.out.println("Resposta>> " + status);
-                    saida.writeObject(status);
+                    saida.writeObject(status.toString());
                 } catch (IOException iOException) {
                     System.err.println("erro: " + iOException.toString());
                 }
@@ -69,7 +69,7 @@ public class Servidor {
         }
     }
 
-    private boolean processarRequisicao(String mensagem) {
+    private Boolean processarRequisicao(String mensagem) {
         if (!mensagem.matches("'.+',[0-9]+")) {
             return false;
         }
