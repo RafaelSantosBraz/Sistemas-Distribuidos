@@ -42,7 +42,6 @@ public class Run {
             mensagem += "," + ler.nextLine();
             saida.writeObject(mensagem);
             saida.flush();
-
             //lendo a mensagem enviada pelo servidor
             mensagem = (String) entrada.readObject();
             System.out.println("Servidor>> " + mensagem);
