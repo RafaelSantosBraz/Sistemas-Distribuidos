@@ -41,11 +41,17 @@ public class Servidor {
         inicial.start();
     }
 
-    public Boolean processarRequisicao(String mensagem) {
-        if (!mensagem.matches("'.+',[0-9]+")) {
+    public Boolean processarRequisicao(Integer codigo, Double valor) {
+        Double valorAtual = base.buscar(codigo);
+        if (valorAtual == null) {
             return false;
         }
-        String[] partes = mensagem.split(",");
-        return base.buscar(partes[0] + partes[1]);
+        if (valorAtual < valor) {
+            return false;
+        }
+        Double valorFinal = valorAtual - valor;
+        base.adicionar(codigo, valorFinal);
+        base.atualizarArquivo();
+        return true;
     }
 }

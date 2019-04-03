@@ -1,2 +1,1 @@
-'Rafael Braz';123456;true
-'Adam';44444;false
+666;15.0123;100.0

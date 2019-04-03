@@ -36,15 +36,18 @@ public class Run {
             System.out.println("Servidor>> " + mensagem);
             //Mensagem de saida
             Scanner ler = new Scanner(System.in);
-            System.out.println("Digite o nome do Cliente (entre ' '):");
-            mensagem = ler.nextLine();
-            System.out.println("Digite o número do cartão:");
-            mensagem += "," + ler.nextLine();
-            saida.writeObject(mensagem);
+            System.out.println("Digite o código do Cliente:");
+            Integer codigo = ler.nextInt();
+            System.out.println("Digite o valor:");
+            Double valor = ler.nextDouble();
+            saida.writeInt(codigo);
+            saida.writeDouble(valor);
             saida.flush();
             //lendo a mensagem enviada pelo servidor
-            mensagem = (String) entrada.readObject();
-            System.out.println("Servidor>> " + mensagem);
+            Boolean resposta = entrada.readBoolean();
+            if (resposta){
+                
+            }            
             saida.close();
             entrada.close();
             conexao.close();

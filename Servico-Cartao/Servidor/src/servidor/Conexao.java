@@ -42,11 +42,12 @@ public class Conexao implements Runnable {
                 // Informar status da conexao ao cliente
                 saida.writeObject("Conexao estabelecida com sucesso...\n");
                 try {
-                    String mensagem = (String) entrada.readObject();
-                    System.out.println("Cliente>> " + mensagem);
-                    Boolean status = servidor.processarRequisicao(mensagem);
+                    Integer codigo = entrada.readInt();
+                    Double valor = entrada.readDouble();
+                    System.out.println("Cliente>> " + codigo + " " + valor);
+                    Boolean status = servidor.processarRequisicao(codigo, valor);
                     System.out.println("Resposta>> " + status);
-                    saida.writeObject(status.toString());
+                    saida.writeBoolean(status);
                 } catch (IOException iOException) {
                     System.err.println("erro: " + iOException.toString());
                 }
@@ -54,7 +55,7 @@ public class Conexao implements Runnable {
                 entrada.close();
                 conexao.close();
             }
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             System.err.println("Erro: " + e.toString());
         }
     }
