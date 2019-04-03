@@ -43,15 +43,10 @@ public class Servidor {
 
     public Boolean processarRequisicao(Integer codigo, Double valor) {
         Double valorAtual = base.buscar(codigo);
-        if (valorAtual == null) {
+        if (valorAtual == null || valorAtual < valor) {
             return false;
         }
-        if (valorAtual < valor) {
-            return false;
-        }
-        Double valorFinal = valorAtual - valor;
-        base.adicionar(codigo, valorFinal);
-        base.atualizarArquivo();
+        base.adicionarAtualizarArquivo(codigo, valorAtual - valor);
         return true;
     }
 }

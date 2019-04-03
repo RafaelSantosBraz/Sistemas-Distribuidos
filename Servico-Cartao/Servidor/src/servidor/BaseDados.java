@@ -12,19 +12,19 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author rafael
+ * @author Rafael Braz
  */
 public class BaseDados {
 
     private final HashMap<Integer, Double> base;
+    private final String caminho;
 
     public BaseDados() {
         base = new HashMap<>();
+        caminho = "/media/rafael/Dados Compartilhados/GitHub/Sistemas-Distribuidos/Servico-Cartao/Servidor/base.txt";
         preencher();
     }
 
@@ -38,7 +38,7 @@ public class BaseDados {
 
     private void preencher() {
         try {
-            FileReader arquivo = new FileReader("/home/a120121/Área de Trabalho/Sistemas-Distribuidos/Servico-Cartao/Servidor/base.txt");
+            FileReader arquivo = new FileReader(caminho);
             BufferedReader leitor = new BufferedReader(arquivo);
             String linha;
             while ((linha = leitor.readLine()) != null) {
@@ -46,26 +46,30 @@ public class BaseDados {
                 adicionar(Integer.valueOf(partes[0]), Double.valueOf(partes[1]));
             }
         } catch (Exception e) {
-            System.out.println("Erro de Arquivo! " + e.toString());
+            System.err.println("Erro de Arquivo! " + e.toString());
         }
     }
 
     public void atualizarArquivo() {
         try {
-            File temp = new File("/home/a120121/Área de Trabalho/Sistemas-Distribuidos/Servico-Cartao/Servidor/base.txt");
-            temp.delete();            
-            FileWriter arquivo = new FileWriter("/home/a120121/Área de Trabalho/Sistemas-Distribuidos/Servico-Cartao/Servidor/base.txt", true);
-            BufferedWriter escritor = new BufferedWriter(arquivo);
-            base.forEach((t, u) -> {
-                try {
-                    escritor.append(t.toString() + ";" + u.toString() + "\n");
-                } catch (IOException ex) {
-                    System.out.println("Erro: " + ex.toString());
-                }
-            });
-            escritor.close();
+            new File(caminho).delete();
+            FileWriter arquivo = new FileWriter(caminho, true);
+            try (BufferedWriter escritor = new BufferedWriter(arquivo)) {
+                base.forEach((t, u) -> {
+                    try {
+                        escritor.append(t.toString() + ";" + u.toString() + Character.LINE_SEPARATOR);
+                    } catch (IOException ex) {
+                        System.out.println("Erro: " + ex.toString());
+                    }
+                });
+            }
         } catch (Exception ex) {
-            System.out.println("Erro: " + ex.toString());
+            System.err.println("Erro: " + ex.toString());
         }
+    }
+
+    public void adicionarAtualizarArquivo(Integer chave, Double valor) {
+        adicionar(chave, valor);
+        atualizarArquivo();
     }
 }

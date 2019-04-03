@@ -45,9 +45,11 @@ public class Run {
             saida.flush();
             //lendo a mensagem enviada pelo servidor
             Boolean resposta = entrada.readBoolean();
-            if (resposta){
-                
-            }            
+            if (resposta) {
+                System.out.println("Compra aprovada! :)");
+            } else {
+                System.out.println("Compra negada! :(");
+            }
             saida.close();
             entrada.close();
             conexao.close();

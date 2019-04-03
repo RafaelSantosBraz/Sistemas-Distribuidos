@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /**
  *
- * @author rafael
+ * @author Rafael Braz
  */
 public class Run {
 
@@ -19,10 +19,9 @@ public class Run {
     public static void main(String[] args) {
 
         try {
-            Servidor server = new Servidor(12345);
-            server.executar();
+            new Servidor(12345).executar();
         } catch (IOException ex) {
-            System.out.println("Servidor não pode ser iniciado! " + ex.toString());
+            System.err.println("Servidor não pode ser iniciado! " + ex.toString());
         }
     }
 

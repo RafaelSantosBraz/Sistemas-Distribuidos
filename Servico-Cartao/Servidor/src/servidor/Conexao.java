@@ -31,30 +31,28 @@ public class Conexao implements Runnable {
             ObjectOutputStream saida;
             ObjectInputStream entrada;
             Socket conexao;
-            while (true) {
-                conexao = SocketServidor.accept();
-                //Criar nova thread para tratar o restante da fila
-                Thread nova = new Thread(new Conexao(SocketServidor, servidor));
-                nova.start();
-                System.out.println("Conexão estabelecida com: " + conexao.getInetAddress().getHostAddress());
-                saida = new ObjectOutputStream(conexao.getOutputStream());
-                entrada = new ObjectInputStream(conexao.getInputStream());
-                // Informar status da conexao ao cliente
-                saida.writeObject("Conexao estabelecida com sucesso...\n");
-                try {
-                    Integer codigo = entrada.readInt();
-                    Double valor = entrada.readDouble();
-                    System.out.println("Cliente>> " + codigo + " " + valor);
-                    Boolean status = servidor.processarRequisicao(codigo, valor);
-                    System.out.println("Resposta>> " + status);
-                    saida.writeBoolean(status);
-                } catch (IOException iOException) {
-                    System.err.println("erro: " + iOException.toString());
-                }
-                saida.close();
-                entrada.close();
-                conexao.close();
+            conexao = SocketServidor.accept();
+            //Criar nova thread para tratar o restante da fila
+            Thread nova = new Thread(new Conexao(SocketServidor, servidor));
+            nova.start();
+            System.out.println("Conexão estabelecida com: " + conexao.getInetAddress().getHostAddress());
+            saida = new ObjectOutputStream(conexao.getOutputStream());
+            entrada = new ObjectInputStream(conexao.getInputStream());
+            // Informar status da conexao ao cliente
+            saida.writeObject("Conexao estabelecida com sucesso...\n");
+            try {
+                Integer codigo = entrada.readInt();
+                Double valor = entrada.readDouble();
+                System.out.println("Cliente>> " + codigo + " " + valor);
+                Boolean status = servidor.processarRequisicao(codigo, valor);
+                System.out.println("Resposta>> " + status);
+                saida.writeBoolean(status);
+            } catch (IOException iOException) {
+                System.err.println("erro: " + iOException.toString());
             }
+            saida.close();
+            entrada.close();
+            conexao.close();
         } catch (IOException e) {
             System.err.println("Erro: " + e.toString());
         }
