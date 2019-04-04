@@ -27,7 +27,7 @@ public class BaseDados {
 
     public BaseDados() {
         base = new HashMap<>();
-        caminho = "/media/rafael/Dados Compartilhados/GitHub/Sistemas-Distribuidos/Servico-Cartao/Servidor/base.txt";
+        caminho = "D:\\GitHub\\Sistemas-Distribuidos\\Servico-Cartao\\Servidor\\base.txt";
         preencher();
     }
 

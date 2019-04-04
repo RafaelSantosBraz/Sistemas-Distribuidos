@@ -47,6 +47,9 @@ public class Conexao implements Runnable {
                 Boolean status = servidor.processarRequisicao(codigo, valor);
                 System.out.println("Resposta>> " + status);
                 saida.writeBoolean(status);
+                Double restante = servidor.getValorRestante(codigo);
+                saida.writeDouble(restante);
+                System.out.println("Valor restante: RS" + restante);
             } catch (IOException iOException) {
                 System.err.println("erro: " + iOException.toString());
             }

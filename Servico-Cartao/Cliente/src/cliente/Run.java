@@ -50,6 +50,8 @@ public class Run {
             } else {
                 System.out.println("Compra negada! :(");
             }
+            Double valorRestante = entrada.readDouble();
+            System.out.println("Valor restante: R$" + valorRestante);
             saida.close();
             entrada.close();
             conexao.close();
