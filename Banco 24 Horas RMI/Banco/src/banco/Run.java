@@ -5,6 +5,12 @@
  */
 package banco;
 
+import controller.ServicoBanco;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.util.Scanner;
+
 /**
  *
  * @author rafael
@@ -15,7 +21,17 @@ public class Run {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        try {
+            ServicoBanco servico = new ServicoBanco();
+            Registry reg = LocateRegistry.createRegistry(9876);
+            Scanner leitor = new Scanner(System.in);
+            System.out.println("Informe o nome do Banco para registro: ");
+            String nomeBanco = leitor.nextLine();
+            reg.rebind(nomeBanco, servico);
+            System.out.println("Servidor Iniciado!");
+        } catch (RemoteException e) {
+            System.err.println("Erro ao iniciar o servidor RMI do Banco! " + e.toString());
+        }
     }
-    
+
 }
