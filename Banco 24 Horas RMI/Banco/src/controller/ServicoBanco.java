@@ -6,10 +6,10 @@
 package controller;
 
 import classses.Cliente;
-import com.google.gson.Gson;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,8 +25,8 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
     }
 
     @Override
-    public String consultarCadastro(String CPF) throws RemoteException {
-        return (new Gson()).toJson(bd.buscarCliente(CPF));
+    public Cliente consultarCadastro(String CPF) throws RemoteException {
+        return bd.buscarCliente(CPF);
     }
 
     @Override
@@ -60,6 +60,11 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
     @Override
     public boolean realizarTransferencia(int contaOrigem, int contaDestino, double valor) throws RemoteException {
         return bd.realizarTransferencia(contaOrigem, contaDestino, valor);
+    }
+
+    @Override
+    public ArrayList<String> consultarExtrato(int conta) {
+        
     }
 
 }

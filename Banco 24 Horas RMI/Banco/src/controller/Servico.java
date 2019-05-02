@@ -8,6 +8,7 @@ package controller;
 import classses.Cliente;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,7 +16,7 @@ import java.rmi.RemoteException;
  */
 public interface Servico extends Remote {
 
-    public String consultarCadastro(String CPF) throws RemoteException;
+    public Cliente consultarCadastro(String CPF) throws RemoteException;
 
     public boolean alterarCadastro(Cliente cliente) throws RemoteException;
 
@@ -28,4 +29,6 @@ public interface Servico extends Remote {
     public boolean realizarTransferencia(int contaOrigem, int contaDestino, double valor) throws RemoteException;
 
     public boolean transferirCadastro(int conta, int codBancoDestino) throws RemoteException;
+
+    public ArrayList<Object> consultarExtrato(int conta);
 }
