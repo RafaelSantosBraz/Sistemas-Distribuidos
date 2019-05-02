@@ -9,6 +9,7 @@ import classses.Cliente;
 import com.google.gson.Gson;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 
 /**
  *
@@ -18,13 +19,13 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
 
     private final BD bd;
 
-    public ServicoBanco() throws RemoteException {
+    public ServicoBanco() throws RemoteException, SQLException {
         super();
         bd = new BD();
     }
 
     @Override
-    public String consultarCadastro(String CPF) throws RemoteException {
+    public String consultarCadastro(String CPF) throws RemoteException {       
         return (new Gson()).toJson(bd.buscarCliente(CPF));
     }
 

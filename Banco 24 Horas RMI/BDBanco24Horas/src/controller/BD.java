@@ -6,6 +6,11 @@
 package controller;
 
 import classses.Cliente;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -13,8 +18,24 @@ import classses.Cliente;
  */
 public class BD {
 
-    public Cliente buscarCliente(String CPF) {
+    private final Connection con;
 
+    public BD() throws SQLException {
+        String url = "jdbc:mysql://localhost:3306/testdb?useSSL=false";
+        String user = "testuser";
+        String password = "test623";
+        con = DriverManager.getConnection(url, user, password);
+    }
+
+    public Cliente buscarCliente(String CPF) {
+        try {
+            Statement st = con.createStatement();
+            ResultSet resultados = st.executeQuery("sql aqui");
+            // manipular resultados
+           
+        } catch (SQLException ex) {
+            System.err.println("Erro de manipulação do Banco de Dados! " + ex.toString());
+        }
         return new Cliente();
     }
 }
