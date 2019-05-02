@@ -6,10 +6,10 @@
 package controller;
 
 import classses.Cliente;
-import com.google.gson.Gson;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,8 +25,8 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
     }
 
     @Override
-    public String consultarCadastro(String CPF) throws RemoteException {
-        return (new Gson()).toJson(bd.buscarCliente(CPF));
+    public Cliente consultarCadastro(String CPF) throws RemoteException {
+        return bd.buscarCliente(CPF);
     }
 
     @Override
@@ -48,23 +48,23 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
     }
 
     @Override
-    public double consultarSaldo(String CPF) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean transferirCadastro(int conta, int codBancoDestino) throws RemoteException {
+        return bd.alterarBancoConta(conta, conta);
     }
 
     @Override
-    public boolean realizarTransferenciaContas(int contaOrigem, int contaDestino, double valor) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public double consultarSaldo(int conta) throws RemoteException {
+        return bd.buscarSaldo(conta);
     }
 
     @Override
-    public boolean realizarTransferenciaBancos(int codBancoOrigem, int contaOrigem, int codBancoDestino, int contaDestino, double valor) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean realizarTransferencia(int contaOrigem, int contaDestino, double valor) throws RemoteException {
+        return bd.realizarTransferencia(contaOrigem, contaDestino, valor);
     }
 
     @Override
-    public boolean transferirCadastro(Cliente cliente, int codBancoDestino) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<String> consultarExtrato(int conta) {
+        
     }
 
 }
