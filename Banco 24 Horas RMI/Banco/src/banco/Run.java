@@ -9,6 +9,7 @@ import controller.ServicoBanco;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -30,9 +31,11 @@ public class Run {
             reg.rebind(nomeBanco, servico);
             System.out.println("Servidor Iniciado!");
             // implementar requisição de código e sincronizar com o BD
-            
+
         } catch (RemoteException e) {
             System.err.println("Erro ao iniciar o servidor RMI do Banco! " + e.toString());
+        } catch (SQLException ex) {
+            System.err.println("Erro ao iniciar o serviço MYSQL do Banco! " + ex.toString());
         }
     }
 
