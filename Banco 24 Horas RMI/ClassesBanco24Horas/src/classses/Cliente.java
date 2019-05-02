@@ -11,24 +11,24 @@ package classses;
  */
 public class Cliente {
 
-    private long CPF;
+    private String CPF;
     private String nome;
 
     public Cliente() {
-        CPF = 0;
+        CPF = "";
         nome = "";
     }
 
-    public Cliente(long CPF, String nome) {
+    public Cliente(String CPF, String nome) {
         this.CPF = CPF;
         this.nome = nome;
     }
 
-    public long getCPF() {
+    public String getCPF() {
         return CPF;
     }
 
-    public void setCPF(long CPF) {
+    public void setCPF(String CPF) {
         this.CPF = CPF;
     }
 

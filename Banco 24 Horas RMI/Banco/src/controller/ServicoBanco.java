@@ -6,6 +6,7 @@
 package controller;
 
 import classses.Cliente;
+import com.google.gson.Gson;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -15,13 +16,16 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class ServicoBanco extends UnicastRemoteObject implements Servico {
 
-    public ServicoBanco() throws RemoteException{
+    private final BD bd;
+
+    public ServicoBanco() throws RemoteException {
         super();
+        bd = new BD();
     }
-    
+
     @Override
-    public String consultarCadastro(long CPF) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String consultarCadastro(String CPF) throws RemoteException {
+        return (new Gson()).toJson(bd.buscarCliente(CPF));
     }
 
     @Override
@@ -40,7 +44,7 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
     }
 
     @Override
-    public double consultarSaldo(long CPF) throws RemoteException {
+    public double consultarSaldo(String CPF) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bdbanco24horas;
+package controller;
+
+import classses.Cliente;
 
 /**
  *
  * @author rafael
  */
-public class BDBanco24Horas {
+public class BD {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public Cliente buscarCliente(String CPF) {
+
+        return new Cliente();
     }
-    
 }

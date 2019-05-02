@@ -29,6 +29,8 @@ public class Run {
             String nomeBanco = leitor.nextLine();
             reg.rebind(nomeBanco, servico);
             System.out.println("Servidor Iniciado!");
+            // implementar requisição de código e sincronizar com o BD
+            
         } catch (RemoteException e) {
             System.err.println("Erro ao iniciar o servidor RMI do Banco! " + e.toString());
         }

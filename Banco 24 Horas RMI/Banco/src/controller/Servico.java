@@ -15,7 +15,7 @@ import java.rmi.RemoteException;
  */
 public interface Servico extends Remote {
 
-    public String consultarCadastro(long CPF) throws RemoteException;
+    public String consultarCadastro(String CPF) throws RemoteException;
 
     public boolean alterarCadastro(Cliente cliente) throws RemoteException;
 
@@ -23,7 +23,7 @@ public interface Servico extends Remote {
 
     public boolean realizarDeposito(double valor) throws RemoteException;
 
-    public double consultarSaldo(long CPF) throws RemoteException;
+    public double consultarSaldo(String CPF) throws RemoteException;
 
     public boolean realizarTransferenciaContas(int contaOrigem, int contaDestino, double valor) throws RemoteException;
 
