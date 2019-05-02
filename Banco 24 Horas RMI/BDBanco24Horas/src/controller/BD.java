@@ -104,4 +104,27 @@ public class BD {
             return false;
         }
     }
+
+    public boolean alterarBancoConta(int conta, int banco) {
+        try {
+            Statement st = con.createStatement();
+            int resultado = st.executeUpdate("UPDATE conta SET cod = " + banco + " WHERE numero = " + conta + ";");
+            return resultado == 1;
+        } catch (SQLException ex) {
+            System.err.println("Erro de manipulação do Banco de Dados! " + ex.toString());
+            return false;
+        }
+    }
+
+    public Double buscarSaldo(int conta) {
+        try {
+            Statement st = con.createStatement();
+            ResultSet resultados = st.executeQuery("SELECT saldo FROM conta WHERE numero = " + conta + "';");
+            resultados.first();
+            return resultados.getDouble("saldo");
+        } catch (SQLException ex) {
+            System.err.println("Erro de manipulação do Banco de Dados! " + ex.toString());
+            return null;
+        }
+    }
 }
