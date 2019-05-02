@@ -63,8 +63,8 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
     }
 
     @Override
-    public ArrayList<String> consultarExtrato(int conta) {
-        
+    public ArrayList<Object> consultarExtrato(int conta) {
+        return bd.consultarExtrato(conta);
     }
 
 }
