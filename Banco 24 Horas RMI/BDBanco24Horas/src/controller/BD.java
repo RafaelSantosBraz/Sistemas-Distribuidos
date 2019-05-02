@@ -7,7 +7,6 @@ package controller;
 
 import classses.Cliente;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -94,18 +93,15 @@ public class BD {
         }
     }
 
-//    public boolean realizarTransferencia(int contaOrigem, int contaDestino, double valor) {
-//        try {
-//            Statement st = con.createStatement();
-//            int resultado = st.executeUpdate("UPDATE conta SET saldo = saldo + " + valor + " WHERE numero = " + conta + ";");
-//            int tipo = 0;
-//            if (valor > 0.0) {
-//                tipo = 1;
-//            }
-//            return resultado == 1 && gerarMovimentacao(conta, tipo, valor, getDataHoraAtualMysql());
-//        } catch (SQLException ex) {
-//            System.err.println("Erro de manipulação do Banco de Dados! " + ex.toString());
-//            return false;
-//        }
-//    }
+    public boolean realizarTransferencia(int contaOrigem, int contaDestino, double valor) {
+        try {
+            Statement st = con.createStatement();
+            int resultado = st.executeUpdate("UPDATE conta SET saldo = saldo - " + valor + " WHERE numero = " + contaOrigem + ";");
+            int resultado1 = st.executeUpdate("UPDATE conta SET saldo = saldo + " + valor + " WHERE numero = " + contaDestino + ";");
+            return resultado == 1 && resultado1 == 1 && gerarTransferencia(contaOrigem, contaDestino, valor, getDataHoraAtualMysql());
+        } catch (SQLException ex) {
+            System.err.println("Erro de manipulação do Banco de Dados! " + ex.toString());
+            return false;
+        }
+    }
 }
