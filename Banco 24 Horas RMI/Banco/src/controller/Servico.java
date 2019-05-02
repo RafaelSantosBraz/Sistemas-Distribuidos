@@ -19,9 +19,9 @@ public interface Servico extends Remote {
 
     public boolean alterarCadastro(Cliente cliente) throws RemoteException;
 
-    public boolean realizarSaque(double valor) throws RemoteException;
+    public boolean realizarSaque(int conta, double valor) throws RemoteException;
 
-    public boolean realizarDeposito(double valor) throws RemoteException;
+    public boolean realizarDeposito(int conta, double valor) throws RemoteException;
 
     public double consultarSaldo(String CPF) throws RemoteException;
 

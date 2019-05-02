@@ -25,23 +25,26 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
     }
 
     @Override
-    public String consultarCadastro(String CPF) throws RemoteException {       
+    public String consultarCadastro(String CPF) throws RemoteException {
         return (new Gson()).toJson(bd.buscarCliente(CPF));
     }
 
     @Override
     public boolean alterarCadastro(Cliente cliente) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return bd.alterarCliente(cliente);
     }
 
     @Override
-    public boolean realizarSaque(double valor) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean realizarSaque(int conta, double valor) throws RemoteException {
+        if (valor > 0) {
+            return bd.alterarValorConta(conta, valor * -1);
+        }
+        return bd.alterarValorConta(conta, valor);
     }
 
     @Override
-    public boolean realizarDeposito(double valor) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean realizarDeposito(int conta, double valor) throws RemoteException {
+        return bd.alterarValorConta(conta, valor);
     }
 
     @Override
