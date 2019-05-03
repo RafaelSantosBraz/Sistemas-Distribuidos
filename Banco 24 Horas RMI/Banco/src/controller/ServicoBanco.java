@@ -67,4 +67,9 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
         return bd.consultarExtrato(conta);
     }
 
+    @Override
+    public boolean realizarTransferencia(int contaOrigem, int contaDestino, int codBancoDestino, double valor) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

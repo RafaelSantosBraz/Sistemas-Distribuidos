@@ -149,33 +149,18 @@ public class BD {
                 extrato.add(trans);
             }
             extrato.sort((u, t) -> {
-                Movimentacao mov1 = null;
-                Transferencia trans1 = null;
-                Movimentacao mov2 = null;
-                Transferencia trans2 = null;
+                String ant, pos;
                 if (u instanceof Movimentacao) {
-                    mov1 = (Movimentacao) u;
+                    ant = ((Movimentacao) u).getData();
                 } else {
-                    trans1 = (Transferencia) u;
+                    ant = ((Transferencia) u).getData();
                 }
                 if (t instanceof Movimentacao) {
-                    mov2 = (Movimentacao) t;
+                    pos = ((Movimentacao) t).getData();
                 } else {
-                    trans2 = (Transferencia) t;
+                    pos = ((Transferencia) t).getData();
                 }
-                String ant, pos;
-                if (mov1 != null) {
-                    ant = mov1.getData();
-                } else {
-                    ant = trans1.getData();
-                }
-                if (mov2 != null) {
-                    pos = mov2.getData();
-                } else {
-                    pos = trans2.getData();
-                }
-                int comp = ant.compareTo(pos);
-                if (comp < 0) {
+                if (ant.compareTo(pos) < 0) {
                     return 1;
                 }
                 return -1;

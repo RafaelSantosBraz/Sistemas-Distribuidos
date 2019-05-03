@@ -28,7 +28,9 @@ public interface Servico extends Remote {
 
     public boolean realizarTransferencia(int contaOrigem, int contaDestino, double valor) throws RemoteException;
 
+    public boolean realizarTransferencia(int contaOrigem, int contaDestino, int codBancoDestino, double valor) throws RemoteException;
+
     public boolean transferirCadastro(int conta, int codBancoDestino) throws RemoteException;
 
-    public ArrayList<Object> consultarExtrato(int conta);
+    public ArrayList<Object> consultarExtrato(int conta) throws RemoteException;
 }
