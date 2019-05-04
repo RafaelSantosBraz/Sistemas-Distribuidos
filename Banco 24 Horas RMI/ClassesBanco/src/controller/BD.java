@@ -219,10 +219,11 @@ public class BD {
 
     public boolean receberCadastroBanco(Conta conta) {
         try {
-            int resultado1 = st.executeUpdate("INSERT INTO cliente (cpf, nome) VALUES ('" + conta.getCliente().getCPF() + "', '" + conta.getCliente().getNome() + "');");
-            if (resultado1 == 0) {
-                st.executeUpdate("UPDATE cliente SET nome = '" + conta.getCliente().getNome() + "' WHERE CPF = '" + conta.getCliente().getCPF() + "';");
+            ResultSet existeCliente = st.executeQuery("SELECT * FROM cliente WHERE cpf = '" + conta.getCliente().getCPF() + "';");
+            if (!existeCliente.first()) {
+                st.executeUpdate("INSERT INTO cliente (cpf, nome) VALUES ('" + conta.getCliente().getCPF() + "', '" + conta.getCliente().getNome() + "');");
             }
+            int resultado1;
             resultado1 = st.executeUpdate("INSERT INTO conta (cod, saldo, cpf) VALUES (0, " + conta.getSaldo() + ", '" + conta.getCliente().getCPF() + "');");
 //            conta.getMovimentacoes().forEach((mov) -> {
 //                gerarMovimentacao(conta.getNumero(), mov.getTipo(), mov.getValor(), mov.getData());
