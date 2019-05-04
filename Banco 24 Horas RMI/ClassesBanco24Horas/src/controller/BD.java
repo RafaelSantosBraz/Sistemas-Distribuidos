@@ -6,6 +6,7 @@
 package controller;
 
 import classses.Cliente;
+import classses.Conta;
 import classses.Movimentacao;
 import classses.Operacao;
 import classses.Transferencia;
@@ -25,17 +26,18 @@ import transmissao.ConexaoBanco;
 public class BD {
 
     private final Connection con;
+    private final Statement st;
 
     public BD() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/banco?useSSL=false";
         String user = "mysql";
         String password = "mysql";
         con = DriverManager.getConnection(url, user, password);
+        st = con.createStatement();
     }
 
     public Cliente buscarCliente(String CPF) {
         try {
-            Statement st = con.createStatement();
             ResultSet resultados = st.executeQuery("SELECT * FROM cliente WHERE cpf like '" + CPF + "';");
             resultados.first();
             return new Cliente(CPF, resultados.getString("nome"));
@@ -47,7 +49,6 @@ public class BD {
 
     public boolean alterarCliente(Cliente cliente) {
         try {
-            Statement st = con.createStatement();
             int resultado = st.executeUpdate("UPDATE cliente SET nome = '" + cliente.getNome() + "' WHERE cpf like '" + cliente.getCPF() + "';");
             return resultado == 1;
         } catch (SQLException ex) {
@@ -58,7 +59,6 @@ public class BD {
 
     public boolean alterarValorConta(int conta, double valor) {
         try {
-            Statement st = con.createStatement();
             int resultado = st.executeUpdate("UPDATE conta SET saldo = saldo + " + valor + " WHERE numero = " + conta + ";");
             int tipo = 0;
             if (valor > 0.0) {
@@ -73,7 +73,6 @@ public class BD {
 
     private boolean gerarMovimentacao(int conta, int tipo, double valor, String data) {
         try {
-            Statement st = con.createStatement();
             int resultado = st.executeUpdate("INSERT INTO movimentacao (numero, tipo, valor, datahora) VALUES (" + conta + ", " + tipo + ", " + valor + ", " + data + ")" + ";");
             return resultado == 1;
         } catch (SQLException ex) {
@@ -90,7 +89,6 @@ public class BD {
 
     private boolean gerarTransferencia(int contaOrigem, int contaDestino, double valor, String data) {
         try {
-            Statement st = con.createStatement();
             int resultado = st.executeUpdate("INSERT INTO transferencia (contaorigem, contadestino, valor, datahora) VALUES (" + contaOrigem + ", " + contaDestino + ", " + valor + ", " + data + ")" + ";");
             return resultado == 1;
         } catch (SQLException ex) {
@@ -101,7 +99,6 @@ public class BD {
 
     public boolean realizarTransferencia(int contaOrigem, int contaDestino, double valor) {
         try {
-            Statement st = con.createStatement();
             int resultado = st.executeUpdate("UPDATE conta SET saldo = saldo - " + valor + " WHERE numero = " + contaOrigem + ";");
             int resultado1 = st.executeUpdate("UPDATE conta SET saldo = saldo + " + valor + " WHERE numero = " + contaDestino + ";");
             return resultado == 1 && resultado1 == 1 && gerarTransferencia(contaOrigem, contaDestino, valor, getDataHoraAtualMysql());
@@ -113,7 +110,6 @@ public class BD {
 
     public boolean realizarTransferencia(int contaOrigem, int contaDestino, ConexaoBanco conexaoBancoDetino, double valor) throws RemoteException {
         try {
-            Statement st = con.createStatement();
             int resultado = st.executeUpdate("UPDATE conta SET saldo = saldo - " + valor + " WHERE numero = " + contaOrigem + ";");
             boolean resultado2 = conexaoBancoDetino.getServico().realizarTransferencia(contaDestino, contaOrigem, valor);
             return resultado == 1 && resultado2 && gerarTransferencia(contaOrigem, contaDestino, valor, getDataHoraAtualMysql());
@@ -125,7 +121,6 @@ public class BD {
 
     public boolean receberTransferenciaBancos(int contaOrigem, int contaDestino, double valor) {
         try {
-            Statement st = con.createStatement();
             int resultado1 = st.executeUpdate("UPDATE conta SET saldo = saldo + " + valor + " WHERE numero = " + contaDestino + ";");
             return resultado1 == 1 && gerarTransferencia(contaOrigem, contaDestino, valor, getDataHoraAtualMysql());
         } catch (SQLException ex) {
@@ -134,11 +129,34 @@ public class BD {
         }
     }
 
-    public boolean alterarBancoConta(int conta, int banco) {
+    public boolean alterarBancoConta(int numeroConta, ConexaoBanco conexaoBancoDestino) throws RemoteException {
         try {
-            Statement st = con.createStatement();
-            int resultado = st.executeUpdate("UPDATE conta SET cod = " + banco + " WHERE numero = " + conta + ";");
-            return resultado == 1;
+            ResultSet resultadosMov = st.executeQuery("SELECT * FROM movimentacao WHERE numero = " + numeroConta + ";");
+            ResultSet resultadosTrans = st.executeQuery("SELECT * FROM transferencia WHERE contaorigem = " + numeroConta + " OR " + "contadestino = " + numeroConta + ";");
+            ResultSet resultadoCliente = st.executeQuery("SELECT * FROM cliente WHERE cpf IN ( SELECT cpf FROM conta WHERE numero = " + numeroConta + " );");
+            ResultSet resultadoConta = st.executeQuery("SELECT * FROM conta WHERE numero = " + numeroConta + ";");
+            Cliente cliente = new Cliente(resultadoCliente.getString("cpf"), resultadoCliente.getNString("nome"));
+            ArrayList<Movimentacao> movimentacoes = new ArrayList<>();
+            resultadosMov.beforeFirst();
+            while (resultadosMov.next()) {
+                Movimentacao mov = new Movimentacao(numeroConta, resultadosMov.getInt("tipo"), resultadosMov.getDouble("valor"), resultadosMov.getString("datahora"));
+                movimentacoes.add(mov);
+            }
+            ArrayList<Transferencia> transferencias = new ArrayList<>();
+            resultadosTrans.beforeFirst();
+            while (resultadosTrans.next()) {
+                Transferencia trans = new Transferencia(resultadosTrans.getInt("contaorigem"), resultadosTrans.getInt("contadestino"), resultadosTrans.getDouble("valor"), resultadosTrans.getString("datahora"));
+                transferencias.add(trans);
+            }
+            Conta conta = new Conta(cliente, numeroConta, resultadoConta.getDouble("saldo"), movimentacoes, transferencias);
+            // fim do processo de leitura
+            boolean resultado1 = conexaoBancoDestino.getServico().processarTransferenciaCadastro(conta);
+            // fim da cópia no outro banco
+            int delecaoMov = st.executeUpdate("DELETE FROM movimentacao WHERE numero = " + numeroConta + ";");
+            int delecaoTrans = st.executeUpdate("DELETE FROM transferencia WHERE contaorigem = " + numeroConta + ";");
+            int delecaoConta = st.executeUpdate("DELETE FROM conta WHERE numero = " + numeroConta + ";");
+            // fim da exclusão da conta no banco atual            
+            return resultado1 && delecaoMov >= 1 && delecaoTrans >= 1 && delecaoConta >= 1;
         } catch (SQLException ex) {
             System.err.println("Erro de manipulação do Banco de Dados! " + ex.toString());
             return false;
@@ -147,7 +165,6 @@ public class BD {
 
     public Double buscarSaldo(int conta) {
         try {
-            Statement st = con.createStatement();
             ResultSet resultados = st.executeQuery("SELECT saldo FROM conta WHERE numero = " + conta + "';");
             resultados.first();
             return resultados.getDouble("saldo");
@@ -160,9 +177,7 @@ public class BD {
     public ArrayList<Operacao> consultarExtrato(int conta) {
         try {
             ArrayList<Operacao> extrato = new ArrayList<>();
-            Statement st = con.createStatement();
             ResultSet resultadosMov = st.executeQuery("SELECT * FROM movimentacao WHERE numero = " + conta + ";");
-            st = con.createStatement();
             ResultSet resultadosTrans = st.executeQuery("SELECT * FROM transferencia WHERE contaorigem = " + conta + " OR " + "contadestino = " + conta + ";");
             resultadosMov.beforeFirst();
             while (resultadosMov.next()) {
@@ -184,6 +199,26 @@ public class BD {
         } catch (SQLException ex) {
             System.err.println("Erro de manipulação do Banco de Dados! " + ex.toString());
             return null;
+        }
+    }
+
+    public boolean receberCadastroBanco(Conta conta) {
+        try {
+            int resultado1 = st.executeUpdate("INSERT INTO cliente (cpf, nome) VALUES ('" + conta.getCliente().getCPF() + "', '" + conta.getCliente().getNome() + "');");
+            if (resultado1 == 0) {
+                st.executeUpdate("UPDATE cliente SET nome = '" + conta.getCliente().getNome() + "' WHERE CPF = '" + conta.getCliente().getCPF() + "';");
+            }
+            resultado1 = st.executeUpdate("INSERT INTO conta (saldo, cpf) VALUES (" + conta.getSaldo() + ", '" + conta.getCliente().getCPF() + ");");
+            conta.getMovimentacoes().forEach((mov) -> {
+                gerarMovimentacao(conta.getNumero(), mov.getTipo(), mov.getValor(), mov.getData());
+            });
+            conta.getTransferencias().forEach((trans) -> {
+                gerarTransferencia(trans.getContaOrigem(), trans.getContaDestino(), trans.getValor(), trans.getData());
+            });
+            return resultado1 == 1;
+        } catch (SQLException ex) {
+            System.err.println("Erro de manipulação do Banco de Dados! " + ex.toString());
+            return false;
         }
     }
 }

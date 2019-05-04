@@ -6,6 +6,7 @@
 package controller;
 
 import classses.Cliente;
+import classses.Conta;
 import classses.Operacao;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -50,8 +51,8 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
     }
 
     @Override
-    public boolean transferirCadastro(int conta, int codBancoDestino) throws RemoteException {
-        return bd.alterarBancoConta(conta, conta);
+    public boolean transferirCadastro(int conta, ConexaoBanco conexaoBancoDestino) throws RemoteException {
+        return bd.alterarBancoConta(conta, conexaoBancoDestino);
     }
 
     @Override
@@ -77,6 +78,11 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
     @Override
     public boolean processarTransferenciaBanco(int contaOrigem, int contaDestino, double valor) throws RemoteException {
         return bd.receberTransferenciaBancos(contaOrigem, contaDestino, valor);
+    }
+
+    @Override
+    public boolean processarTransferenciaCadastro(Conta conta) throws RemoteException {
+        return bd.receberCadastroBanco(conta);
     }
 
 }

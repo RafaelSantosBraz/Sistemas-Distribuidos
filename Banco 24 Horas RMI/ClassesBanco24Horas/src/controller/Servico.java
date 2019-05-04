@@ -6,6 +6,7 @@
 package controller;
 
 import classses.Cliente;
+import classses.Conta;
 import classses.Operacao;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -32,10 +33,13 @@ public interface Servico extends Remote {
 
     public boolean realizarTransferencia(int contaOrigem, int contaDestino, ConexaoBanco conexaoBancoDestino, double valor) throws RemoteException;
 
-    public boolean transferirCadastro(int conta, int codBancoDestino) throws RemoteException;
+    public boolean transferirCadastro(int conta, ConexaoBanco conexaoBancoDestino) throws RemoteException;
 
     public ArrayList<Operacao> consultarExtrato(int conta) throws RemoteException;
 
-    // Método auxiliar para transferência entre Bancos - apenas deve ser manipulada pela classe BD
+    // Método auxiliar para transferência entre Bancos - apenas deve ser manipulado pela classe BD
     public boolean processarTransferenciaBanco(int contaOrigem, int contaDestino, double valor) throws RemoteException;
+
+    // Método auxiliar para transferência de cadastro entre Bancos - apenas deve ser manipulado pela classe BD
+    public boolean processarTransferenciaCadastro(Conta conta) throws RemoteException;
 }
