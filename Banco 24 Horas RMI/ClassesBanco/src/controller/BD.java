@@ -43,7 +43,7 @@ public class BD {
 
     public Cliente buscarCliente(String CPF) {
         try {
-            ResultSet resultados = st.executeQuery("SELECT * FROM cliente WHERE cpf like '" + CPF + "';");
+            ResultSet resultados = st.executeQuery("SELECT * FROM cliente WHERE cpf = '" + CPF + "';");
             resultados.first();
             return new Cliente(CPF, resultados.getString("nome"));
         } catch (SQLException ex) {
