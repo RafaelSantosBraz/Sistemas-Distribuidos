@@ -143,10 +143,14 @@ public class ConsultarExtrato extends javax.swing.JFrame {
                 }
                 else{
                     int destino =  ((Transferencia)t).getContaDestino();
-                    extrato.add(t.getData() + " | " + t.getContaOrigem() + " | " + destino + " | " + t.getValor());
+                    extrato.add(t.getData() + " | " + t.getContaOrigem() + " | " + destino + " | Transferência | " + t.getValor());
                 }                
             });
-            jList1.setListData((String[]) extrato.toArray());            
+            String[] convertido = new String[extrato.size()];
+            for (int c = 0; c < extrato.size(); c++){
+                convertido[c] = extrato.get(c);
+            }
+            jList1.setListData(convertido);            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Falha ao Obter Extrato", "Erro", HEIGHT);
         }
