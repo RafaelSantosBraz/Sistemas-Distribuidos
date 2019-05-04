@@ -10,6 +10,7 @@ import classses.Conta;
 import classses.Movimentacao;
 import classses.Operacao;
 import classses.Transferencia;
+import com.mysql.jdbc.Driver;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,11 +30,22 @@ public class BD {
     private final Statement st;
 
     public BD() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/banco";
-        String user = "root";
-        String password = "";
-        con = DriverManager.getConnection(url, user, password);
+        con = createConnection();
         st = con.createStatement();
+    }
+
+    @SuppressWarnings("rawtypes")
+    public Connection createConnection() {
+        Connection connection = null;
+        try {
+            Class driver_class = Class.forName("com.mysql.jdbc.Driver");
+            Driver driver = (Driver) driver_class.newInstance();
+            DriverManager.registerDriver(driver);
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + "banco", "root", "");
+        } catch (ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException e) {
+            System.err.println(e.toString());
+        }
+        return connection;
     }
 
     public Cliente buscarCliente(String CPF) {
