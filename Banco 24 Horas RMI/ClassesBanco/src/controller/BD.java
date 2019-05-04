@@ -224,12 +224,12 @@ public class BD {
                 st.executeUpdate("UPDATE cliente SET nome = '" + conta.getCliente().getNome() + "' WHERE CPF = '" + conta.getCliente().getCPF() + "';");
             }
             resultado1 = st.executeUpdate("INSERT INTO conta (cod, saldo, cpf) VALUES (0, " + conta.getSaldo() + ", '" + conta.getCliente().getCPF() + "');");
-            conta.getMovimentacoes().forEach((mov) -> {
-                gerarMovimentacao(conta.getNumero(), mov.getTipo(), mov.getValor(), mov.getData());
-            });
-            conta.getTransferencias().forEach((trans) -> {
-                gerarTransferencia(trans.getContaOrigem(), trans.getContaDestino(), trans.getValor(), trans.getData());
-            });
+//            conta.getMovimentacoes().forEach((mov) -> {
+//                gerarMovimentacao(conta.getNumero(), mov.getTipo(), mov.getValor(), mov.getData());
+//            });
+//            conta.getTransferencias().forEach((trans) -> {
+//                gerarTransferencia(trans.getContaOrigem(), trans.getContaDestino(), trans.getValor(), trans.getData());
+//            });
             return resultado1 == 1;
         } catch (SQLException ex) {
             System.err.println("Erro de manipulação do Banco de Dados! " + ex.toString());
