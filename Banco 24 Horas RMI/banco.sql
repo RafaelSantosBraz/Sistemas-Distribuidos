@@ -88,7 +88,7 @@ CREATE TABLE `movimentacao` (
   `cod` int(11) NOT NULL,
   `tipo` int(11) NOT NULL,
   `valor` double NOT NULL,
-  `datahora` date NOT NULL,
+  `datahora` datetime NOT NULL,
   `numero` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -101,7 +101,7 @@ CREATE TABLE `movimentacao` (
 CREATE TABLE `transferencia` (
   `cod` int(11) NOT NULL,
   `valor` double NOT NULL,
-  `datahora` date NOT NULL,
+  `datahora` datetime NOT NULL,
   `contaorigem` int(11) NOT NULL,
   `contadestino` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

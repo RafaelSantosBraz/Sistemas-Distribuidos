@@ -66,6 +66,7 @@ public class ConsultarSaldo extends javax.swing.JFrame {
 
         jLabel2.setText("Valor");
 
+        jTextField3.setEditable(false);
         jTextField3.setToolTipText("");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
