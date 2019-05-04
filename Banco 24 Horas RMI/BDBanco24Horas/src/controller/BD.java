@@ -7,6 +7,7 @@ package controller;
 
 import classses.Cliente;
 import classses.Movimentacao;
+import classses.Operacao;
 import classses.Transferencia;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -131,16 +132,16 @@ public class BD {
         }
     }
 
-    public ArrayList<Object> consultarExtrato(int conta) {
+    public ArrayList<Operacao> consultarExtrato(int conta) {
         try {
-            ArrayList<Object> extrato = new ArrayList<>();
+            ArrayList<Operacao> extrato = new ArrayList<>();
             Statement st = con.createStatement();
             ResultSet resultadosMov = st.executeQuery("SELECT * FROM movimentacao WHERE numero = " + conta + ";");
             st = con.createStatement();
             ResultSet resultadosTrans = st.executeQuery("SELECT * FROM transferencia WHERE contaorigem = " + conta + " OR " + "contadestino = " + conta + ";");
             resultadosMov.beforeFirst();
             while (resultadosMov.next()) {
-                Movimentacao mov = new Movimentacao(resultadosMov.getInt("tipo"), resultadosMov.getDouble("valor"), resultadosMov.getString("datahora"));
+                Movimentacao mov = new Movimentacao(conta, resultadosMov.getInt("tipo"), resultadosMov.getDouble("valor"), resultadosMov.getString("datahora"));
                 extrato.add(mov);
             }
             resultadosTrans.beforeFirst();
@@ -149,18 +150,7 @@ public class BD {
                 extrato.add(trans);
             }
             extrato.sort((u, t) -> {
-                String ant, pos;
-                if (u instanceof Movimentacao) {
-                    ant = ((Movimentacao) u).getData();
-                } else {
-                    ant = ((Transferencia) u).getData();
-                }
-                if (t instanceof Movimentacao) {
-                    pos = ((Movimentacao) t).getData();
-                } else {
-                    pos = ((Transferencia) t).getData();
-                }
-                if (ant.compareTo(pos) < 0) {
+                if (u.getData().compareTo(t.getData()) < 0) {
                     return 1;
                 }
                 return -1;

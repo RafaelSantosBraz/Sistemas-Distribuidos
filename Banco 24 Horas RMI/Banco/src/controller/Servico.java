@@ -6,6 +6,7 @@
 package controller;
 
 import classses.Cliente;
+import classses.Operacao;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -32,5 +33,5 @@ public interface Servico extends Remote {
 
     public boolean transferirCadastro(int conta, int codBancoDestino) throws RemoteException;
 
-    public ArrayList<Object> consultarExtrato(int conta) throws RemoteException;
+    public ArrayList<Operacao> consultarExtrato(int conta) throws RemoteException;
 }

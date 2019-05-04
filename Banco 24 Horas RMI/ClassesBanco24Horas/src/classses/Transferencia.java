@@ -9,54 +9,17 @@ package classses;
  *
  * @author rafael
  */
-public class Transferencia {
+public class Transferencia extends Operacao {
 
-    private int contaOrigem;
-    private int contaDestina;
-    private double valor;
-    private String data;
+    private final int contaDestino;
 
-    public Transferencia(int contaOrigem, int contaDestina, double valor, String data) {
-        this.contaOrigem = contaOrigem;
-        this.contaDestina = contaDestina;
-        this.valor = valor;
-        this.data = data;
+    public Transferencia(int contaOrigem, int contaDestino, double valor, String data) {
+        super(contaOrigem, valor, data);
+        this.contaDestino = contaDestino;
     }
 
-    public Transferencia() {
-
-    }
-
-    public int getContaOrigem() {
-        return contaOrigem;
-    }
-
-    public void setContaOrigem(int contaOrigem) {
-        this.contaOrigem = contaOrigem;
-    }
-
-    public int getContaDestina() {
-        return contaDestina;
-    }
-
-    public void setContaDestina(int contaDestina) {
-        this.contaDestina = contaDestina;
-    }
-
-    public double getValor() {
-        return valor;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
+    public int getContaDestino() {
+        return contaDestino;
     }
 
 }

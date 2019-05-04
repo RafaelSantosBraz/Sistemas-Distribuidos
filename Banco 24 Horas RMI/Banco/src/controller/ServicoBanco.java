@@ -6,6 +6,7 @@
 package controller;
 
 import classses.Cliente;
+import classses.Operacao;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
@@ -63,7 +64,7 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
     }
 
     @Override
-    public ArrayList<Object> consultarExtrato(int conta) {
+    public ArrayList<Operacao> consultarExtrato(int conta) {
         return bd.consultarExtrato(conta);
     }
 
