@@ -13,11 +13,22 @@ import view.TelaInicial;
  */
 public class Controladora {
 
-    private TelaInicial telaInicial;
+    //<editor-fold defaultstate="collapsed" desc="SINGLETON">
+    private static Controladora instancia;
 
-    public Controladora() {
-        telaInicial = new TelaInicial();
-        telaInicial.setVisible(true);
+    public static Controladora getInstancia() {
+        if (instancia == null) {
+            instancia = new Controladora();
+        }
+        return instancia;
     }
 
+    private Controladora() {
+
+    }
+    //</editor-fold>       
+
+    public void criarTelaInicial() {
+        new TelaInicial().setVisible(true);
+    }
 }

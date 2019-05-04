@@ -24,14 +24,13 @@ public class Run {
     public static void main(String[] args) {
         try {
             ServicoBanco servico = new ServicoBanco();
-            Registry reg = LocateRegistry.createRegistry(9876);
             Scanner leitor = new Scanner(System.in);
+            // 9876 - valor antigo
+            Registry reg = LocateRegistry.createRegistry(leitor.nextInt());
             System.out.println("Informe o nome do Banco para registro: ");
             String nomeBanco = leitor.nextLine();
             reg.rebind(nomeBanco, servico);
             System.out.println("Servidor Iniciado!");
-            // implementar requisição de código e sincronizar com o BD
-
         } catch (RemoteException e) {
             System.err.println("Erro ao iniciar o servidor RMI do Banco! " + e.toString());
         } catch (SQLException ex) {

@@ -27,9 +27,9 @@ public class BD {
     private final Connection con;
 
     public BD() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/testdb?useSSL=false";
-        String user = "testuser";
-        String password = "test623";
+        String url = "jdbc:mysql://localhost:3306/banco?useSSL=false";
+        String user = "mysql";
+        String password = "mysql";
         con = DriverManager.getConnection(url, user, password);
     }
 
@@ -117,6 +117,17 @@ public class BD {
             int resultado = st.executeUpdate("UPDATE conta SET saldo = saldo - " + valor + " WHERE numero = " + contaOrigem + ";");
             boolean resultado2 = conexaoBancoDetino.getServico().realizarTransferencia(contaDestino, contaOrigem, valor);
             return resultado == 1 && resultado2 && gerarTransferencia(contaOrigem, contaDestino, valor, getDataHoraAtualMysql());
+        } catch (SQLException ex) {
+            System.err.println("Erro de manipulação do Banco de Dados! " + ex.toString());
+            return false;
+        }
+    }
+
+    public boolean receberTransferenciaBancos(int contaOrigem, int contaDestino, double valor) {
+        try {
+            Statement st = con.createStatement();
+            int resultado1 = st.executeUpdate("UPDATE conta SET saldo = saldo + " + valor + " WHERE numero = " + contaDestino + ";");
+            return resultado1 == 1 && gerarTransferencia(contaOrigem, contaDestino, valor, getDataHoraAtualMysql());
         } catch (SQLException ex) {
             System.err.println("Erro de manipulação do Banco de Dados! " + ex.toString());
             return false;

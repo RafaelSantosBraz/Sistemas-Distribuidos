@@ -74,4 +74,9 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
         return bd.realizarTransferencia(contaOrigem, contaDestino, conexaoBancoDestino, valor);
     }
 
+    @Override
+    public boolean processarTransferenciaBanco(int contaOrigem, int contaDestino, double valor) throws RemoteException {
+        return bd.receberTransferenciaBancos(contaOrigem, contaDestino, valor);
+    }
+
 }
