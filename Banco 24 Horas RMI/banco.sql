@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Tempo de geração: 02/05/2019 às 17:03
--- Versão do servidor: 5.7.25-0ubuntu0.18.04.2
--- Versão do PHP: 7.2.17-0ubuntu0.18.04.1
+-- Host: 127.0.0.1
+-- Generation Time: May 04, 2019 at 07:10 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `banco`
+-- Database: `banco`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `banco`
+-- Table structure for table `banco`
 --
 
 CREATE TABLE `banco` (
@@ -31,10 +33,17 @@ CREATE TABLE `banco` (
   `nome` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `banco`
+--
+
+INSERT INTO `banco` (`cod`, `nome`) VALUES
+(0, 'Caixa');
+
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `cliente`
+-- Table structure for table `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -42,10 +51,17 @@ CREATE TABLE `cliente` (
   `nome` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `cliente`
+--
+
+INSERT INTO `cliente` (`cpf`, `nome`) VALUES
+('45966446830', 'Enrique');
+
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `conta`
+-- Table structure for table `conta`
 --
 
 CREATE TABLE `conta` (
@@ -55,13 +71,20 @@ CREATE TABLE `conta` (
   `cpf` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `conta`
+--
+
+INSERT INTO `conta` (`numero`, `saldo`, `cod`, `cpf`) VALUES
+(1, 1700, 0, '45966446830');
+
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `movimentação`
+-- Table structure for table `movimentacao`
 --
 
-CREATE TABLE `movimentação` (
+CREATE TABLE `movimentacao` (
   `cod` int(11) NOT NULL,
   `tipo` int(11) NOT NULL,
   `valor` double NOT NULL,
@@ -72,7 +95,7 @@ CREATE TABLE `movimentação` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `transferencia`
+-- Table structure for table `transferencia`
 --
 
 CREATE TABLE `transferencia` (
@@ -84,23 +107,23 @@ CREATE TABLE `transferencia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Índices de tabelas apagadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices de tabela `banco`
+-- Indexes for table `banco`
 --
 ALTER TABLE `banco`
   ADD PRIMARY KEY (`cod`);
 
 --
--- Índices de tabela `cliente`
+-- Indexes for table `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`cpf`);
 
 --
--- Índices de tabela `conta`
+-- Indexes for table `conta`
 --
 ALTER TABLE `conta`
   ADD PRIMARY KEY (`numero`),
@@ -108,14 +131,14 @@ ALTER TABLE `conta`
   ADD KEY `cpf` (`cpf`);
 
 --
--- Índices de tabela `movimentação`
+-- Indexes for table `movimentacao`
 --
-ALTER TABLE `movimentação`
+ALTER TABLE `movimentacao`
   ADD PRIMARY KEY (`cod`),
   ADD KEY `numero` (`numero`);
 
 --
--- Índices de tabela `transferencia`
+-- Indexes for table `transferencia`
 --
 ALTER TABLE `transferencia`
   ADD PRIMARY KEY (`cod`),
@@ -123,47 +146,51 @@ ALTER TABLE `transferencia`
   ADD KEY `contadestino` (`contadestino`);
 
 --
--- AUTO_INCREMENT de tabelas apagadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `conta`
+-- AUTO_INCREMENT for table `conta`
 --
 ALTER TABLE `conta`
-  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT de tabela `movimentação`
+-- AUTO_INCREMENT for table `movimentacao`
 --
-ALTER TABLE `movimentação`
+ALTER TABLE `movimentacao`
   MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT de tabela `transferencia`
+-- AUTO_INCREMENT for table `transferencia`
 --
 ALTER TABLE `transferencia`
   MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- Restrições para dumps de tabelas
+-- Constraints for dumped tables
 --
 
 --
--- Restrições para tabelas `conta`
+-- Constraints for table `conta`
 --
 ALTER TABLE `conta`
   ADD CONSTRAINT `conta_ibfk_1` FOREIGN KEY (`cod`) REFERENCES `banco` (`cod`),
   ADD CONSTRAINT `conta_ibfk_2` FOREIGN KEY (`cpf`) REFERENCES `cliente` (`cpf`);
 
 --
--- Restrições para tabelas `movimentação`
+-- Constraints for table `movimentacao`
 --
-ALTER TABLE `movimentação`
-  ADD CONSTRAINT `movimentação_ibfk_1` FOREIGN KEY (`numero`) REFERENCES `conta` (`numero`);
+ALTER TABLE `movimentacao`
+  ADD CONSTRAINT `movimentacao_ibfk_1` FOREIGN KEY (`numero`) REFERENCES `conta` (`numero`);
 
 --
--- Restrições para tabelas `transferencia`
+-- Constraints for table `transferencia`
 --
 ALTER TABLE `transferencia`
   ADD CONSTRAINT `transferencia_ibfk_1` FOREIGN KEY (`contaorigem`) REFERENCES `conta` (`numero`),
   ADD CONSTRAINT `transferencia_ibfk_2` FOREIGN KEY (`contadestino`) REFERENCES `conta` (`numero`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

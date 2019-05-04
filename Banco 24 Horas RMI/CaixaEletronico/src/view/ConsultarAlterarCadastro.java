@@ -201,7 +201,7 @@ public class ConsultarAlterarCadastro extends javax.swing.JFrame {
         try {                      
             jTextField3.setText(Controladora.getInstancia().consultarCadastro(jTextField2.getText()));
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Falha na Conexão", "Erro", HEIGHT);
+            JOptionPane.showMessageDialog(rootPane, "Falha na Conexão" + ex.toString(), "Erro", HEIGHT);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
