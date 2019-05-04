@@ -5,6 +5,10 @@
  */
 package view;
 
+import controler.Controladora;
+import static java.awt.image.ImageObserver.HEIGHT;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author cc45966446830
@@ -38,6 +42,11 @@ public class ConsultarSaldo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton3.setText("Consultar Saldo");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Voltar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -129,6 +138,14 @@ public class ConsultarSaldo extends javax.swing.JFrame {
         telaInicial.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {                      
+            jTextField3.setText(Double.toString(Controladora.getInstancia().consultarSaldo(Integer.parseInt(jTextField2.getText()))));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Falha ao Consultar Saldo", "Erro", HEIGHT);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

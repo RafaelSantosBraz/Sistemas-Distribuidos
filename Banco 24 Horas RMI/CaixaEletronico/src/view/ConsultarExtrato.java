@@ -5,6 +5,16 @@
  */
 package view;
 
+import classses.Movimentacao;
+import classses.Operacao;
+import classses.Transferencia;
+import controler.Controladora;
+import static java.awt.image.ImageObserver.HEIGHT;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author cc45966446830
@@ -32,6 +42,8 @@ public class ConsultarExtrato extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +63,13 @@ public class ConsultarExtrato extends javax.swing.JFrame {
         });
 
         jButton2.setText("Colsultar Extrato");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -66,6 +85,7 @@ public class ConsultarExtrato extends javax.swing.JFrame {
                         .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -78,7 +98,9 @@ public class ConsultarExtrato extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 403, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -109,6 +131,26 @@ public class ConsultarExtrato extends javax.swing.JFrame {
         telaInicial.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            ArrayList<Operacao> lista = Controladora.getInstancia().consultarExtrato(Integer.parseInt(jTextField1.getText()));
+            ArrayList<String> extrato = new ArrayList<>();
+            lista.forEach((t) -> {
+                if (t instanceof Movimentacao){                      
+                    String tipo =  ((Movimentacao)t).getTipo() == 0? "Saque":"Depósito";
+                    extrato.add(t.getData() + " | " + t.getContaOrigem() + " | " + tipo + " | " + t.getValor());
+                }
+                else{
+                    int destino =  ((Transferencia)t).getContaDestino();
+                    extrato.add(t.getData() + " | " + t.getContaOrigem() + " | " + destino + " | " + t.getValor());
+                }                
+            });
+            jList1.setListData((String[]) extrato.toArray());            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Falha ao Obter Extrato", "Erro", HEIGHT);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,7 +192,9 @@ public class ConsultarExtrato extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

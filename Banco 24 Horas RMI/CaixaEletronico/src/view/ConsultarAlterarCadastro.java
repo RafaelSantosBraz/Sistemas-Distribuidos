@@ -5,6 +5,11 @@
  */
 package view;
 
+import controler.Controladora;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author cc45966446830
@@ -81,6 +86,11 @@ public class ConsultarAlterarCadastro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton3.setText("Consultar Cadastro");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Voltar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +118,11 @@ public class ConsultarAlterarCadastro extends javax.swing.JFrame {
         });
 
         jButton5.setText("Alterar Cadastro");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -181,6 +196,26 @@ public class ConsultarAlterarCadastro extends javax.swing.JFrame {
         telaInicial.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {                      
+            jTextField3.setText(Controladora.getInstancia().consultarCadastro(jTextField2.getText()));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Falha na Conexão", "Erro", HEIGHT);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            if (Controladora.getInstancia().alterarCadastro(jTextField2.getText(), jTextField3.getText())) {
+                JOptionPane.showMessageDialog(null, "Cadastro Atualizado");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Falha na Alteração do Cadastro", "Erro", HEIGHT);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Falha na Conexão", "Erro", HEIGHT);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,10 @@
  */
 package view;
 
+import controler.Controladora;
+import static java.awt.image.ImageObserver.HEIGHT;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author cc45966446830
@@ -39,6 +43,11 @@ public class SacarDepositar extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton3.setText("Realizar Saque");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Voltar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -66,6 +75,11 @@ public class SacarDepositar extends javax.swing.JFrame {
         });
 
         jButton1.setText("Realizar Depósito");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -135,6 +149,22 @@ public class SacarDepositar extends javax.swing.JFrame {
         telaInicial.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {                      
+            Controladora.getInstancia().sacar(Integer.parseInt(jTextField2.getText()), Double.parseDouble(jTextField3.getText()));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Falha ao Realizar Saque", "Erro", HEIGHT);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {                      
+            Controladora.getInstancia().depositar(Integer.parseInt(jTextField2.getText()), Double.parseDouble(jTextField3.getText()));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Falha ao Realizar Depósito", "Erro", HEIGHT);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
