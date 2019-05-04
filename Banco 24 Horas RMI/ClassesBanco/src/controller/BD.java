@@ -10,13 +10,8 @@ import classses.Conta;
 import classses.Movimentacao;
 import classses.Operacao;
 import classses.Transferencia;
-import com.mysql.jdbc.Driver;
 import java.rmi.RemoteException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import transmissao.ConexaoBanco;
 
@@ -34,16 +29,14 @@ public class BD {
         st = con.createStatement();
     }
 
-    @SuppressWarnings("rawtypes")
     public Connection createConnection() {
         Connection connection = null;
         try {
-            Class driver_class = Class.forName("com.mysql.jdbc.Driver");
-            Driver driver = (Driver) driver_class.newInstance();
-            DriverManager.registerDriver(driver);
+            Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + "banco", "root", "");
-        } catch (ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException e) {
-            System.err.println(e.toString());
+        } catch (ClassNotFoundException | SQLException e) {
+            //System.err.println(e.toString());
+            e.printStackTrace(System.out);
         }
         return connection;
     }
