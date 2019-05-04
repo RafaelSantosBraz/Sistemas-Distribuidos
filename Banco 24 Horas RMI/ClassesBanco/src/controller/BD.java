@@ -146,17 +146,19 @@ public class BD {
             resultadoCliente.first();
             Cliente cliente = new Cliente(resultadoCliente.getString("cpf"), resultadoCliente.getString("nome"));
             ArrayList<Movimentacao> movimentacoes = new ArrayList<>();
-            resultadosMov.first();
-            do {
-                Movimentacao mov = new Movimentacao(numeroConta, resultadosMov.getInt("tipo"), resultadosMov.getDouble("valor"), resultadosMov.getString("datahora"));
-                movimentacoes.add(mov);
-            } while (resultadosMov.next());
+            if (resultadosMov.first()) {
+                do {
+                    Movimentacao mov = new Movimentacao(numeroConta, resultadosMov.getInt("tipo"), resultadosMov.getDouble("valor"), resultadosMov.getString("datahora"));
+                    movimentacoes.add(mov);
+                } while (resultadosMov.next());
+            }
             ArrayList<Transferencia> transferencias = new ArrayList<>();
-            resultadosTrans.first();
-            do {
-                Transferencia trans = new Transferencia(resultadosTrans.getInt("contaorigem"), resultadosTrans.getInt("contadestino"), resultadosTrans.getDouble("valor"), resultadosTrans.getString("datahora"));
-                transferencias.add(trans);
-            } while (resultadosTrans.next());
+            if (resultadosTrans.first()) {
+                do {
+                    Transferencia trans = new Transferencia(resultadosTrans.getInt("contaorigem"), resultadosTrans.getInt("contadestino"), resultadosTrans.getDouble("valor"), resultadosTrans.getString("datahora"));
+                    transferencias.add(trans);
+                } while (resultadosTrans.next());
+            }
             resultadoConta.first();
             Conta conta = new Conta(cliente, numeroConta, resultadoConta.getDouble("saldo"), movimentacoes, transferencias);
             // fim do processo de leitura
@@ -190,16 +192,18 @@ public class BD {
             ResultSet resultadosMov = st.executeQuery("SELECT * FROM movimentacao WHERE numero = " + conta + ";");
             Statement stt = con.createStatement();
             ResultSet resultadosTrans = stt.executeQuery("SELECT * FROM transferencia WHERE contaorigem = " + conta + " OR " + "contadestino = " + conta + ";");
-            resultadosMov.first();
-            do {
-                Movimentacao mov = new Movimentacao(conta, resultadosMov.getInt("tipo"), resultadosMov.getDouble("valor"), resultadosMov.getString("datahora"));
-                extrato.add(mov);
-            } while (resultadosMov.next());
-            resultadosTrans.first();
-            do {
-                Transferencia trans = new Transferencia(resultadosTrans.getInt("contaorigem"), resultadosTrans.getInt("contadestino"), resultadosTrans.getDouble("valor"), resultadosTrans.getString("datahora"));
-                extrato.add(trans);
-            } while (resultadosTrans.next());
+            if (resultadosMov.first()) {
+                do {
+                    Movimentacao mov = new Movimentacao(conta, resultadosMov.getInt("tipo"), resultadosMov.getDouble("valor"), resultadosMov.getString("datahora"));
+                    extrato.add(mov);
+                } while (resultadosMov.next());
+            }
+            if (resultadosTrans.first()) {
+                do {
+                    Transferencia trans = new Transferencia(resultadosTrans.getInt("contaorigem"), resultadosTrans.getInt("contadestino"), resultadosTrans.getDouble("valor"), resultadosTrans.getString("datahora"));
+                    extrato.add(trans);
+                } while (resultadosTrans.next());
+            }
             extrato.sort((u, t) -> {
                 if (u.getData().compareTo(t.getData()) < 0) {
                     return -1;
