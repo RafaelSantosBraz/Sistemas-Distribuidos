@@ -28,6 +28,7 @@ public class Run {
             // 9876 - valor antigo
             Registry reg = LocateRegistry.createRegistry(leitor.nextInt());
             System.out.println("Informe o nome do Banco para registro: ");
+            leitor = new Scanner(System.in);
             String nomeBanco = leitor.nextLine();
             reg.rebind(nomeBanco, servico);
             System.out.println("Servidor Iniciado!");
