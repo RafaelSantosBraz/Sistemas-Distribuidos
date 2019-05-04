@@ -15,10 +15,19 @@ import java.rmi.registry.Registry;
  */
 public class ConexaoBanco {
 
+    public static final int BB = 0;
+    public static final int CAIXA = 1;
+
     private Servico servico;
 
-    public ConexaoBanco(String nomeBancoConexao, String IP, int numero) throws Exception {
-        conectar(nomeBancoConexao, IP, numero);
+    public ConexaoBanco(int codBanco) throws Exception {
+        switch (codBanco) {
+            case BB:
+                conectar("BB", "localhost", 9876);
+                break;
+            case CAIXA:
+                conectar("Caixa", "localhost", 9875);
+        }
     }
 
     private void conectar(String nomeBancoConexao, String IP, int numero) throws Exception {

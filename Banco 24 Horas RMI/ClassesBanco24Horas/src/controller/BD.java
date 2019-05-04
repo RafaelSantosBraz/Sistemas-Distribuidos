@@ -29,9 +29,9 @@ public class BD {
     private final Statement st;
 
     public BD() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/banco?useSSL=false";
-        String user = "mysql";
-        String password = "mysql";
+        String url = "jdbc:mysql://localhost:3306/banco";
+        String user = "root";
+        String password = "";
         con = DriverManager.getConnection(url, user, password);
         st = con.createStatement();
     }
