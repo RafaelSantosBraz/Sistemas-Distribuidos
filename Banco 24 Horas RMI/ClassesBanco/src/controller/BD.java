@@ -223,7 +223,7 @@ public class BD {
             if (resultado1 == 0) {
                 st.executeUpdate("UPDATE cliente SET nome = '" + conta.getCliente().getNome() + "' WHERE CPF = '" + conta.getCliente().getCPF() + "';");
             }
-            resultado1 = st.executeUpdate("INSERT INTO conta (saldo, cpf) VALUES (" + conta.getSaldo() + ", '" + conta.getCliente().getCPF() + "');");
+            resultado1 = st.executeUpdate("INSERT INTO conta (cod, saldo, cpf) VALUES (0, " + conta.getSaldo() + ", '" + conta.getCliente().getCPF() + "');");
             conta.getMovimentacoes().forEach((mov) -> {
                 gerarMovimentacao(conta.getNumero(), mov.getTipo(), mov.getValor(), mov.getData());
             });
