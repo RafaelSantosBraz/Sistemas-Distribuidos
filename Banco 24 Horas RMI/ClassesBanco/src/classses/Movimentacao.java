@@ -5,11 +5,13 @@
  */
 package classses;
 
+import java.io.Serializable;
+
 /**
  *
  * @author rafael
  */
-public class Movimentacao extends Operacao {
+public class Movimentacao extends Operacao implements Serializable{
 
     private final int tipo;
 

@@ -5,11 +5,13 @@
  */
 package classses;
 
+import java.io.Serializable;
+
 /**
  *
  * @author rafael
  */
-public class Transferencia extends Operacao {
+public class Transferencia extends Operacao implements Serializable{
 
     private final int contaDestino;
 

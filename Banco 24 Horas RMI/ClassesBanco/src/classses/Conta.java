@@ -5,13 +5,14 @@
  */
 package classses;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author rafael
  */
-public class Conta {
+public class Conta implements Serializable{
 
     private final Cliente cliente;
     private final int numero;

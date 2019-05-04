@@ -5,11 +5,13 @@
  */
 package classses;
 
+import java.io.Serializable;
+
 /**
  *
  * @author rafael
  */
-public class Cliente {
+public class Cliente implements Serializable{
 
     private String CPF;
     private String nome;
