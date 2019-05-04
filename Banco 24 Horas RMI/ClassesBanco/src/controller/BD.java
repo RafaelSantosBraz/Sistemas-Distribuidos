@@ -137,22 +137,27 @@ public class BD {
     public boolean alterarBancoConta(int numeroConta, ConexaoBanco conexaoBancoDestino) throws RemoteException {
         try {
             ResultSet resultadosMov = st.executeQuery("SELECT * FROM movimentacao WHERE numero = " + numeroConta + ";");
-            ResultSet resultadosTrans = st.executeQuery("SELECT * FROM transferencia WHERE contaorigem = " + numeroConta + " OR " + "contadestino = " + numeroConta + ";");
-            ResultSet resultadoCliente = st.executeQuery("SELECT * FROM cliente WHERE cpf IN ( SELECT cpf FROM conta WHERE numero = " + numeroConta + " );");
-            ResultSet resultadoConta = st.executeQuery("SELECT * FROM conta WHERE numero = " + numeroConta + ";");
-            Cliente cliente = new Cliente(resultadoCliente.getString("cpf"), resultadoCliente.getNString("nome"));
+            Statement stt = con.createStatement();
+            ResultSet resultadosTrans = stt.executeQuery("SELECT * FROM transferencia WHERE contaorigem = " + numeroConta + " OR " + "contadestino = " + numeroConta + ";");
+            Statement stt2 = con.createStatement();
+            ResultSet resultadoCliente = stt2.executeQuery("SELECT * FROM cliente WHERE cpf = ( SELECT cpf FROM conta WHERE numero = " + numeroConta + " );");
+            Statement stt3 = con.createStatement();
+            ResultSet resultadoConta = stt3.executeQuery("SELECT * FROM conta WHERE numero = " + numeroConta + ";");
+            resultadoCliente.first();
+            Cliente cliente = new Cliente(resultadoCliente.getString("cpf"), resultadoCliente.getString("nome"));
             ArrayList<Movimentacao> movimentacoes = new ArrayList<>();
-            resultadosMov.beforeFirst();
-            while (resultadosMov.next()) {
+            resultadosMov.first();
+            do {
                 Movimentacao mov = new Movimentacao(numeroConta, resultadosMov.getInt("tipo"), resultadosMov.getDouble("valor"), resultadosMov.getString("datahora"));
                 movimentacoes.add(mov);
-            }
+            } while (resultadosMov.next());
             ArrayList<Transferencia> transferencias = new ArrayList<>();
-            resultadosTrans.beforeFirst();
-            while (resultadosTrans.next()) {
+            resultadosTrans.first();
+            do {
                 Transferencia trans = new Transferencia(resultadosTrans.getInt("contaorigem"), resultadosTrans.getInt("contadestino"), resultadosTrans.getDouble("valor"), resultadosTrans.getString("datahora"));
                 transferencias.add(trans);
-            }
+            } while (resultadosTrans.next());
+            resultadoConta.first();
             Conta conta = new Conta(cliente, numeroConta, resultadoConta.getDouble("saldo"), movimentacoes, transferencias);
             // fim do processo de leitura
             boolean resultado1 = conexaoBancoDestino.getServico().processarTransferenciaCadastro(conta);
@@ -183,22 +188,23 @@ public class BD {
         try {
             ArrayList<Operacao> extrato = new ArrayList<>();
             ResultSet resultadosMov = st.executeQuery("SELECT * FROM movimentacao WHERE numero = " + conta + ";");
-            ResultSet resultadosTrans = st.executeQuery("SELECT * FROM transferencia WHERE contaorigem = " + conta + " OR " + "contadestino = " + conta + ";");
-            resultadosMov.beforeFirst();
-            while (resultadosMov.next()) {
+            Statement stt = con.createStatement();
+            ResultSet resultadosTrans = stt.executeQuery("SELECT * FROM transferencia WHERE contaorigem = " + conta + " OR " + "contadestino = " + conta + ";");
+            resultadosMov.first();
+            do {
                 Movimentacao mov = new Movimentacao(conta, resultadosMov.getInt("tipo"), resultadosMov.getDouble("valor"), resultadosMov.getString("datahora"));
                 extrato.add(mov);
-            }
-            resultadosTrans.beforeFirst();
-            while (resultadosTrans.next()) {
+            } while (resultadosMov.next());
+            resultadosTrans.first();
+            do {
                 Transferencia trans = new Transferencia(resultadosTrans.getInt("contaorigem"), resultadosTrans.getInt("contadestino"), resultadosTrans.getDouble("valor"), resultadosTrans.getString("datahora"));
                 extrato.add(trans);
-            }
+            } while (resultadosTrans.next());
             extrato.sort((u, t) -> {
                 if (u.getData().compareTo(t.getData()) < 0) {
-                    return 1;
+                    return -1;
                 }
-                return -1;
+                return 1;
             });
             return extrato;
         } catch (SQLException ex) {
@@ -213,7 +219,7 @@ public class BD {
             if (resultado1 == 0) {
                 st.executeUpdate("UPDATE cliente SET nome = '" + conta.getCliente().getNome() + "' WHERE CPF = '" + conta.getCliente().getCPF() + "';");
             }
-            resultado1 = st.executeUpdate("INSERT INTO conta (saldo, cpf) VALUES (" + conta.getSaldo() + ", '" + conta.getCliente().getCPF() + ");");
+            resultado1 = st.executeUpdate("INSERT INTO conta (saldo, cpf) VALUES (" + conta.getSaldo() + ", '" + conta.getCliente().getCPF() + "');");
             conta.getMovimentacoes().forEach((mov) -> {
                 gerarMovimentacao(conta.getNumero(), mov.getTipo(), mov.getValor(), mov.getData());
             });
