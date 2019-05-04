@@ -6,6 +6,7 @@
 package transmissao;
 
 import controller.Servico;
+import java.io.Serializable;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -13,7 +14,7 @@ import java.rmi.registry.Registry;
  *
  * @author rafael
  */
-public class ConexaoBanco {
+public class ConexaoBanco implements Serializable {
 
     public static final int BB = 0;
     public static final int CAIXA = 1;

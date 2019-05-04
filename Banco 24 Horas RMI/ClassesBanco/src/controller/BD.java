@@ -78,7 +78,7 @@ public class BD {
 
     private boolean gerarMovimentacao(int conta, int tipo, double valor, String data) {
         try {
-            int resultado = st.executeUpdate("INSERT INTO movimentacao (numero, tipo, valor, datahora) VALUES (" + conta + ", " + tipo + ", " + valor + ", " + data + ")" + ";");
+            int resultado = st.executeUpdate("INSERT INTO movimentacao (numero, tipo, valor, datahora) VALUES (" + conta + ", " + tipo + ", " + valor + ", '" + data + "')" + ";");
             return resultado == 1;
         } catch (SQLException ex) {
             System.err.println("Erro de manipulação do Banco de Dados! " + ex.toString());
@@ -170,7 +170,7 @@ public class BD {
 
     public Double buscarSaldo(int conta) {
         try {
-            ResultSet resultados = st.executeQuery("SELECT saldo FROM conta WHERE numero = " + conta + "';");
+            ResultSet resultados = st.executeQuery("SELECT saldo FROM conta WHERE numero = " + conta + ";");
             resultados.first();
             return resultados.getDouble("saldo");
         } catch (SQLException ex) {
