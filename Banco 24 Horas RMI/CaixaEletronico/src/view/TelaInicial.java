@@ -78,7 +78,7 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("Transferir Saldo");
+        jButton6.setText("Transferir Valor");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);

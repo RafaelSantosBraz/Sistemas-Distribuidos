@@ -193,7 +193,7 @@ public class TransferirValor extends javax.swing.JFrame {
         } else if ("Caixa".equals(jComboBox1.getItemAt(jComboBox1.getSelectedIndex()))) {
             bancoDestino = ConexaoBanco.CAIXA;
         }
-        if(Controladora.getInstancia().getBanco() == bancoDestino){
+        if(Controladora.getInstancia().getBanco() != bancoDestino){
             try {
                 Controladora.getInstancia().transferirValor(Integer.parseInt(jTextField2.getText()), Integer.parseInt(jTextField4.getText()), Double.parseDouble(jTextField3.getText()));
             } catch (Exception ex) {
