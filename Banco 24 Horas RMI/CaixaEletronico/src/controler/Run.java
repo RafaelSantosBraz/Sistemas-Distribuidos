@@ -5,6 +5,10 @@
  */
 package controler;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import transmissao.ConexaoBanco;
+
 /**
  *
  * @author rafael

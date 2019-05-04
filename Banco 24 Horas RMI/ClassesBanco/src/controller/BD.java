@@ -94,7 +94,7 @@ public class BD {
 
     private boolean gerarTransferencia(int contaOrigem, int contaDestino, double valor, String data) {
         try {
-            int resultado = st.executeUpdate("INSERT INTO transferencia (contaorigem, contadestino, valor, datahora) VALUES (" + contaOrigem + ", " + contaDestino + ", " + valor + ", " + data + ")" + ";");
+            int resultado = st.executeUpdate("INSERT INTO transferencia (contaorigem, contadestino, valor, datahora) VALUES (" + contaOrigem + ", " + contaDestino + ", " + valor + ", '" + data + "')" + ";");
             return resultado == 1;
         } catch (SQLException ex) {
             System.err.println("Erro de manipulação do Banco de Dados! " + ex.toString());
