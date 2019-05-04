@@ -23,10 +23,10 @@ public class ConexaoBanco {
     public ConexaoBanco(int codBanco) throws Exception {
         switch (codBanco) {
             case BB:
-                conectar("BB", "localhost", 9876);
+                conectar("BB", "192.168.10.102", 9876);
                 break;
             case CAIXA:
-                conectar("Caixa", "localhost", 9875);
+                conectar("Caixa", "192.168.10.100", 9875);
         }
     }
 
