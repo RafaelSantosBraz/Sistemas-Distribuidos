@@ -116,7 +116,7 @@ public class BD {
     public boolean realizarTransferencia(int contaOrigem, int contaDestino, ConexaoBanco conexaoBancoDetino, double valor) throws RemoteException {
         try {
             int resultado = st.executeUpdate("UPDATE conta SET saldo = saldo - " + valor + " WHERE numero = " + contaOrigem + ";");
-            boolean resultado2 = conexaoBancoDetino.getServico().realizarTransferencia(contaDestino, contaOrigem, valor);
+            boolean resultado2 = conexaoBancoDetino.getServico().processarTransferenciaBanco(contaOrigem, contaDestino, valor);
             return resultado == 1 && resultado2 && gerarTransferencia(contaOrigem, contaDestino, valor, getDataHoraAtualMysql());
         } catch (SQLException ex) {
             System.err.println("Erro de manipulação do Banco de Dados! " + ex.toString());
