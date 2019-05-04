@@ -10,6 +10,7 @@ import classses.Operacao;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import transmissao.ConexaoBanco;
 
 /**
  *
@@ -29,7 +30,7 @@ public interface Servico extends Remote {
 
     public boolean realizarTransferencia(int contaOrigem, int contaDestino, double valor) throws RemoteException;
 
-    public boolean realizarTransferencia(int contaOrigem, int contaDestino, int codBancoDestino, double valor) throws RemoteException;
+    public boolean realizarTransferencia(int contaOrigem, int contaDestino, ConexaoBanco conexaoBancoDestino, double valor) throws RemoteException;
 
     public boolean transferirCadastro(int conta, int codBancoDestino) throws RemoteException;
 

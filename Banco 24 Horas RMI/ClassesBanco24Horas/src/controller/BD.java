@@ -9,12 +9,14 @@ import classses.Cliente;
 import classses.Movimentacao;
 import classses.Operacao;
 import classses.Transferencia;
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import transmissao.ConexaoBanco;
 
 /**
  *
@@ -103,6 +105,18 @@ public class BD {
             int resultado = st.executeUpdate("UPDATE conta SET saldo = saldo - " + valor + " WHERE numero = " + contaOrigem + ";");
             int resultado1 = st.executeUpdate("UPDATE conta SET saldo = saldo + " + valor + " WHERE numero = " + contaDestino + ";");
             return resultado == 1 && resultado1 == 1 && gerarTransferencia(contaOrigem, contaDestino, valor, getDataHoraAtualMysql());
+        } catch (SQLException ex) {
+            System.err.println("Erro de manipulação do Banco de Dados! " + ex.toString());
+            return false;
+        }
+    }
+
+    public boolean realizarTransferencia(int contaOrigem, int contaDestino, ConexaoBanco conexaoBancoDetino, double valor) throws RemoteException {
+        try {
+            Statement st = con.createStatement();
+            int resultado = st.executeUpdate("UPDATE conta SET saldo = saldo - " + valor + " WHERE numero = " + contaOrigem + ";");
+            boolean resultado2 = conexaoBancoDetino.getServico().realizarTransferencia(contaDestino, contaOrigem, valor);
+            return resultado == 1 && resultado2 && gerarTransferencia(contaOrigem, contaDestino, valor, getDataHoraAtualMysql());
         } catch (SQLException ex) {
             System.err.println("Erro de manipulação do Banco de Dados! " + ex.toString());
             return false;

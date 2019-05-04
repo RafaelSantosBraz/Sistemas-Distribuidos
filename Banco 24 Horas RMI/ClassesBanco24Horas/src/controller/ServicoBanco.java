@@ -11,6 +11,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import transmissao.ConexaoBanco;
 
 /**
  *
@@ -69,8 +70,8 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
     }
 
     @Override
-    public boolean realizarTransferencia(int contaOrigem, int contaDestino, int codBancoDestino, double valor) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean realizarTransferencia(int contaOrigem, int contaDestino, ConexaoBanco conexaoBancoDestino, double valor) throws RemoteException {
+        return bd.realizarTransferencia(contaOrigem, contaDestino, conexaoBancoDestino, valor);
     }
 
 }
