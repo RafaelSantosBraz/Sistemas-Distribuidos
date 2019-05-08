@@ -90,4 +90,16 @@ public class Controladora {
     public boolean transferirValor(int contaOrigem, int contaDestino, int index, double valor) throws Exception {
         return new ConexaoBanco(banco).getServico().realizarTransferencia(contaOrigem, contaDestino, new ConexaoBanco(index), valor);
     }
+
+    public ArrayList<Integer> consultarNumerosContas(String CPF) throws Exception {
+        return new ConexaoBanco(banco).getServico().consultarNumerosContasCliente(CPF);
+    }
+
+    public boolean criarCliente(String CPF, String nome) throws Exception {
+        return new ConexaoBanco(banco).getServico().criarCadastro(new Cliente(CPF, nome));
+    }
+
+    public boolean criarConta(String CPF, double saldo) throws Exception {
+        return new ConexaoBanco(banco).getServico().criarConta(CPF, saldo);
+    }
 }
