@@ -10,7 +10,6 @@ import classses.Conta;
 import classses.Operacao;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import transmissao.ConexaoBanco;
 

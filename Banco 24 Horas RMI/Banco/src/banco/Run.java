@@ -8,8 +8,8 @@ package banco;
 import controller.ServicoBanco;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.util.Scanner;
+import transmissao.ConexaoBanco;
 
 /**
  *
@@ -23,14 +23,20 @@ public class Run {
     public static void main(String[] args) {
         try {
             ServicoBanco servico = new ServicoBanco("localhost", "3306", "banco", "root", "");
+            System.out.println("Informe o código para execução do Banco (0 - BB, 1 - Caixa): ");
             Scanner leitor = new Scanner(System.in);
-            // 9876 - valor antigo
-            Registry reg = LocateRegistry.createRegistry(leitor.nextInt());
-            System.out.println("Informe o nome do Banco para registro: ");
-            leitor = new Scanner(System.in);
-            String nomeBanco = leitor.nextLine();
-            reg.rebind(nomeBanco, servico);
-            System.out.println("Servidor Iniciado!");
+            switch (leitor.nextInt()) {
+                case ConexaoBanco.BB:
+                    LocateRegistry.createRegistry(9876).rebind("BB", servico);
+                    System.out.println("Servidor Iniciado!");
+                    break;
+                case ConexaoBanco.CAIXA:
+                    LocateRegistry.createRegistry(9875).rebind("Caixa", servico);
+                    System.out.println("Servidor Iniciado!");
+                    break;
+                default:
+                    System.err.println("Código Inválido!");
+            }
         } catch (RemoteException e) {
             System.err.println("Erro ao iniciar o servidor RMI do Banco! " + e.toString());
         }
