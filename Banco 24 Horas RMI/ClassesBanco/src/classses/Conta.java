@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author rafael
  */
-public class Conta implements Serializable{
+public class Conta implements Serializable {
 
     private final Cliente cliente;
     private final int numero;
@@ -26,6 +26,22 @@ public class Conta implements Serializable{
         this.saldo = saldo;
         this.movimentacoes = movimentacoes;
         this.transferencias = transferencias;
+    }
+
+    public Conta(Cliente cliente, int numero, double saldo) {
+        this.cliente = cliente;
+        this.numero = numero;
+        this.saldo = saldo;
+        movimentacoes = new ArrayList<>();
+        transferencias = new ArrayList<>();
+    }
+
+    public Conta() {
+        cliente = new Cliente();
+        numero = -1;
+        saldo = -1;
+        movimentacoes = new ArrayList<>();
+        transferencias = new ArrayList<>();
     }
 
     public Cliente getCliente() {

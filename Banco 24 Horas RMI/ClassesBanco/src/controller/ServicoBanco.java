@@ -22,9 +22,9 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
 
     private final BD bd;
 
-    public ServicoBanco() throws RemoteException, SQLException {
+    public ServicoBanco(String IP, String porta, String nomeBD, String usuario, String senha) throws RemoteException {
         super();
-        bd = new BD();
+        bd = new BD(IP, porta, nomeBD, usuario, senha);
     }
 
     @Override

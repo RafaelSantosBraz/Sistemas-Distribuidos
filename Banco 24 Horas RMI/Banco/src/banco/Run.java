@@ -9,7 +9,6 @@ import controller.ServicoBanco;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -23,7 +22,7 @@ public class Run {
      */
     public static void main(String[] args) {
         try {
-            ServicoBanco servico = new ServicoBanco();
+            ServicoBanco servico = new ServicoBanco("localhost", "3306", "banco", "root", "");
             Scanner leitor = new Scanner(System.in);
             // 9876 - valor antigo
             Registry reg = LocateRegistry.createRegistry(leitor.nextInt());
@@ -34,8 +33,6 @@ public class Run {
             System.out.println("Servidor Iniciado!");
         } catch (RemoteException e) {
             System.err.println("Erro ao iniciar o servidor RMI do Banco! " + e.toString());
-        } catch (SQLException ex) {
-            System.err.println("Erro ao iniciar o serviço MYSQL do Banco! " + ex.toString());
         }
     }
 
