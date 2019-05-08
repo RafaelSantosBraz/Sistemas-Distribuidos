@@ -39,13 +39,19 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
     @Override
     public boolean realizarSaque(int conta, double valor) throws RemoteException {
         if (valor > 0) {
-            return bd.alterarValorConta(conta, valor * -1);
+            valor *= -1;
         }
-        return bd.alterarValorConta(conta, valor);
+        if (consultarSaldo(conta) + valor >= 0.0) {
+            return bd.alterarValorConta(conta, valor);
+        }
+        return false;
     }
 
     @Override
     public boolean realizarDeposito(int conta, double valor) throws RemoteException {
+        if (valor < 0) {
+            return false;
+        }
         return bd.alterarValorConta(conta, valor);
     }
 
@@ -61,7 +67,13 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
 
     @Override
     public boolean realizarTransferencia(int contaOrigem, int contaDestino, double valor) throws RemoteException {
-        return bd.realizarTransferencia(contaOrigem, contaDestino, valor);
+        if (valor < 0) {
+            return false;
+        }
+        if (consultarSaldo(contaOrigem) - valor >= 0) {
+            return bd.realizarTransferencia(contaOrigem, contaDestino, valor);
+        }
+        return false;
     }
 
     @Override
@@ -71,7 +83,13 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
 
     @Override
     public boolean realizarTransferencia(int contaOrigem, int contaDestino, ConexaoBanco conexaoBancoDestino, double valor) throws RemoteException {
-        return bd.realizarTransferencia(contaOrigem, contaDestino, conexaoBancoDestino, valor);
+        if (valor < 0) {
+            return false;
+        }
+        if (consultarSaldo(contaOrigem) - valor >= 0) {
+            return bd.realizarTransferencia(contaOrigem, contaDestino, conexaoBancoDestino, valor);
+        }
+        return false;
     }
 
     @Override
