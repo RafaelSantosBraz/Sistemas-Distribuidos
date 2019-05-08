@@ -55,13 +55,8 @@ public class Controladora {
     }
 
     public String consultarCadastro(String cpf) throws Exception {
-        ConexaoBanco conexao = new ConexaoBanco(banco);
-        Cliente cliente = conexao.getServico().consultarCadastro(cpf);
-        try {
-            return cliente.getNome();
-        } catch (Exception e) {
-            return null;
-        }
+        Cliente cliente = new ConexaoBanco(banco).getServico().consultarCadastro(cpf);
+        return cliente == null ? null : cliente.getNome();
     }
 
     public boolean alterarCadastro(String cpf, String nome) throws Exception {

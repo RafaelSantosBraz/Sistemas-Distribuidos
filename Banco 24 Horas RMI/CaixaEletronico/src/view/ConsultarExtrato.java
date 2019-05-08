@@ -11,8 +11,6 @@ import classses.Transferencia;
 import controler.Controladora;
 import static java.awt.image.ImageObserver.HEIGHT;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -127,8 +125,7 @@ public class ConsultarExtrato extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        TelaInicial telaInicial = new TelaInicial();
-        telaInicial.setVisible(true);
+        new TelaInicial().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

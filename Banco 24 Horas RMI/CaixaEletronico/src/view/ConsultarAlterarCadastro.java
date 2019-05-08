@@ -6,8 +6,6 @@
 package view;
 
 import controler.Controladora;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -192,8 +190,7 @@ public class ConsultarAlterarCadastro extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        TelaInicial telaInicial = new TelaInicial();
-        telaInicial.setVisible(true);
+        new TelaInicial().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 

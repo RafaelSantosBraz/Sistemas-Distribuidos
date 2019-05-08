@@ -7,8 +7,6 @@ package view;
 
 import controler.Controladora;
 import static java.awt.image.ImageObserver.HEIGHT;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import transmissao.ConexaoBanco;
 
@@ -181,8 +179,7 @@ public class TransferirValor extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        TelaInicial telaInicial = new TelaInicial();
-        telaInicial.setVisible(true);
+        new TelaInicial().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -193,14 +190,13 @@ public class TransferirValor extends javax.swing.JFrame {
         } else if ("Caixa".equals(jComboBox1.getItemAt(jComboBox1.getSelectedIndex()))) {
             bancoDestino = ConexaoBanco.CAIXA;
         }
-        if(Controladora.getInstancia().getBanco() == bancoDestino){
+        if (Controladora.getInstancia().getBanco() == bancoDestino) {
             try {
                 Controladora.getInstancia().transferirValor(Integer.parseInt(jTextField2.getText()), Integer.parseInt(jTextField4.getText()), Double.parseDouble(jTextField3.getText()));
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(rootPane, "Falha ao Realizar Tranferência", "Erro", HEIGHT);
             }
-        } 
-        if(Controladora.getInstancia().getBanco() != bancoDestino) {
+        } else {
             try {
                 Controladora.getInstancia().transferirValor(Integer.parseInt(jTextField2.getText()), Integer.parseInt(jTextField4.getText()), bancoDestino, Double.parseDouble(jTextField3.getText()));
             } catch (Exception ex) {
@@ -211,7 +207,7 @@ public class TransferirValor extends javax.swing.JFrame {
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         // TODO add your handling code here:
-       // Controladora.getInstancia().setBanco(jComboBox1.getSelectedItem().toString());
+        // Controladora.getInstancia().setBanco(jComboBox1.getSelectedItem().toString());
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

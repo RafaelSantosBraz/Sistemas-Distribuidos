@@ -5,10 +5,6 @@
  */
 package controler;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import transmissao.ConexaoBanco;
-
 /**
  *
  * @author rafael
@@ -18,11 +14,7 @@ public class Run {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        //Lembrete:
-        // para fazer as requisições para o Banco é necessário usar a classe ConexaoBanco e usar o método getServico() dela :)
-
-        // Essa é a forma que o padrão Skeleton pede para que seja implementada a controladora. Assim pode-se chamar a controla de qualquer local :)
+    public static void main(String[] args) {       
         Controladora.getInstancia().criarTelaInicial();
     }
 

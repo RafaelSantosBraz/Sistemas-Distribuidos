@@ -179,58 +179,50 @@ public class TelaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        ConsultarAlterarCadastro consultar = new ConsultarAlterarCadastro();
-        consultar.setVisible(true);
+        // TODO add your handling code here:       
+        new ConsultarAlterarCadastro().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ConsultarAlterarCadastro alterar = new ConsultarAlterarCadastro();
-        alterar.setVisible(true);
+        new ConsultarAlterarCadastro().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        SacarDepositar sacar = new SacarDepositar();
-        sacar.setVisible(true);
+        new SacarDepositar().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        SacarDepositar depositar = new SacarDepositar();
-        depositar.setVisible(true);
+        new SacarDepositar().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        ConsultarSaldo consultarSaldo = new ConsultarSaldo();
-        consultarSaldo.setVisible(true);
+        new ConsultarSaldo().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        TransferirValor transferirValor = new TransferirValor();
-        transferirValor.setVisible(true);
+        new TransferirValor().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        TransferirCadastro transferirCadastro = new TransferirCadastro();
-        transferirCadastro.setVisible(true);
+        new TransferirCadastro().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        ConsultarExtrato consultarExtrato = new ConsultarExtrato();
-        consultarExtrato.setVisible(true);
+        new ConsultarExtrato().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton8ActionPerformed
 

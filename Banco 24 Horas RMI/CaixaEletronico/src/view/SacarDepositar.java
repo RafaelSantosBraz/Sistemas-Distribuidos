@@ -145,13 +145,12 @@ public class SacarDepositar extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        TelaInicial telaInicial = new TelaInicial();
-        telaInicial.setVisible(true);
+        new TelaInicial().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {                      
+        try {
             Controladora.getInstancia().sacar(Integer.parseInt(jTextField2.getText()), Double.parseDouble(jTextField3.getText()));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Falha ao Realizar Saque", "Erro", HEIGHT);
@@ -159,7 +158,7 @@ public class SacarDepositar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {                      
+        try {
             Controladora.getInstancia().depositar(Integer.parseInt(jTextField2.getText()), Double.parseDouble(jTextField3.getText()));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Falha ao Realizar Depósito", "Erro", HEIGHT);
