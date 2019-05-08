@@ -41,8 +41,7 @@ public class BD {
     }
 
     public boolean alterarCliente(Cliente cliente) {
-        int resultado = executarUpdate("UPDATE cliente SET nome = '" + cliente.getNome() + "' WHERE cpf like '" + cliente.getCPF() + "';");
-        return resultado == 1;
+        return 1 == executarUpdate("UPDATE cliente SET nome = '" + cliente.getNome() + "' WHERE cpf like '" + cliente.getCPF() + "';");
     }
 
     public boolean alterarValorConta(int conta, double valor) {
@@ -55,19 +54,15 @@ public class BD {
     }
 
     private boolean gerarMovimentacao(int conta, int tipo, double valor, String data) {
-        int resultado = executarUpdate("INSERT INTO movimentacao (numero, tipo, valor, datahora) VALUES (" + conta + ", " + tipo + ", " + valor + ", '" + data + "')" + ";");
-        return resultado == 1;
+        return 1 == executarUpdate("INSERT INTO movimentacao (numero, tipo, valor, datahora) VALUES (" + conta + ", " + tipo + ", " + valor + ", '" + data + "')" + ";");
     }
 
     public String getDataHoraAtualMysql() {
-        java.util.Date dt = new java.util.Date();
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return sdf.format(dt);
+        return new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
     }
 
     private boolean gerarTransferencia(int contaOrigem, int contaDestino, double valor, String data) {
-        int resultado = executarUpdate("INSERT INTO transferencia (contaorigem, contadestino, valor, datahora) VALUES (" + contaOrigem + ", " + contaDestino + ", " + valor + ", '" + data + "')" + ";");
-        return resultado == 1;
+        return 1 == executarUpdate("INSERT INTO transferencia (contaorigem, contadestino, valor, datahora) VALUES (" + contaOrigem + ", " + contaDestino + ", " + valor + ", '" + data + "')" + ";");
     }
 
     public boolean realizarTransferencia(int contaOrigem, int contaDestino, double valor) {
@@ -178,8 +173,7 @@ public class BD {
             if (!existeCliente.first()) {
                 executarUpdate("INSERT INTO cliente (cpf, nome) VALUES ('" + conta.getCliente().getCPF() + "', '" + conta.getCliente().getNome() + "');");
             }
-            int resultado1;
-            resultado1 = executarUpdate("INSERT INTO conta (cod, saldo, cpf) VALUES (0, " + conta.getSaldo() + ", '" + conta.getCliente().getCPF() + "');");
+            int resultado1 = executarUpdate("INSERT INTO conta (cod, saldo, cpf) VALUES (0, " + conta.getSaldo() + ", '" + conta.getCliente().getCPF() + "');");
 //            conta.getMovimentacoes().forEach((mov) -> {
 //                gerarMovimentacao(conta.getNumero(), mov.getTipo(), mov.getValor(), mov.getData());
 //            });
@@ -188,7 +182,7 @@ public class BD {
 //            });
             return resultado1 == 1;
         } catch (SQLException ex) {
-           System.err.println("Erro de acesso aos resultados SQL! " + ex.toString());
+            System.err.println("Erro de acesso aos resultados SQL! " + ex.toString());
             return false;
         }
     }
@@ -211,4 +205,26 @@ public class BD {
         return null;
     }
 
+    public boolean criarCliente(Cliente cliente) {
+        return 1 == executarUpdate("INERT INTO cliente (cpf, nome) VALUES ('" + cliente.getCPF() + "', '" + cliente.getNome() + "');");
+    }
+
+    public boolean criarConta(String CPF, double saldo) {
+        return 1 == executarUpdate("INSERT INTO conta (cod, cpf, saldo) VALUES (0, '" + CPF + "', " + saldo + ");");
+    }
+
+    public ArrayList<Integer> buscarNumeroContasCliente(String CPF) {
+        ArrayList<Integer> contas = new ArrayList<>();
+        ResultSet resultados = executarQuery("SELECT numero FROM conta WHERE cpf = '" + CPF + "';");
+        try {
+            if (resultados.first()) {
+                do {
+                    contas.add(resultados.getInt("numero"));
+                } while (resultados.next());
+            }
+        } catch (SQLException ex) {
+            System.err.println("Erro de acesso aos resultados SQL! " + ex.toString());
+        }
+        return contas;
+    }
 }

@@ -42,4 +42,11 @@ public interface Servico extends Remote {
 
     // Método auxiliar para transferência de cadastro entre Bancos - apenas deve ser manipulado pela classe BD
     public boolean processarTransferenciaCadastro(Conta conta) throws RemoteException;
+
+    // Métodos auxiliares que podem ser manipulados por qualquer classe
+    public boolean criarCadastro(Cliente cliente) throws RemoteException;
+
+    public boolean criarConta(String CPF, double saldo) throws RemoteException;
+
+    public ArrayList<Integer> consultarNumerosContasCliente(String CPF) throws RemoteException;
 }

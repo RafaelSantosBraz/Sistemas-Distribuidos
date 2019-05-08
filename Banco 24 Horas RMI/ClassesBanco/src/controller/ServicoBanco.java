@@ -102,4 +102,19 @@ public class ServicoBanco extends UnicastRemoteObject implements Servico {
         return bd.receberCadastroBanco(conta);
     }
 
+    @Override
+    public boolean criarCadastro(Cliente cliente) throws RemoteException {
+        return bd.criarCliente(cliente);
+    }
+
+    @Override
+    public boolean criarConta(String CPF, double saldo) throws RemoteException {
+        return bd.criarConta(CPF, saldo);
+    }
+
+    @Override
+    public ArrayList<Integer> consultarNumerosContasCliente(String CPF) throws RemoteException {
+        return bd.buscarNumeroContasCliente(CPF);
+    }
+
 }
