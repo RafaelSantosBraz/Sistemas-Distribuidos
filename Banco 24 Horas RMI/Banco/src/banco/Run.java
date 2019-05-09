@@ -22,7 +22,7 @@ public class Run {
      */
     public static void main(String[] args) {
         try {
-            ServicoBanco servico = new ServicoBanco("localhost", "3306", "banco", "root", "");
+            ServicoBanco servico = new ServicoBanco("localhost", "3306", "banco", "mysql", "mysql");
             System.out.println("Informe o código para execução do Banco (0 - BB, 1 - Caixa): ");
             Scanner leitor = new Scanner(System.in);
             switch (leitor.nextInt()) {

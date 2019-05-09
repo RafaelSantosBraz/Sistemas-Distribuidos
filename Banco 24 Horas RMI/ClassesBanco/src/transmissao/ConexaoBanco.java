@@ -24,10 +24,10 @@ public class ConexaoBanco implements Serializable {
     public ConexaoBanco(int codBanco) throws Exception {
         switch (codBanco) {
             case BB:
-                conectar("BB", "192.168.10.102", 9876);
+                conectar("BB", "172.16.200.74", 9876);
                 break;
             case CAIXA:
-                conectar("Caixa", "192.168.10.100", 9875);
+                conectar("Caixa", "172.16.200.7", 9875);
         }
     }
 

@@ -206,7 +206,7 @@ public class BD {
     }
 
     public boolean criarCliente(Cliente cliente) {
-        return 1 == executarUpdate("INERT INTO cliente (cpf, nome) VALUES ('" + cliente.getCPF() + "', '" + cliente.getNome() + "');");
+        return 1 == executarUpdate("INSERT INTO cliente (cpf, nome) VALUES ('" + cliente.getCPF() + "', '" + cliente.getNome() + "');");
     }
 
     public boolean criarConta(String CPF, double saldo) {
