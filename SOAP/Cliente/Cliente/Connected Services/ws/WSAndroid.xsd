@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://ws/" targetNamespace="http://ws/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="hello" type="tns:hello" />
+  <xs:element name="helloResponse" type="tns:helloResponse" />
+  <xs:element name="retornaLista" type="tns:retornaLista" />
+  <xs:element name="retornaListaResponse" type="tns:retornaListaResponse" />
+  <xs:element name="retornaLivro" type="tns:retornaLivro" />
+  <xs:element name="retornaLivroResponse" type="tns:retornaLivroResponse" />
+  <xs:element name="soma" type="tns:soma" />
+  <xs:element name="somaResponse" type="tns:somaResponse" />
+  <xs:complexType name="soma">
+    <xs:sequence>
+      <xs:element name="num1" type="xs:double" />
+      <xs:element name="num2" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="somaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="retornaLista">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="retornaListaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:livro" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="livro">
+    <xs:sequence>
+      <xs:element name="ano" type="xs:int" />
+      <xs:element minOccurs="0" name="editora" type="xs:string" />
+      <xs:element minOccurs="0" name="nome" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="retornaLivro">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="retornaLivroResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:livro" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="hello">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="helloResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

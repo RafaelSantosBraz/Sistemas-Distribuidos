@@ -16,5 +16,12 @@ namespace Cliente
         {
             InitializeComponent();
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            ws.WSAndroidClient cliente = new ws.WSAndroidClient();
+            ws.livro livro = cliente.retornaLivro();
+            MessageBox.Show(livro.nome);
+        }
     }
 }
