@@ -12,7 +12,7 @@ import javax.ejb.Stateless;
 
 /**
  *
- * @author rafin
+ * @author Rafael Braz
  */
 @WebService(serviceName = "BancoWS")
 @Stateless()
