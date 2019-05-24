@@ -5,6 +5,7 @@
  */
 package ws;
 
+import controller.ControllerBanco;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -17,6 +18,12 @@ import javax.ejb.Stateless;
 @WebService(serviceName = "BancoWS")
 @Stateless()
 public class BancoWS {
+
+    private final ControllerBanco controller;
+
+    public BancoWS() {
+        controller = new ControllerBanco("localhost", "3306", "banco", "mysql", "mysql");
+    }
 
     @WebMethod(operationName = "hello")
     public String hello(@WebParam(name = "name") String txt) {
