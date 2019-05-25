@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://ws/" targetNamespace="http://ws/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="alterarCadastro" type="tns:alterarCadastro" />
+  <xs:element name="alterarCadastroResponse" type="tns:alterarCadastroResponse" />
+  <xs:element name="consultarCadastro" type="tns:consultarCadastro" />
+  <xs:element name="consultarCadastroResponse" type="tns:consultarCadastroResponse" />
+  <xs:element name="consultarExtrato" type="tns:consultarExtrato" />
+  <xs:element name="consultarExtratoResponse" type="tns:consultarExtratoResponse" />
+  <xs:element name="consultarNumerosContasCliente" type="tns:consultarNumerosContasCliente" />
+  <xs:element name="consultarNumerosContasClienteResponse" type="tns:consultarNumerosContasClienteResponse" />
+  <xs:element name="consultarSaldo" type="tns:consultarSaldo" />
+  <xs:element name="consultarSaldoResponse" type="tns:consultarSaldoResponse" />
+  <xs:element name="criarCadastro" type="tns:criarCadastro" />
+  <xs:element name="criarCadastroResponse" type="tns:criarCadastroResponse" />
+  <xs:element name="criarConta" type="tns:criarConta" />
+  <xs:element name="criarContaResponse" type="tns:criarContaResponse" />
+  <xs:element name="realizarDeposito" type="tns:realizarDeposito" />
+  <xs:element name="realizarDepositoResponse" type="tns:realizarDepositoResponse" />
+  <xs:element name="realizarSaque" type="tns:realizarSaque" />
+  <xs:element name="realizarSaqueResponse" type="tns:realizarSaqueResponse" />
+  <xs:element name="realizarTransferencia" type="tns:realizarTransferencia" />
+  <xs:element name="realizarTransferenciaResponse" type="tns:realizarTransferenciaResponse" />
+  <xs:complexType name="criarConta">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CPF" type="xs:string" />
+      <xs:element name="saldo" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="criarContaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="realizarDeposito">
+    <xs:sequence>
+      <xs:element name="conta" type="xs:int" />
+      <xs:element name="valor" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="realizarDepositoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="realizarSaque">
+    <xs:sequence>
+      <xs:element name="conta" type="xs:int" />
+      <xs:element name="valor" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="realizarSaqueResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarNumerosContasCliente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CPF" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarNumerosContasClienteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="realizarTransferencia">
+    <xs:sequence>
+      <xs:element name="contaOrigem" type="xs:int" />
+      <xs:element name="contaDestino" type="xs:int" />
+      <xs:element name="valor" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="realizarTransferenciaResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarExtrato">
+    <xs:sequence>
+      <xs:element name="conta" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarExtratoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:operacao" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="operacao">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="criarCadastro">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cliente" type="tns:cliente" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cliente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CPF" type="xs:string" />
+      <xs:element minOccurs="0" name="nome" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="criarCadastroResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="alterarCadastro">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cliente" type="tns:cliente" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="alterarCadastroResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarCadastro">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CPF" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarCadastroResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:cliente" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarSaldo">
+    <xs:sequence>
+      <xs:element name="conta" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="consultarSaldoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

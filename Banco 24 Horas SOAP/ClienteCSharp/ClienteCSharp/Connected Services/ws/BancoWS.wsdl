@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://ws/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="BancoWS" targetNamespace="http://ws/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/BancoWS/BancoWS?xsd=1" namespace="http://ws/" />
+    </xsd:schema>
+  </types>
+  <message name="consultarCadastro">
+    <part name="parameters" element="tns:consultarCadastro" />
+  </message>
+  <message name="consultarCadastroResponse">
+    <part name="parameters" element="tns:consultarCadastroResponse" />
+  </message>
+  <message name="consultarNumerosContasCliente">
+    <part name="parameters" element="tns:consultarNumerosContasCliente" />
+  </message>
+  <message name="consultarNumerosContasClienteResponse">
+    <part name="parameters" element="tns:consultarNumerosContasClienteResponse" />
+  </message>
+  <message name="realizarTransferencia">
+    <part name="parameters" element="tns:realizarTransferencia" />
+  </message>
+  <message name="realizarTransferenciaResponse">
+    <part name="parameters" element="tns:realizarTransferenciaResponse" />
+  </message>
+  <message name="criarCadastro">
+    <part name="parameters" element="tns:criarCadastro" />
+  </message>
+  <message name="criarCadastroResponse">
+    <part name="parameters" element="tns:criarCadastroResponse" />
+  </message>
+  <message name="criarConta">
+    <part name="parameters" element="tns:criarConta" />
+  </message>
+  <message name="criarContaResponse">
+    <part name="parameters" element="tns:criarContaResponse" />
+  </message>
+  <message name="alterarCadastro">
+    <part name="parameters" element="tns:alterarCadastro" />
+  </message>
+  <message name="alterarCadastroResponse">
+    <part name="parameters" element="tns:alterarCadastroResponse" />
+  </message>
+  <message name="realizarDeposito">
+    <part name="parameters" element="tns:realizarDeposito" />
+  </message>
+  <message name="realizarDepositoResponse">
+    <part name="parameters" element="tns:realizarDepositoResponse" />
+  </message>
+  <message name="consultarExtrato">
+    <part name="parameters" element="tns:consultarExtrato" />
+  </message>
+  <message name="consultarExtratoResponse">
+    <part name="parameters" element="tns:consultarExtratoResponse" />
+  </message>
+  <message name="realizarSaque">
+    <part name="parameters" element="tns:realizarSaque" />
+  </message>
+  <message name="realizarSaqueResponse">
+    <part name="parameters" element="tns:realizarSaqueResponse" />
+  </message>
+  <message name="consultarSaldo">
+    <part name="parameters" element="tns:consultarSaldo" />
+  </message>
+  <message name="consultarSaldoResponse">
+    <part name="parameters" element="tns:consultarSaldoResponse" />
+  </message>
+  <portType name="BancoWS">
+    <operation name="consultarCadastro">
+      <input wsam:Action="http://ws/BancoWS/consultarCadastroRequest" message="tns:consultarCadastro" />
+      <output wsam:Action="http://ws/BancoWS/consultarCadastroResponse" message="tns:consultarCadastroResponse" />
+    </operation>
+    <operation name="consultarNumerosContasCliente">
+      <input wsam:Action="http://ws/BancoWS/consultarNumerosContasClienteRequest" message="tns:consultarNumerosContasCliente" />
+      <output wsam:Action="http://ws/BancoWS/consultarNumerosContasClienteResponse" message="tns:consultarNumerosContasClienteResponse" />
+    </operation>
+    <operation name="realizarTransferencia">
+      <input wsam:Action="http://ws/BancoWS/realizarTransferenciaRequest" message="tns:realizarTransferencia" />
+      <output wsam:Action="http://ws/BancoWS/realizarTransferenciaResponse" message="tns:realizarTransferenciaResponse" />
+    </operation>
+    <operation name="criarCadastro">
+      <input wsam:Action="http://ws/BancoWS/criarCadastroRequest" message="tns:criarCadastro" />
+      <output wsam:Action="http://ws/BancoWS/criarCadastroResponse" message="tns:criarCadastroResponse" />
+    </operation>
+    <operation name="criarConta">
+      <input wsam:Action="http://ws/BancoWS/criarContaRequest" message="tns:criarConta" />
+      <output wsam:Action="http://ws/BancoWS/criarContaResponse" message="tns:criarContaResponse" />
+    </operation>
+    <operation name="alterarCadastro">
+      <input wsam:Action="http://ws/BancoWS/alterarCadastroRequest" message="tns:alterarCadastro" />
+      <output wsam:Action="http://ws/BancoWS/alterarCadastroResponse" message="tns:alterarCadastroResponse" />
+    </operation>
+    <operation name="realizarDeposito">
+      <input wsam:Action="http://ws/BancoWS/realizarDepositoRequest" message="tns:realizarDeposito" />
+      <output wsam:Action="http://ws/BancoWS/realizarDepositoResponse" message="tns:realizarDepositoResponse" />
+    </operation>
+    <operation name="consultarExtrato">
+      <input wsam:Action="http://ws/BancoWS/consultarExtratoRequest" message="tns:consultarExtrato" />
+      <output wsam:Action="http://ws/BancoWS/consultarExtratoResponse" message="tns:consultarExtratoResponse" />
+    </operation>
+    <operation name="realizarSaque">
+      <input wsam:Action="http://ws/BancoWS/realizarSaqueRequest" message="tns:realizarSaque" />
+      <output wsam:Action="http://ws/BancoWS/realizarSaqueResponse" message="tns:realizarSaqueResponse" />
+    </operation>
+    <operation name="consultarSaldo">
+      <input wsam:Action="http://ws/BancoWS/consultarSaldoRequest" message="tns:consultarSaldo" />
+      <output wsam:Action="http://ws/BancoWS/consultarSaldoResponse" message="tns:consultarSaldoResponse" />
+    </operation>
+  </portType>
+  <binding name="BancoWSPortBinding" type="tns:BancoWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="consultarCadastro">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="consultarNumerosContasCliente">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="realizarTransferencia">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="criarCadastro">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="criarConta">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="alterarCadastro">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="realizarDeposito">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="consultarExtrato">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="realizarSaque">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="consultarSaldo">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="BancoWS">
+    <port name="BancoWSPort" binding="tns:BancoWSPortBinding">
+      <soap:address location="http://localhost:8080/BancoWS/BancoWS" />
+    </port>
+  </service>
+</definitions>
