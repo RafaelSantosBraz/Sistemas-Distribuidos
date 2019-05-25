@@ -55,7 +55,7 @@ public class ControllerBanco {
         return false;
     }
 
-    public ArrayList<Operacao> consultarExtrato(int conta) {
+    public ArrayList<String> consultarExtrato(int conta) {
         return bd.consultarExtrato(conta);
     }
 

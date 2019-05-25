@@ -77,7 +77,7 @@ public class BD {
         }
     }
 
-    public ArrayList<Operacao> consultarExtrato(int conta) {
+    public ArrayList<String> consultarExtrato(int conta) {
         try {
             ArrayList<Operacao> extrato = new ArrayList<>();
             ResultSet resultadosMov = executarQuery("SELECT * FROM movimentacao WHERE numero = " + conta + ";");
@@ -103,7 +103,11 @@ public class BD {
                     return 1;
                 }
             });
-            return extrato;
+            ArrayList<String> linhasExtrato = new ArrayList<>();
+            for (Operacao op : extrato) {
+                linhasExtrato.add(op.toString());
+            }
+            return linhasExtrato;
         } catch (SQLException ex) {
             System.err.println("Erro de acesso aos resultados SQL! " + ex.toString());
             return null;

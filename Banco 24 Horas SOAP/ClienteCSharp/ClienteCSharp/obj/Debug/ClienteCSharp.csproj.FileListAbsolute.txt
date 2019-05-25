@@ -7,3 +7,4 @@ D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\
 D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.csproj.CoreCompileInputs.cache
 D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.exe
 D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.pdb
+D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.Form1.resources

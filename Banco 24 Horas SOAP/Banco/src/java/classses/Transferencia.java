@@ -17,4 +17,9 @@ public class Transferencia extends Operacao {
         return contaDestino;
     }
 
+    @Override
+    public String toString() {
+        return "Transferência: " + super.getContaOrigem() + " | " + contaDestino + " | " + super.getValor() + " | " + super.getData();
+    }
+
 }

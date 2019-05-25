@@ -117,7 +117,19 @@ namespace ClienteCSharp.ws {
         private string cPFField;
         
         private string nomeField;
-        
+
+        public cliente(string cPF, string nome)
+        {
+            CPF = cPF;
+            this.nome = nome;
+        }
+
+        public cliente()
+        {
+            CPF = "";
+            this.nome = "";
+        }
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
         public string CPF {
@@ -141,24 +153,6 @@ namespace ClienteCSharp.ws {
                 this.RaisePropertyChanged("nome");
             }
         }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3190.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://ws/")]
-    public partial class operacao : object, System.ComponentModel.INotifyPropertyChanged {
         
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
@@ -468,12 +462,12 @@ namespace ClienteCSharp.ws {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ClienteCSharp.ws.operacao[] @return;
+        public string[] @return;
         
         public consultarExtratoResponse() {
         }
         
-        public consultarExtratoResponse(ClienteCSharp.ws.operacao[] @return) {
+        public consultarExtratoResponse(string[] @return) {
             this.@return = @return;
         }
     }
@@ -756,7 +750,7 @@ namespace ClienteCSharp.ws {
             return base.Channel.consultarExtrato(request);
         }
         
-        public ClienteCSharp.ws.operacao[] consultarExtrato(int conta) {
+        public string[] consultarExtrato(int conta) {
             ClienteCSharp.ws.consultarExtratoRequest inValue = new ClienteCSharp.ws.consultarExtratoRequest();
             inValue.conta = conta;
             ClienteCSharp.ws.consultarExtratoResponse retVal = ((ClienteCSharp.ws.BancoWS)(this)).consultarExtrato(inValue);

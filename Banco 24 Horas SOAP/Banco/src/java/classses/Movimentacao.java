@@ -17,4 +17,14 @@ public class Movimentacao extends Operacao {
         return tipo;
     }
 
+    @Override
+    public String toString() {
+        String op;
+        if (tipo == 0) {
+            op = "Depósito: ";
+        } else {
+            op = "Saque: ";
+        }
+        return op + super.getContaOrigem() + " | " + super.getValor() + " | " + super.getData();
+    }
 }

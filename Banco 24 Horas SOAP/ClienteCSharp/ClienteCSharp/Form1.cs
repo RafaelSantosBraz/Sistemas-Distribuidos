@@ -16,5 +16,10 @@ namespace ClienteCSharp
         {
             InitializeComponent();
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Controladora.Instancia.ConsultarCadastro(textBox1.Text));
+        }
     }
 }

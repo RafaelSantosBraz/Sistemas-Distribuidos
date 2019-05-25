@@ -82,11 +82,8 @@
   </xs:complexType>
   <xs:complexType name="consultarExtratoResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:operacao" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:string" />
     </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="operacao">
-    <xs:sequence />
   </xs:complexType>
   <xs:complexType name="criarCadastro">
     <xs:sequence>

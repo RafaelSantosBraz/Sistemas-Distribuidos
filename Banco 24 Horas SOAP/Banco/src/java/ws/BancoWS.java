@@ -53,7 +53,7 @@ public class BancoWS {
     }
 
     @WebMethod(operationName = "consultarExtrato")
-    public ArrayList<Operacao> consultarExtrato(@WebParam(name = "conta") int conta) {
+    public ArrayList<String> consultarExtrato(@WebParam(name = "conta") int conta) {
         return controller.consultarExtrato(conta);
     }
 
