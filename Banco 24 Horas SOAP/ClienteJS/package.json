@@ -1,0 +1,16 @@
+{
+    "name": "ClienteJS",
+    "version": "1.0.0",
+    "keywords": [
+        "util",
+        "functional",
+        "server",
+        "client",
+        "browser"
+    ],
+    "author": "Rafael Braz",
+    "contributors": [],
+    "dependencies": {
+        "soap": "^0.27.1"
+    }
+}
