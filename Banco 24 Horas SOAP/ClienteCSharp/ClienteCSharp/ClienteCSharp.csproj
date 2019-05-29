@@ -53,17 +53,77 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Controladora.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="ConsultarAlterarCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ConsultarAlterarCadastro.Designer.cs">
+      <DependentUpon>ConsultarAlterarCadastro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultarExtrato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultarExtrato.Designer.cs">
+      <DependentUpon>ConsultarExtrato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultarSaldo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultarSaldo.Designer.cs">
+      <DependentUpon>ConsultarSaldo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controladora.cs" />
+    <Compile Include="CriarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CriarCliente.Designer.cs">
+      <DependentUpon>CriarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CriarConta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CriarConta.Designer.cs">
+      <DependentUpon>CriarConta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SacarDepositar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SacarDepositar.Designer.cs">
+      <DependentUpon>SacarDepositar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaPrincipal.Designer.cs">
+      <DependentUpon>TelaPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="TransferirValor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TransferirValor.Designer.cs">
+      <DependentUpon>TransferirValor.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ConsultarAlterarCadastro.resx">
+      <DependentUpon>ConsultarAlterarCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultarExtrato.resx">
+      <DependentUpon>ConsultarExtrato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultarSaldo.resx">
+      <DependentUpon>ConsultarSaldo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CriarCliente.resx">
+      <DependentUpon>CriarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CriarConta.resx">
+      <DependentUpon>CriarConta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SacarDepositar.resx">
+      <DependentUpon>SacarDepositar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaPrincipal.resx">
+      <DependentUpon>TelaPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -74,6 +134,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TransferirValor.resx">
+      <DependentUpon>TransferirValor.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Connected Services\ws\BancoWS.wsdl" />
     <None Include="Connected Services\ws\BancoWS.xsd">
       <SubType>Designer</SubType>
