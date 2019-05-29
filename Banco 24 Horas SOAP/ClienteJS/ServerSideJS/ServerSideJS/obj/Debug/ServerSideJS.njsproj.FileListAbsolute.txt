@@ -1,0 +1,3 @@
+D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteJS\ServerSideJS\ServerSideJS\obj\Debug\ServerSideJS.njsprojAssemblyReference.cache
+D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteJS\ServerSideJS\ServerSideJS\obj\Debug\ServerSideJS.njsproj.CoreCompileInputs.cache
+D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteJS\ServerSideJS\ServerSideJS\bin\Microsoft.NodejsTools.WebRole.dll
