@@ -1,7 +1,20 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// controladora do Cliente SOAP
 
+var soap = require('soap');
+var url = 'http://localhost:8080/BancoWS/BancoWS?WSDL';
 
+function consultar(argsRequisicao) {
+   soap.createClient(url, function (err, client) {
+       client.consultarCadastro(argsRequisicao, function (err, result) {
+            manipularRetorno(result);
+        });
+    });
+}
+
+function manipularRetorno(result){
+    console.log(result.return.nome);
+}
+
+var args = {CPF: "47192962899"};
+
+consultar(args);
