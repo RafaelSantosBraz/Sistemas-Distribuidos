@@ -94,8 +94,39 @@ app.post('/consultar_numeros_contas_cliente', urlencodedParser, function (req, r
     consultarNumerosContasCliente(argsRequisicao, res);
 })
 
+// Métodos Get para requisições de páginas no navegador
 app.get('/', urlencodedParser, function (req, res) {
-    res.end(htmlCabecalho + "<div>será?</div>" + htmlFim);
+    res.end(htmlCabecalho + htmlFim);
+})
+
+app.get('/consultar_cadastro', urlencodedParser, function (req, res) {
+    htmlCorpo = '<form id="formulario" action="http://localhost:7000/consultar_cadastro" method="POST"> CPF: <input type = "text" name = "CPF"> <br> Nome: <input type = "text" name = "nome"> <button>consultar</button> </form>';
+    res.end(htmlCabecalho + htmlCorpo + htmlFim);
+})
+
+app.get('/alterar_cadastro', urlencodedParser, function (req, res) {
+    htmlCorpo = '<form id="formulario" action="http://localhost:7000/alterar_cadastro" method="POST"> CPF: <input type = "text" name = "CPF"> <br> Nome: <input type = "text" name = "nome"> <button>alterar</button> </form>';
+    res.end(htmlCabecalho + htmlCorpo + htmlFim);
+})
+
+app.get('/realizar_saque', urlencodedParser, function (req, res) {
+    htmlCorpo = '<form id="formulario" action="http://localhost:7000/realizar_saque" method="POST"> Conta: <input type = "text" name = "conta"> <br> Valor: <input type = "text" name = "valor"> <button>realizar saque</button> </form>';
+    res.end(htmlCabecalho + htmlCorpo + htmlFim);
+})
+
+app.get('/realizar_deposito', urlencodedParser, function (req, res) {
+    htmlCorpo = '<form id="formulario" action="http://localhost:7000/realizar_deposito" method="POST"> Conta: <input type = "text" name = "conta"> <br> Valor: <input type = "text" name = "valor"> <button>realizar depósito</button> </form>';
+    res.end(htmlCabecalho + htmlCorpo + htmlFim);
+})
+
+app.get('/consultar_saldo', urlencodedParser, function (req, res) {
+    htmlCorpo = '<form id="formulario" action="http://localhost:7000/consultar_saldo" method="POST"> Conta: <input type = "text" name = "conta"> <br> Valor: <input type = "text" name = "valor"> <button>consultar saldo</button> </form>';
+    res.end(htmlCabecalho + htmlCorpo + htmlFim);
+})
+
+app.get('/realizar_transferencia', urlencodedParser, function (req, res) {
+    htmlCorpo = '<form id="formulario" action="http://localhost:7000/consultar_saldo" method="POST"> Conta: <input type = "text" name = "conta"> <br> Valor: <input type = "text" name = "valor"> <button>consultar saldo</button> </form>';
+    res.end(htmlCabecalho + htmlCorpo + htmlFim);
 })
 
 // Inicialização do servidor JS
@@ -106,7 +137,7 @@ var server = app.listen(7000, function () {
 })
 
 // Variáveis HTML 
-var htmlCabecalho = '<!DOCTYPE html> <html> <head> <title>Cliente JS</title> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> </head> <body>';
+var htmlCabecalho = '<!DOCTYPE html> <html> <head> <title>Cliente JS</title> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> </head> <body>' + '<div> Navegação:<br> <a href="http://localhost:7000/consultar_cadastro">Consultar Cadastro</a><br> <a href="http://localhost:7000/alterar_cadastro">Alterar Cadastro</a><br> <a href="http://localhost:7000/realizar_saque">Realizar Saque</a><br> <a href="http://localhost:7000/realizar_deposito">Realizar Depósito</a><br> <a href="http://localhost:7000/consultar_saldo">Consultar Saldo</a><br> <a href="http://localhost:7000/realizar_transferencia">realizar Transferência</a><br> <a href="http://localhost:7000/consultar_extrato">Consultar Extrato</a><br> <a href="http://localhost:7000/criar_cadastro">Criar Cadastro</a><br> <a href="http://localhost:7000/criar_conta">Criar Conta</a><br> <a href="http://localhost:7000/consultar_numeros_contas_cliente">Consultar Números das Contas do Cliente</a><br><br> </div>';
 var htmlFim = '';
 var htmlCorpo = '';
 
