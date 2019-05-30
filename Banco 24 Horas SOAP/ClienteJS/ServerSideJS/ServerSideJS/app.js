@@ -101,31 +101,61 @@ app.get('/', urlencodedParser, function (req, res) {
 
 app.get('/consultar_cadastro', urlencodedParser, function (req, res) {
     htmlCorpo = '<form id="formulario" action="http://localhost:7000/consultar_cadastro" method="POST"> CPF: <input type = "text" name = "CPF"> <br> Nome: <input type = "text" name = "nome"> <button>consultar</button> </form>';
+    mudarStatus(null);
     res.end(htmlCabecalho + htmlCorpo + htmlFim);
 })
 
 app.get('/alterar_cadastro', urlencodedParser, function (req, res) {
     htmlCorpo = '<form id="formulario" action="http://localhost:7000/alterar_cadastro" method="POST"> CPF: <input type = "text" name = "CPF"> <br> Nome: <input type = "text" name = "nome"> <button>alterar</button> </form>';
+    mudarStatus(null);
     res.end(htmlCabecalho + htmlCorpo + htmlFim);
 })
 
 app.get('/realizar_saque', urlencodedParser, function (req, res) {
     htmlCorpo = '<form id="formulario" action="http://localhost:7000/realizar_saque" method="POST"> Conta: <input type = "text" name = "conta"> <br> Valor: <input type = "text" name = "valor"> <button>realizar saque</button> </form>';
+    mudarStatus(null);
     res.end(htmlCabecalho + htmlCorpo + htmlFim);
 })
 
 app.get('/realizar_deposito', urlencodedParser, function (req, res) {
     htmlCorpo = '<form id="formulario" action="http://localhost:7000/realizar_deposito" method="POST"> Conta: <input type = "text" name = "conta"> <br> Valor: <input type = "text" name = "valor"> <button>realizar depósito</button> </form>';
+    mudarStatus(null);
     res.end(htmlCabecalho + htmlCorpo + htmlFim);
 })
 
 app.get('/consultar_saldo', urlencodedParser, function (req, res) {
     htmlCorpo = '<form id="formulario" action="http://localhost:7000/consultar_saldo" method="POST"> Conta: <input type = "text" name = "conta"> <br> Valor: <input type = "text" name = "valor"> <button>consultar saldo</button> </form>';
+    mudarStatus(null);
     res.end(htmlCabecalho + htmlCorpo + htmlFim);
 })
 
 app.get('/realizar_transferencia', urlencodedParser, function (req, res) {
-    htmlCorpo = '<form id="formulario" action="http://localhost:7000/consultar_saldo" method="POST"> Conta: <input type = "text" name = "conta"> <br> Valor: <input type = "text" name = "valor"> <button>consultar saldo</button> </form>';
+    htmlCorpo = '<form id="formulario" action="http://localhost:7000/realizar_transferencia" method="POST"> Conta de Origem: <input type = "text" name = "contaOrigem"> <br> Conta de Destino: <input type = "text" name = "contaDestino"> <br>Valor: <input type = "text" name = "valor"> <br><button>realizar transferência</button> </form>';
+    mudarStatus(null);
+    res.end(htmlCabecalho + htmlCorpo + htmlFim);
+})
+
+app.get('/consultar_extrato', urlencodedParser, function (req, res) {
+    htmlCorpo = '<form id="formulario" action="http://localhost:7000/consultar_extrato" method="POST"> Conta: <input type = "text" name = "conta"> <br> <div> extrato </div> <button>consultar extrato</button> </form>';
+    mudarStatus(null);
+    res.end(htmlCabecalho + htmlCorpo + htmlFim);
+})
+
+app.get('/criar_casdastro', urlencodedParser, function (req, res) {
+    htmlCorpo = '<form id="formulario" action="http://localhost:7000/criar_cadastro" method="POST"> CPF: <input type = "text" name = "CPF"> <br> Nome: <input type = "text" name = "nome"> <button>criar cadastro</button> </form>';
+    mudarStatus(null);
+    res.end(htmlCabecalho + htmlCorpo + htmlFim);
+})
+
+app.get('/criar_conta', urlencodedParser, function (req, res) {
+    htmlCorpo = '<form id="formulario" action="http://localhost:7000/criar_conta" method="POST"> CPF: <input type = "text" name = "CPF"> <br> Saldo: <input type = "text" name = "saldo"> <br><button>criar conta</button> </form>';
+    mudarStatus(null);
+    res.end(htmlCabecalho + htmlCorpo + htmlFim);
+})
+
+app.get('/consultar_numeros_contas_cliente', urlencodedParser, function (req, res) {
+    htmlCorpo = '<form id="formulario" action="http://localhost:7000/consultar_numeros_contas_cliente" method="POST"> CPF: <input type = "text" name = "CPF"> <br> <div> contas </div> <button>consultar contas</button> </form>';
+    mudarStatus(null);
     res.end(htmlCabecalho + htmlCorpo + htmlFim);
 })
 
@@ -142,7 +172,11 @@ var htmlFim = '';
 var htmlCorpo = '';
 
 function mudarStatus(respStatus) {
-    htmlFim = '</body><script>alert("' + respStatus + '");</script></html>';
+    if (respStatus === null) {
+        htmlFim = '</body></html>';
+    } else {
+        htmlFim = '</body><script>alert("' + respStatus + '");</script></html>';
+    }
 }
 
 // Métodos para requisições SOAP com o Banco
