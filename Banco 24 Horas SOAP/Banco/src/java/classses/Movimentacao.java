@@ -20,7 +20,7 @@ public class Movimentacao extends Operacao {
     @Override
     public String toString() {
         String op;
-        if (tipo == 0) {
+        if (tipo == 1) {
             op = "Depósito: ";
         } else {
             op = "Saque: ";

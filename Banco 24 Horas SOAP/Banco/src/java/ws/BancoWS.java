@@ -28,7 +28,7 @@ public class BancoWS {
     }
 
     @WebMethod(operationName = "alterarCadastro")
-    public boolean alterarCadastro(@WebParam(name = "cliente") Cliente cliente) {
+    public boolean alterarCadastro(@WebParam(name = "cliente") Cliente cliente) {        
         return controller.alterarCadastro(cliente);
     }
 
