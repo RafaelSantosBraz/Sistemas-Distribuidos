@@ -101,7 +101,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Name = "CriarConta";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Criar Conta";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CriarConta_FormClosing);
             this.Load += new System.EventHandler(this.CriarConta_Load);
             this.Shown += new System.EventHandler(this.CriarConta_Shown);
             this.ResumeLayout(false);

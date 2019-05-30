@@ -7,7 +7,6 @@ D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\
 D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.csproj.CoreCompileInputs.cache
 D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.exe
 D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.pdb
-D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.Form1.resources
 C:\Users\Henrique Ricordi\Documents\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.csprojAssemblyReference.cache
 C:\Users\Henrique Ricordi\Documents\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.ConsultarAlterarCadastro.resources
 C:\Users\Henrique Ricordi\Documents\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.ConsultarExtrato.resources
@@ -25,3 +24,11 @@ C:\Users\Henrique Ricordi\Documents\GitHub\Sistemas-Distribuidos\Banco 24 Horas 
 C:\Users\Henrique Ricordi\Documents\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\bin\Debug\ClienteCSharp.exe.config
 C:\Users\Henrique Ricordi\Documents\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\bin\Debug\ClienteCSharp.exe
 C:\Users\Henrique Ricordi\Documents\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\bin\Debug\ClienteCSharp.pdb
+D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.ConsultarAlterarCadastro.resources
+D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.ConsultarExtrato.resources
+D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.ConsultarSaldo.resources
+D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.CriarCliente.resources
+D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.CriarConta.resources
+D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.SacarDepositar.resources
+D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.TelaPrincipal.resources
+D:\GitHub\Sistemas-Distribuidos\Banco 24 Horas SOAP\ClienteCSharp\ClienteCSharp\obj\Debug\ClienteCSharp.TransferirValor.resources

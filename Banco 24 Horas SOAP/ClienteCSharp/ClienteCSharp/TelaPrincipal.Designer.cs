@@ -144,7 +144,9 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Name = "TelaPrincipal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Banco X";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaPrincipal_FormClosing);
             this.Load += new System.EventHandler(this.TelaPrincipal_Load);
             this.ResumeLayout(false);
 

@@ -102,7 +102,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Name = "ConsultarSaldo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consultar Saldo";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConsultarSaldo_FormClosing);
             this.Shown += new System.EventHandler(this.ConsultarSaldo_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();

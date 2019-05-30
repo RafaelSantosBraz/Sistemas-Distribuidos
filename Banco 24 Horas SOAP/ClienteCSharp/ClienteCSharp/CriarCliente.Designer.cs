@@ -101,7 +101,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Name = "CriarCliente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Criar Cliente";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CriarCliente_FormClosing);
             this.Shown += new System.EventHandler(this.CriarCliente_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();

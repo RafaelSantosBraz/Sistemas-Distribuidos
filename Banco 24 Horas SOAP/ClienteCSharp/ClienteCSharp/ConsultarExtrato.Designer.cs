@@ -91,7 +91,9 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button7);
             this.Name = "ConsultarExtrato";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consultar Extrato";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConsultarExtrato_FormClosing);
             this.Shown += new System.EventHandler(this.ConsultarExtrato_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();

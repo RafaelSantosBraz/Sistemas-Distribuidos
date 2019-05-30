@@ -120,7 +120,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "TransferirValor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Transferir Valor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TransferirValor_FormClosing);
             this.Shown += new System.EventHandler(this.TransferirValor_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();

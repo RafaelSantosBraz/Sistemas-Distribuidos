@@ -50,5 +50,10 @@ namespace ClienteCSharp
         {
             textBox3.Focus();
         }
+
+        private void CriarConta_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

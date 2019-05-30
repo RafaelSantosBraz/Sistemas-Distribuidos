@@ -40,5 +40,22 @@ namespace ClienteCSharp
         {
             textBox1.Focus();
         }
+
+        private void SacarDepositar_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            if (Controladora.Instancia.Depositar(int.Parse(textBox1.Text), double.Parse(textBox3.Text)))
+            {
+                MessageBox.Show("Depósito realizado com Sucesso", "Operação de Depósito", MessageBoxButtons.OK);
+            }
+            else
+            {
+                MessageBox.Show("Erro no Depósito", "Operação de Depósito", MessageBoxButtons.OK);
+            }
+        }
     }
 }

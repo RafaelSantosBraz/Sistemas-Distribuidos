@@ -38,5 +38,10 @@ namespace ClienteCSharp
         {
             textBox3.Focus();
         }
+
+        private void ConsultarSaldo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

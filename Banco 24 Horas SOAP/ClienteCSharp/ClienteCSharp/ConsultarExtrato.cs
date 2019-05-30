@@ -26,7 +26,8 @@ namespace ClienteCSharp
 
         private void Button7_Click(object sender, EventArgs e)
         {
-            foreach (String i in Controladora.Instancia.ConsultarExtrato(int.Parse(textBox2.Text)))
+            listBox1.Items.Clear();
+            foreach (string i in Controladora.Instancia.ConsultarExtrato(int.Parse(textBox2.Text)))
             {
                 listBox1.Items.Add(i + " ,");
             }
@@ -40,6 +41,11 @@ namespace ClienteCSharp
         private void TextBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ConsultarExtrato_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

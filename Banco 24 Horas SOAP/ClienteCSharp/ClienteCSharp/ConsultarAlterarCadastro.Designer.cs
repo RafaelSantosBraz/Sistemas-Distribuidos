@@ -135,7 +135,9 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "ConsultarAlterarCadastro";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consultar Alterar Cadastro";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConsultarAlterarCadastro_FormClosing);
             this.Load += new System.EventHandler(this.ConsultarAlterarCadastro_Load);
             this.Shown += new System.EventHandler(this.ConsultarAlterarCadastro_Shown);
             this.ResumeLayout(false);

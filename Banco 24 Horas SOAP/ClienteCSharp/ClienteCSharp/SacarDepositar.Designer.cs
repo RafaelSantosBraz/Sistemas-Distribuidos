@@ -88,6 +88,7 @@
             this.button1.TabIndex = 15;
             this.button1.Text = "Realizar Depósito";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // label1
             // 
@@ -111,7 +112,9 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "SacarDepositar";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sacar ou Depositar";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SacarDepositar_FormClosing);
             this.Shown += new System.EventHandler(this.SacarDepositar_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();

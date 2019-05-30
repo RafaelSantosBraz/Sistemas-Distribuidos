@@ -16,15 +16,6 @@ namespace ClienteCSharp.ws {
     public interface BancoWS {
         
         // CODEGEN: O parâmetro 'return' requer informações adicionais de esquema que não podem ser capturadas usando o modo do parâmetro. O atributo específico é 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/consultarCadastroRequest", ReplyAction="http://ws/BancoWS/consultarCadastroResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        ClienteCSharp.ws.consultarCadastroResponse consultarCadastro(ClienteCSharp.ws.consultarCadastroRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/consultarCadastroRequest", ReplyAction="http://ws/BancoWS/consultarCadastroResponse")]
-        System.Threading.Tasks.Task<ClienteCSharp.ws.consultarCadastroResponse> consultarCadastroAsync(ClienteCSharp.ws.consultarCadastroRequest request);
-        
-        // CODEGEN: O parâmetro 'return' requer informações adicionais de esquema que não podem ser capturadas usando o modo do parâmetro. O atributo específico é 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/consultarNumerosContasClienteRequest", ReplyAction="http://ws/BancoWS/consultarNumerosContasClienteResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -34,6 +25,15 @@ namespace ClienteCSharp.ws {
         System.Threading.Tasks.Task<ClienteCSharp.ws.consultarNumerosContasClienteResponse> consultarNumerosContasClienteAsync(ClienteCSharp.ws.consultarNumerosContasClienteRequest request);
         
         // CODEGEN: O parâmetro 'return' requer informações adicionais de esquema que não podem ser capturadas usando o modo do parâmetro. O atributo específico é 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/consultarCadastroRequest", ReplyAction="http://ws/BancoWS/consultarCadastroResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        ClienteCSharp.ws.consultarCadastroResponse consultarCadastro(ClienteCSharp.ws.consultarCadastroRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/consultarCadastroRequest", ReplyAction="http://ws/BancoWS/consultarCadastroResponse")]
+        System.Threading.Tasks.Task<ClienteCSharp.ws.consultarCadastroResponse> consultarCadastroAsync(ClienteCSharp.ws.consultarCadastroRequest request);
+        
+        // CODEGEN: O parâmetro 'return' requer informações adicionais de esquema que não podem ser capturadas usando o modo do parâmetro. O atributo específico é 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/realizarTransferenciaRequest", ReplyAction="http://ws/BancoWS/realizarTransferenciaResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -41,33 +41,6 @@ namespace ClienteCSharp.ws {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/realizarTransferenciaRequest", ReplyAction="http://ws/BancoWS/realizarTransferenciaResponse")]
         System.Threading.Tasks.Task<ClienteCSharp.ws.realizarTransferenciaResponse> realizarTransferenciaAsync(ClienteCSharp.ws.realizarTransferenciaRequest request);
-        
-        // CODEGEN: O parâmetro 'return' requer informações adicionais de esquema que não podem ser capturadas usando o modo do parâmetro. O atributo específico é 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/criarCadastroRequest", ReplyAction="http://ws/BancoWS/criarCadastroResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        ClienteCSharp.ws.criarCadastroResponse criarCadastro(ClienteCSharp.ws.criarCadastroRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/criarCadastroRequest", ReplyAction="http://ws/BancoWS/criarCadastroResponse")]
-        System.Threading.Tasks.Task<ClienteCSharp.ws.criarCadastroResponse> criarCadastroAsync(ClienteCSharp.ws.criarCadastroRequest request);
-        
-        // CODEGEN: O parâmetro 'return' requer informações adicionais de esquema que não podem ser capturadas usando o modo do parâmetro. O atributo específico é 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/criarContaRequest", ReplyAction="http://ws/BancoWS/criarContaResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        ClienteCSharp.ws.criarContaResponse criarConta(ClienteCSharp.ws.criarContaRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/criarContaRequest", ReplyAction="http://ws/BancoWS/criarContaResponse")]
-        System.Threading.Tasks.Task<ClienteCSharp.ws.criarContaResponse> criarContaAsync(ClienteCSharp.ws.criarContaRequest request);
-        
-        // CODEGEN: O parâmetro 'return' requer informações adicionais de esquema que não podem ser capturadas usando o modo do parâmetro. O atributo específico é 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/alterarCadastroRequest", ReplyAction="http://ws/BancoWS/alterarCadastroResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        ClienteCSharp.ws.alterarCadastroResponse alterarCadastro(ClienteCSharp.ws.alterarCadastroRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/alterarCadastroRequest", ReplyAction="http://ws/BancoWS/alterarCadastroResponse")]
-        System.Threading.Tasks.Task<ClienteCSharp.ws.alterarCadastroResponse> alterarCadastroAsync(ClienteCSharp.ws.alterarCadastroRequest request);
         
         // CODEGEN: O parâmetro 'return' requer informações adicionais de esquema que não podem ser capturadas usando o modo do parâmetro. O atributo específico é 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/realizarDepositoRequest", ReplyAction="http://ws/BancoWS/realizarDepositoResponse")]
@@ -104,6 +77,69 @@ namespace ClienteCSharp.ws {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/consultarSaldoRequest", ReplyAction="http://ws/BancoWS/consultarSaldoResponse")]
         System.Threading.Tasks.Task<ClienteCSharp.ws.consultarSaldoResponse> consultarSaldoAsync(ClienteCSharp.ws.consultarSaldoRequest request);
+        
+        // CODEGEN: O parâmetro 'return' requer informações adicionais de esquema que não podem ser capturadas usando o modo do parâmetro. O atributo específico é 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/criarCadastroRequest", ReplyAction="http://ws/BancoWS/criarCadastroResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        ClienteCSharp.ws.criarCadastroResponse criarCadastro(ClienteCSharp.ws.criarCadastroRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/criarCadastroRequest", ReplyAction="http://ws/BancoWS/criarCadastroResponse")]
+        System.Threading.Tasks.Task<ClienteCSharp.ws.criarCadastroResponse> criarCadastroAsync(ClienteCSharp.ws.criarCadastroRequest request);
+        
+        // CODEGEN: O parâmetro 'return' requer informações adicionais de esquema que não podem ser capturadas usando o modo do parâmetro. O atributo específico é 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/criarContaRequest", ReplyAction="http://ws/BancoWS/criarContaResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        ClienteCSharp.ws.criarContaResponse criarConta(ClienteCSharp.ws.criarContaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/criarContaRequest", ReplyAction="http://ws/BancoWS/criarContaResponse")]
+        System.Threading.Tasks.Task<ClienteCSharp.ws.criarContaResponse> criarContaAsync(ClienteCSharp.ws.criarContaRequest request);
+        
+        // CODEGEN: O parâmetro 'return' requer informações adicionais de esquema que não podem ser capturadas usando o modo do parâmetro. O atributo específico é 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/alterarCadastroRequest", ReplyAction="http://ws/BancoWS/alterarCadastroResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        ClienteCSharp.ws.alterarCadastroResponse alterarCadastro(ClienteCSharp.ws.alterarCadastroRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://ws/BancoWS/alterarCadastroRequest", ReplyAction="http://ws/BancoWS/alterarCadastroResponse")]
+        System.Threading.Tasks.Task<ClienteCSharp.ws.alterarCadastroResponse> alterarCadastroAsync(ClienteCSharp.ws.alterarCadastroRequest request);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="consultarNumerosContasCliente", WrapperNamespace="http://ws/", IsWrapped=true)]
+    public partial class consultarNumerosContasClienteRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string CPF;
+        
+        public consultarNumerosContasClienteRequest() {
+        }
+        
+        public consultarNumerosContasClienteRequest(string CPF) {
+            this.CPF = CPF;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="consultarNumerosContasClienteResponse", WrapperNamespace="http://ws/", IsWrapped=true)]
+    public partial class consultarNumerosContasClienteResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int[] @return;
+        
+        public consultarNumerosContasClienteResponse() {
+        }
+        
+        public consultarNumerosContasClienteResponse(int[] @return) {
+            this.@return = @return;
+        }
     }
     
     /// <remarks/>
@@ -203,42 +239,6 @@ namespace ClienteCSharp.ws {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="consultarNumerosContasCliente", WrapperNamespace="http://ws/", IsWrapped=true)]
-    public partial class consultarNumerosContasClienteRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string CPF;
-        
-        public consultarNumerosContasClienteRequest() {
-        }
-        
-        public consultarNumerosContasClienteRequest(string CPF) {
-            this.CPF = CPF;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="consultarNumerosContasClienteResponse", WrapperNamespace="http://ws/", IsWrapped=true)]
-    public partial class consultarNumerosContasClienteResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int[] @return;
-        
-        public consultarNumerosContasClienteResponse() {
-        }
-        
-        public consultarNumerosContasClienteResponse(int[] @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="realizarTransferencia", WrapperNamespace="http://ws/", IsWrapped=true)]
     public partial class realizarTransferenciaRequest {
         
@@ -278,119 +278,6 @@ namespace ClienteCSharp.ws {
         }
         
         public realizarTransferenciaResponse(bool @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="criarCadastro", WrapperNamespace="http://ws/", IsWrapped=true)]
-    public partial class criarCadastroRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ClienteCSharp.ws.cliente cliente;
-        
-        public criarCadastroRequest() {
-        }
-        
-        public criarCadastroRequest(ClienteCSharp.ws.cliente cliente) {
-            this.cliente = cliente;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="criarCadastroResponse", WrapperNamespace="http://ws/", IsWrapped=true)]
-    public partial class criarCadastroResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public bool @return;
-        
-        public criarCadastroResponse() {
-        }
-        
-        public criarCadastroResponse(bool @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="criarConta", WrapperNamespace="http://ws/", IsWrapped=true)]
-    public partial class criarContaRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string CPF;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public double saldo;
-        
-        public criarContaRequest() {
-        }
-        
-        public criarContaRequest(string CPF, double saldo) {
-            this.CPF = CPF;
-            this.saldo = saldo;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="criarContaResponse", WrapperNamespace="http://ws/", IsWrapped=true)]
-    public partial class criarContaResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public bool @return;
-        
-        public criarContaResponse() {
-        }
-        
-        public criarContaResponse(bool @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="alterarCadastro", WrapperNamespace="http://ws/", IsWrapped=true)]
-    public partial class alterarCadastroRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ClienteCSharp.ws.cliente cliente;
-        
-        public alterarCadastroRequest() {
-        }
-        
-        public alterarCadastroRequest(ClienteCSharp.ws.cliente cliente) {
-            this.cliente = cliente;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="alterarCadastroResponse", WrapperNamespace="http://ws/", IsWrapped=true)]
-    public partial class alterarCadastroResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public bool @return;
-        
-        public alterarCadastroResponse() {
-        }
-        
-        public alterarCadastroResponse(bool @return) {
             this.@return = @return;
         }
     }
@@ -549,6 +436,119 @@ namespace ClienteCSharp.ws {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="criarCadastro", WrapperNamespace="http://ws/", IsWrapped=true)]
+    public partial class criarCadastroRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public ClienteCSharp.ws.cliente cliente;
+        
+        public criarCadastroRequest() {
+        }
+        
+        public criarCadastroRequest(ClienteCSharp.ws.cliente cliente) {
+            this.cliente = cliente;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="criarCadastroResponse", WrapperNamespace="http://ws/", IsWrapped=true)]
+    public partial class criarCadastroResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool @return;
+        
+        public criarCadastroResponse() {
+        }
+        
+        public criarCadastroResponse(bool @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="criarConta", WrapperNamespace="http://ws/", IsWrapped=true)]
+    public partial class criarContaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string CPF;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public double saldo;
+        
+        public criarContaRequest() {
+        }
+        
+        public criarContaRequest(string CPF, double saldo) {
+            this.CPF = CPF;
+            this.saldo = saldo;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="criarContaResponse", WrapperNamespace="http://ws/", IsWrapped=true)]
+    public partial class criarContaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool @return;
+        
+        public criarContaResponse() {
+        }
+        
+        public criarContaResponse(bool @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="alterarCadastro", WrapperNamespace="http://ws/", IsWrapped=true)]
+    public partial class alterarCadastroRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public ClienteCSharp.ws.cliente cliente;
+        
+        public alterarCadastroRequest() {
+        }
+        
+        public alterarCadastroRequest(ClienteCSharp.ws.cliente cliente) {
+            this.cliente = cliente;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="alterarCadastroResponse", WrapperNamespace="http://ws/", IsWrapped=true)]
+    public partial class alterarCadastroResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool @return;
+        
+        public alterarCadastroResponse() {
+        }
+        
+        public alterarCadastroResponse(bool @return) {
+            this.@return = @return;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface BancoWSChannel : ClienteCSharp.ws.BancoWS, System.ServiceModel.IClientChannel {
     }
@@ -577,29 +577,6 @@ namespace ClienteCSharp.ws {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ClienteCSharp.ws.consultarCadastroResponse ClienteCSharp.ws.BancoWS.consultarCadastro(ClienteCSharp.ws.consultarCadastroRequest request) {
-            return base.Channel.consultarCadastro(request);
-        }
-        
-        public ClienteCSharp.ws.cliente consultarCadastro(string CPF) {
-            ClienteCSharp.ws.consultarCadastroRequest inValue = new ClienteCSharp.ws.consultarCadastroRequest();
-            inValue.CPF = CPF;
-            ClienteCSharp.ws.consultarCadastroResponse retVal = ((ClienteCSharp.ws.BancoWS)(this)).consultarCadastro(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ClienteCSharp.ws.consultarCadastroResponse> ClienteCSharp.ws.BancoWS.consultarCadastroAsync(ClienteCSharp.ws.consultarCadastroRequest request) {
-            return base.Channel.consultarCadastroAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<ClienteCSharp.ws.consultarCadastroResponse> consultarCadastroAsync(string CPF) {
-            ClienteCSharp.ws.consultarCadastroRequest inValue = new ClienteCSharp.ws.consultarCadastroRequest();
-            inValue.CPF = CPF;
-            return ((ClienteCSharp.ws.BancoWS)(this)).consultarCadastroAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         ClienteCSharp.ws.consultarNumerosContasClienteResponse ClienteCSharp.ws.BancoWS.consultarNumerosContasCliente(ClienteCSharp.ws.consultarNumerosContasClienteRequest request) {
             return base.Channel.consultarNumerosContasCliente(request);
         }
@@ -620,6 +597,29 @@ namespace ClienteCSharp.ws {
             ClienteCSharp.ws.consultarNumerosContasClienteRequest inValue = new ClienteCSharp.ws.consultarNumerosContasClienteRequest();
             inValue.CPF = CPF;
             return ((ClienteCSharp.ws.BancoWS)(this)).consultarNumerosContasClienteAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ClienteCSharp.ws.consultarCadastroResponse ClienteCSharp.ws.BancoWS.consultarCadastro(ClienteCSharp.ws.consultarCadastroRequest request) {
+            return base.Channel.consultarCadastro(request);
+        }
+        
+        public ClienteCSharp.ws.cliente consultarCadastro(string CPF) {
+            ClienteCSharp.ws.consultarCadastroRequest inValue = new ClienteCSharp.ws.consultarCadastroRequest();
+            inValue.CPF = CPF;
+            ClienteCSharp.ws.consultarCadastroResponse retVal = ((ClienteCSharp.ws.BancoWS)(this)).consultarCadastro(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<ClienteCSharp.ws.consultarCadastroResponse> ClienteCSharp.ws.BancoWS.consultarCadastroAsync(ClienteCSharp.ws.consultarCadastroRequest request) {
+            return base.Channel.consultarCadastroAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ClienteCSharp.ws.consultarCadastroResponse> consultarCadastroAsync(string CPF) {
+            ClienteCSharp.ws.consultarCadastroRequest inValue = new ClienteCSharp.ws.consultarCadastroRequest();
+            inValue.CPF = CPF;
+            return ((ClienteCSharp.ws.BancoWS)(this)).consultarCadastroAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -647,77 +647,6 @@ namespace ClienteCSharp.ws {
             inValue.contaDestino = contaDestino;
             inValue.valor = valor;
             return ((ClienteCSharp.ws.BancoWS)(this)).realizarTransferenciaAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ClienteCSharp.ws.criarCadastroResponse ClienteCSharp.ws.BancoWS.criarCadastro(ClienteCSharp.ws.criarCadastroRequest request) {
-            return base.Channel.criarCadastro(request);
-        }
-        
-        public bool criarCadastro(ClienteCSharp.ws.cliente cliente) {
-            ClienteCSharp.ws.criarCadastroRequest inValue = new ClienteCSharp.ws.criarCadastroRequest();
-            inValue.cliente = cliente;
-            ClienteCSharp.ws.criarCadastroResponse retVal = ((ClienteCSharp.ws.BancoWS)(this)).criarCadastro(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ClienteCSharp.ws.criarCadastroResponse> ClienteCSharp.ws.BancoWS.criarCadastroAsync(ClienteCSharp.ws.criarCadastroRequest request) {
-            return base.Channel.criarCadastroAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<ClienteCSharp.ws.criarCadastroResponse> criarCadastroAsync(ClienteCSharp.ws.cliente cliente) {
-            ClienteCSharp.ws.criarCadastroRequest inValue = new ClienteCSharp.ws.criarCadastroRequest();
-            inValue.cliente = cliente;
-            return ((ClienteCSharp.ws.BancoWS)(this)).criarCadastroAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ClienteCSharp.ws.criarContaResponse ClienteCSharp.ws.BancoWS.criarConta(ClienteCSharp.ws.criarContaRequest request) {
-            return base.Channel.criarConta(request);
-        }
-        
-        public bool criarConta(string CPF, double saldo) {
-            ClienteCSharp.ws.criarContaRequest inValue = new ClienteCSharp.ws.criarContaRequest();
-            inValue.CPF = CPF;
-            inValue.saldo = saldo;
-            ClienteCSharp.ws.criarContaResponse retVal = ((ClienteCSharp.ws.BancoWS)(this)).criarConta(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ClienteCSharp.ws.criarContaResponse> ClienteCSharp.ws.BancoWS.criarContaAsync(ClienteCSharp.ws.criarContaRequest request) {
-            return base.Channel.criarContaAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<ClienteCSharp.ws.criarContaResponse> criarContaAsync(string CPF, double saldo) {
-            ClienteCSharp.ws.criarContaRequest inValue = new ClienteCSharp.ws.criarContaRequest();
-            inValue.CPF = CPF;
-            inValue.saldo = saldo;
-            return ((ClienteCSharp.ws.BancoWS)(this)).criarContaAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ClienteCSharp.ws.alterarCadastroResponse ClienteCSharp.ws.BancoWS.alterarCadastro(ClienteCSharp.ws.alterarCadastroRequest request) {
-            return base.Channel.alterarCadastro(request);
-        }
-        
-        public bool alterarCadastro(ClienteCSharp.ws.cliente cliente) {
-            ClienteCSharp.ws.alterarCadastroRequest inValue = new ClienteCSharp.ws.alterarCadastroRequest();
-            inValue.cliente = cliente;
-            ClienteCSharp.ws.alterarCadastroResponse retVal = ((ClienteCSharp.ws.BancoWS)(this)).alterarCadastro(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ClienteCSharp.ws.alterarCadastroResponse> ClienteCSharp.ws.BancoWS.alterarCadastroAsync(ClienteCSharp.ws.alterarCadastroRequest request) {
-            return base.Channel.alterarCadastroAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<ClienteCSharp.ws.alterarCadastroResponse> alterarCadastroAsync(ClienteCSharp.ws.cliente cliente) {
-            ClienteCSharp.ws.alterarCadastroRequest inValue = new ClienteCSharp.ws.alterarCadastroRequest();
-            inValue.cliente = cliente;
-            return ((ClienteCSharp.ws.BancoWS)(this)).alterarCadastroAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -814,6 +743,77 @@ namespace ClienteCSharp.ws {
             ClienteCSharp.ws.consultarSaldoRequest inValue = new ClienteCSharp.ws.consultarSaldoRequest();
             inValue.conta = conta;
             return ((ClienteCSharp.ws.BancoWS)(this)).consultarSaldoAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ClienteCSharp.ws.criarCadastroResponse ClienteCSharp.ws.BancoWS.criarCadastro(ClienteCSharp.ws.criarCadastroRequest request) {
+            return base.Channel.criarCadastro(request);
+        }
+        
+        public bool criarCadastro(ClienteCSharp.ws.cliente cliente) {
+            ClienteCSharp.ws.criarCadastroRequest inValue = new ClienteCSharp.ws.criarCadastroRequest();
+            inValue.cliente = cliente;
+            ClienteCSharp.ws.criarCadastroResponse retVal = ((ClienteCSharp.ws.BancoWS)(this)).criarCadastro(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<ClienteCSharp.ws.criarCadastroResponse> ClienteCSharp.ws.BancoWS.criarCadastroAsync(ClienteCSharp.ws.criarCadastroRequest request) {
+            return base.Channel.criarCadastroAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ClienteCSharp.ws.criarCadastroResponse> criarCadastroAsync(ClienteCSharp.ws.cliente cliente) {
+            ClienteCSharp.ws.criarCadastroRequest inValue = new ClienteCSharp.ws.criarCadastroRequest();
+            inValue.cliente = cliente;
+            return ((ClienteCSharp.ws.BancoWS)(this)).criarCadastroAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ClienteCSharp.ws.criarContaResponse ClienteCSharp.ws.BancoWS.criarConta(ClienteCSharp.ws.criarContaRequest request) {
+            return base.Channel.criarConta(request);
+        }
+        
+        public bool criarConta(string CPF, double saldo) {
+            ClienteCSharp.ws.criarContaRequest inValue = new ClienteCSharp.ws.criarContaRequest();
+            inValue.CPF = CPF;
+            inValue.saldo = saldo;
+            ClienteCSharp.ws.criarContaResponse retVal = ((ClienteCSharp.ws.BancoWS)(this)).criarConta(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<ClienteCSharp.ws.criarContaResponse> ClienteCSharp.ws.BancoWS.criarContaAsync(ClienteCSharp.ws.criarContaRequest request) {
+            return base.Channel.criarContaAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ClienteCSharp.ws.criarContaResponse> criarContaAsync(string CPF, double saldo) {
+            ClienteCSharp.ws.criarContaRequest inValue = new ClienteCSharp.ws.criarContaRequest();
+            inValue.CPF = CPF;
+            inValue.saldo = saldo;
+            return ((ClienteCSharp.ws.BancoWS)(this)).criarContaAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ClienteCSharp.ws.alterarCadastroResponse ClienteCSharp.ws.BancoWS.alterarCadastro(ClienteCSharp.ws.alterarCadastroRequest request) {
+            return base.Channel.alterarCadastro(request);
+        }
+        
+        public bool alterarCadastro(ClienteCSharp.ws.cliente cliente) {
+            ClienteCSharp.ws.alterarCadastroRequest inValue = new ClienteCSharp.ws.alterarCadastroRequest();
+            inValue.cliente = cliente;
+            ClienteCSharp.ws.alterarCadastroResponse retVal = ((ClienteCSharp.ws.BancoWS)(this)).alterarCadastro(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<ClienteCSharp.ws.alterarCadastroResponse> ClienteCSharp.ws.BancoWS.alterarCadastroAsync(ClienteCSharp.ws.alterarCadastroRequest request) {
+            return base.Channel.alterarCadastroAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ClienteCSharp.ws.alterarCadastroResponse> alterarCadastroAsync(ClienteCSharp.ws.cliente cliente) {
+            ClienteCSharp.ws.alterarCadastroRequest inValue = new ClienteCSharp.ws.alterarCadastroRequest();
+            inValue.cliente = cliente;
+            return ((ClienteCSharp.ws.BancoWS)(this)).alterarCadastroAsync(inValue);
         }
     }
 }

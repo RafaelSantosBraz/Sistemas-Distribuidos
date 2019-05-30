@@ -20,6 +20,7 @@ namespace ClienteCSharp
         private void Button1_Click(object sender, EventArgs e)
         {
             textBox3.Text = Controladora.Instancia.ConsultarCadastro(textBox1.Text);
+            textBox2.Clear();
             foreach (int i in Controladora.Instancia.ConsultarNumerosContas(textBox1.Text))
             {
                 textBox2.Text += i.ToString() + " ,";
@@ -59,7 +60,7 @@ namespace ClienteCSharp
 
         private void Button7_Click(object sender, EventArgs e)
         {
-            if (Controladora.Instancia.AlterarCadastro(textBox1.Text, textBox2.Text))
+            if (Controladora.Instancia.AlterarCadastro(textBox1.Text, textBox3.Text))
             {
                 MessageBox.Show("Alterado com Sucesso", "Operação de Alteração de Cadastro", MessageBoxButtons.OK);
             }
@@ -67,6 +68,11 @@ namespace ClienteCSharp
             {
                 MessageBox.Show("Erro na Alteração", "Operação de Alteração de Cadastro", MessageBoxButtons.OK);
             }
+        }
+
+        private void ConsultarAlterarCadastro_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }
