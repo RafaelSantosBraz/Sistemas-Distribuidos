@@ -141,7 +141,7 @@ app.get('/consultar_extrato', urlencodedParser, function (req, res) {
     res.end(htmlCabecalho + htmlCorpo + htmlFim);
 })
 
-app.get('/criar_casdastro', urlencodedParser, function (req, res) {
+app.get('/criar_cadastro', urlencodedParser, function (req, res) {
     htmlCorpo = '<form id="formulario" action="http://localhost:7000/criar_cadastro" method="POST"> CPF: <input type = "text" name = "CPF"> <br> Nome: <input type = "text" name = "nome"> <button>criar cadastro</button> </form>';
     mudarStatus(null);
     res.end(htmlCabecalho + htmlCorpo + htmlFim);
@@ -200,7 +200,7 @@ function alterarCadastro(argsRequisicao, response) {
     soap.createClient(url, function (err, client) {
         client.alterarCadastro(argsRequisicao, function (err, result) {
             console.log(result);
-            if (result === null || result === false) {
+            if (result === null || result !== true) {
                 mudarStatus("Falha!");
                 htmlCorpo = '<form id="formulario" action="http://localhost:7000/alterar_cadastro" method="POST"> CPF: <input type = "text" name = "CPF"> <br> Nome: <input type = "text" name = "nome"> <button>alterar</button> </form>';
             } else {
@@ -216,7 +216,7 @@ function realizarSaque(argsRequisicao, response) {
     soap.createClient(url, function (err, client) {
         client.realizarSaque(argsRequisicao, function (err, result) {
             console.log(result);
-            if (result === null || result === false) {
+            if (result === null || result !== true) {
                 mudarStatus("Falha!");
                 htmlCorpo = '<form id="formulario" action="http://localhost:7000/realizar_saque" method="POST"> Conta: <input type = "text" name = "conta"> <br> Valor: <input type = "text" name = "valor"> <button>realizar saque</button> </form>';
             } else {
@@ -232,7 +232,7 @@ function realizarDeposito(argsRequisicao, response) {
     soap.createClient(url, function (err, client) {
         client.realizarDeposito(argsRequisicao, function (err, result) {
             console.log(result);
-            if (result === null || result === false) {
+            if (result === null || result !== true) {
                 mudarStatus("Falha!");
                 htmlCorpo = '<form id="formulario" action="http://localhost:7000/realizar_deposito" method="POST"> Conta: <input type = "text" name = "conta"> <br> Valor: <input type = "text" name = "valor"> <button>realizar depósito</button> </form>';
             } else {
@@ -264,7 +264,7 @@ function realizarTransferencia(argsRequisicao, response) {
     soap.createClient(url, function (err, client) {
         client.realizarTransferencia(argsRequisicao, function (err, result) {
             console.log(result);
-            if (result === null || result === false) {
+            if (result === null || result !== true) {
                 mudarStatus("Falha!");
                 htmlCorpo = '<form id="formulario" action="http://localhost:7000/realizar_transferencia" method="POST"> Conta de Origem: <input type = "text" name = "contaOrigem"> <br> Conta de Destino: <input type = "text" name = "contaDestino"> <br>Valor: <input type = "text" name = "valor"> <br><button>realizar transferência</button> </form>';
             } else {
@@ -296,7 +296,7 @@ function criarCadastro(argsRequisicao, response) {
     soap.createClient(url, function (err, client) {
         client.criarCadastro(argsRequisicao, function (err, result) {
             console.log(result);
-            if (result === null || result === false) {
+            if (result === null || result !== true) {
                 mudarStatus("Falha!");
                 htmlCorpo = '<form id="formulario" action="http://localhost:7000/criar_cadastro" method="POST"> CPF: <input type = "text" name = "CPF"> <br> Nome: <input type = "text" name = "nome"> <button>criar cadastro</button> </form>';
             } else {
@@ -312,7 +312,7 @@ function criarConta(argsRequisicao, response) {
     soap.createClient(url, function (err, client) {
         client.criarConta(argsRequisicao, function (err, result) {
             console.log(result);
-            if (result === null || result === false) {
+            if (result === null || result !== true) {
                 mudarStatus("Falha!");
                 htmlCorpo = '<form id="formulario" action="http://localhost:7000/criar_conta" method="POST"> CPF: <input type = "text" name = "CPF"> <br> Saldo: <input type = "text" name = "saldo"> <br><button>criar conta</button> </form>';
             } else {
