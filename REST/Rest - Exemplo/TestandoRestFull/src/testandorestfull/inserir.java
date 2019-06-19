@@ -29,7 +29,7 @@ public class inserir {
         
         Gson gson = new Gson();
         String response = wr.type("application/json")
-		   .put(String.class, gson.toJson(a));                
+		   .post(String.class, gson.toJson(a));                
         System.out.println(response);                
     }  
 }

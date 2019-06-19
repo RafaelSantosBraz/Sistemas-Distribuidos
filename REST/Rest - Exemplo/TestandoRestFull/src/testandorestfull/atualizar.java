@@ -29,7 +29,7 @@ public class atualizar {
         
         Gson gson = new Gson();
         String response = wr.type("application/json")
-		   .post(String.class, gson.toJson(a));        
+		   .put(String.class, gson.toJson(a));        
                 
         System.out.println(response);                
     }  

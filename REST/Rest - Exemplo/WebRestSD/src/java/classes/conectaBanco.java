@@ -29,8 +29,8 @@ public class conectaBanco {
             String serverName = "localhost";    //caminho do servidor do BD
             String mydatabase ="rest";        //nome do seu banco de dados 
             String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
-            String username = "root";        //nome de um usuário de seu BD      
-            String password = "";      //sua senha de acesso
+            String username = "mysql";        //nome de um usuário de seu BD      
+            String password = "mysql";      //sua senha de acesso
             connection = (com.mysql.jdbc.Connection) DriverManager.getConnection(url, username, password);
 
             //Testa sua conexão//  
