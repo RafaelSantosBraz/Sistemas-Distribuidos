@@ -18,9 +18,9 @@ import javax.ws.rs.core.MediaType;
 /**
  * REST Web Service
  *
- * @author cc47192962899
+ * @author Rafael Braz
  */
-@Path("generic")
+@Path("Banco")
 public class BancoResource {
 
     private final ControllerBanco controller;
