@@ -1,0 +1,59 @@
+consultarCadastro
+    retorno: Cliente
+    parâmetros: String CPF
+    método: GET
+    caminho: /consultarCadastro
+
+alterarCadastro
+    retorno: boolean
+    parâmetros: Cliente cliente
+    método: POST
+    caminho: /alterarCadastro
+
+realizarSaque
+    retorno: boolean
+    parâmetros: int conta, double valor
+    método: POST
+    caminho: /realizarSaque
+
+realizarDeposito
+    retorno: boolean
+    parâmetros: int conta, double valor
+    método: POST
+    caminho: /realizarDeposito
+
+consultarSaldo
+    retorno: double
+    parâmetros: int conta
+    método: GET
+    caminho: /consultarSaldo
+
+realizarTransferencia
+    retorno: boolean
+    parâmetros: int contaOrigem, int contaDestino, double valor
+    método: POST
+    caminho: /realizarTransferencia
+
+consultarExtrato
+    retorno: List<String>
+    parâmetros: int conta
+    método: GET
+    caminho: /consultarExtrato
+
+criarCadastro
+    retorno: boolean
+    parâmetros: Cliente cliente
+    método: POST
+    caminho: /criarCadastro
+
+criarConta
+    retorno: boolean
+    parâmetros: String CPF, double saldo
+    método: POST
+    caminho: /criarConta
+
+consultarNumerosContasCliente
+    retorno: List<Integer>
+    parâmetros: String CPF
+    método: GET
+    caminho: /consultarNumerosContasCliente
