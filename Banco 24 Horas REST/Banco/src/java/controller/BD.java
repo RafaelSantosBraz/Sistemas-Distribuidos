@@ -6,7 +6,6 @@ import classses.Operacao;
 import classses.Transferencia;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 /**
  *
@@ -94,19 +93,16 @@ public class BD {
                     extrato.add(trans);
                 } while (resultadosTrans.next());
             }
-            extrato.sort(new Comparator<Operacao>() {
-                @Override
-                public int compare(Operacao u, Operacao t) {
-                    if (u.getData().compareTo(t.getData()) < 0) {
-                        return -1;
-                    }
-                    return 1;
+            extrato.sort((Operacao u, Operacao t) -> {
+                if (u.getData().compareTo(t.getData()) < 0) {
+                    return -1;
                 }
+                return 1;
             });
             ArrayList<String> linhasExtrato = new ArrayList<>();
-            for (Operacao op : extrato) {
+            extrato.forEach((op) -> {
                 linhasExtrato.add(op.toString());
-            }
+            });
             return linhasExtrato;
         } catch (SQLException ex) {
             System.err.println("Erro de acesso aos resultados SQL! " + ex.toString());
