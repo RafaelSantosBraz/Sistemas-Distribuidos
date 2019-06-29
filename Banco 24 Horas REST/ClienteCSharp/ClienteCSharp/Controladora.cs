@@ -18,7 +18,7 @@ namespace ClienteCSharp
 
         public string ConsultarCadastro(string CPF)
         {
-            string resposta = GET("http://localhost:8080/Banco/webresources/Banco/consultarCadastro/" + CPF);
+            var resposta = GET("http://localhost:8080/Banco/webresources/Banco/consultarCadastro/" + CPF);
             if (resposta == null || resposta == "")
             {
                 return "";
@@ -28,7 +28,7 @@ namespace ClienteCSharp
 
         public bool AlterarCadastro(string CPF, string nome)
         {
-            string resposta = POST("http://localhost:8080/Banco/webresources/Banco/alterarCadastro", JsonConvert.SerializeObject(new Cliente(CPF, nome)));
+            var resposta = POST("http://localhost:8080/Banco/webresources/Banco/alterarCadastro", JsonConvert.SerializeObject(new Cliente(CPF, nome)));
             if (resposta == null || resposta == "")
             {
                 return false;
@@ -38,17 +38,27 @@ namespace ClienteCSharp
 
         public List<string> ConsultarExtrato(int conta)
         {
-            return null;
+            var resposta = GET("http://localhost:8080/Banco/webresources/Banco/consultarExtrato/" + conta);
+            if (resposta == null || resposta == "")
+            {
+                return new List<string>();
+            }            
+            return JsonConvert.DeserializeObject<List<string>>(resposta);
         }
 
         public double ConsultarSaldo(int conta)
-        {
-            return -1;
+        {            
+            var resposta = GET("http://localhost:8080/Banco/webresources/Banco/consultarSaldo/" + conta);
+            if (resposta == null || resposta == "")
+            {
+                return -1;
+            }
+            return Double.Parse(resposta);
         }
 
         public bool Sacar(int conta, double valor)
         {
-            string resposta = GET("http://localhost:8080/Banco/webresources/Banco/realizarSaque/" + conta + "," + valor);
+            var resposta = GET("http://localhost:8080/Banco/webresources/Banco/realizarSaque/" + conta + "," + valor);
             if (resposta == null || resposta == "")
             {
                 return false;
@@ -58,7 +68,7 @@ namespace ClienteCSharp
 
         public bool Depositar(int conta, double valor)
         {
-            string resposta = GET("http://localhost:8080/Banco/webresources/Banco/realizarDeposito/" + conta + "," + valor);
+            var resposta = GET("http://localhost:8080/Banco/webresources/Banco/realizarDeposito/" + conta + "," + valor);
             if (resposta == null || resposta == "")
             {
                 return false;
@@ -68,22 +78,42 @@ namespace ClienteCSharp
 
         public bool TransferirValor(int contaOrigem, int contaDestino, double valor)
         {
-            return true;
+            var resposta = GET("http://localhost:8080/Banco/webresources/Banco/realizarTransferencia/" + contaOrigem + "," + contaDestino + "," + valor);
+            if (resposta == null || resposta == "")
+            {
+                return false;
+            }
+            return Boolean.Parse(resposta);
         }
 
         public List<int> ConsultarNumerosContas(string CPF)
         {
-            return null;
+            var resposta = GET("http://localhost:8080/Banco/webresources/Banco/consultarNumerosContasCliente/" + CPF);
+            if (resposta == null || resposta == "")
+            {
+                return new List<int>();
+            }
+            return JsonConvert.DeserializeObject<List<int>>(resposta);
         }
 
         public bool CriarCliente(string CPF, string nome)
         {
-            return true;
+            var resposta = POST("http://localhost:8080/Banco/webresources/Banco/criarCadastro", JsonConvert.SerializeObject(new Cliente(CPF, nome)));
+            if (resposta == null || resposta == "")
+            {
+                return false;
+            }
+            return Boolean.Parse(resposta);
         }
 
         public bool CriarConta(string CPF, double saldo)
         {
-            return true;
+            var resposta = POST("http://localhost:8080/Banco/webresources/Banco/criarConta", JsonConvert.SerializeObject(new ContaAux(CPF, saldo)));
+            if (resposta == null || resposta == "")
+            {
+                return false;
+            }
+            return Boolean.Parse(resposta);
         }
 
         public string GET(string url)

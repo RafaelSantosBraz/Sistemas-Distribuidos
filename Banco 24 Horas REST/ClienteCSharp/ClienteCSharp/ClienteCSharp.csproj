@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\Cliente.cs" />
+    <Compile Include="classes\ContaAux.cs" />
     <Compile Include="interfaces\ConsultarAlterarCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
