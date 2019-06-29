@@ -92,12 +92,52 @@ namespace ClienteCSharp
 
         public bool Sacar(int conta, double valor)
         {
-            return true;
+            try
+            {
+                var requisicaoWeb = WebRequest.CreateHttp("http://localhost:8080/Banco/webresources/Banco/realizarSaque/" + conta + "," + valor);
+                requisicaoWeb.Method = "GET";
+                using (var resposta = requisicaoWeb.GetResponse())
+                {
+                    using (var streamDados = resposta.GetResponseStream())
+                    {
+                        string objResponse = new StreamReader(streamDados).ReadToEnd();
+                        if (objResponse == null || objResponse == "")
+                        {
+                            return false;
+                        }
+                        return Boolean.Parse(objResponse);
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool Depositar(int conta, double valor)
         {
-            return true;
+            try
+            {
+                var requisicaoWeb = WebRequest.CreateHttp("http://localhost:8080/Banco/webresources/Banco/realizarDeposito/" + conta + "," + valor);
+                requisicaoWeb.Method = "GET";
+                using (var resposta = requisicaoWeb.GetResponse())
+                {
+                    using (var streamDados = resposta.GetResponseStream())
+                    {
+                        string objResponse = new StreamReader(streamDados).ReadToEnd();
+                        if (objResponse == null || objResponse == "")
+                        {
+                            return false;
+                        }
+                        return Boolean.Parse(objResponse);
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool TransferirValor(int contaOrigem, int contaDestino, double valor)
