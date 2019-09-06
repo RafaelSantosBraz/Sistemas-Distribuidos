@@ -15,14 +15,17 @@ import java.util.ArrayList;
  */
 public class ServicoServidor implements Servico {
 
+    private ControleEspera controladora = new ControleEspera();
+    
     @Override
     public boolean inserirAluno(Aluno aluno) throws RemoteException {
         try {
-            Requisicao r = new Requisicao(0, aluno);
+            Requisicao r = new Requisicao(Requisicao.INSERT, aluno);
+            controladora.adicionarRequisicao(r);
             while (!r.isFinalizado()) {
-                Thread.sleep(100);                
+                Thread.sleep(100);
             }
-            return r.getResultado();
+            return (Boolean) r.getResultado();
         } catch (InterruptedException e) {
             return false;
         }
@@ -34,7 +37,7 @@ public class ServicoServidor implements Servico {
     }
 
     @Override
-    public boolean excluirAluno(int ID) throws RemoteException {
+    public boolean excluirAluno(Aluno aluno) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

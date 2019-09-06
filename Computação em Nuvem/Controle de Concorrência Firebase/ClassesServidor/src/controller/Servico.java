@@ -19,6 +19,6 @@ public interface Servico extends Remote {
 
     public boolean alterarAluno(Aluno aluno) throws RemoteException;
 
-    public boolean excluirAluno(int ID) throws RemoteException;
+    public boolean excluirAluno(Aluno aluno) throws RemoteException;
     
 }

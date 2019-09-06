@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class Requisicao {
 
+    public static final int NO_TYPE = -1;
     public static final int INSERT = 0;
     public static final int UPDATE = 1;
     public static final int DELETE = 2;
@@ -22,12 +23,12 @@ public class Requisicao {
     private final int tipo;
     private boolean finalizado;
     private final List<Aluno> alunos;
-    private boolean resultado;
+    private Object resultado;
 
     public Requisicao(int tipo, List<Aluno> alunos) {
         finalizado = false;
-        this.tipo = tipo;
-        resultado = false;
+        this.tipo = normalizarTipo(tipo);
+        resultado = null;
         if (alunos == null) {
             this.alunos = new ArrayList<>();
         } else {
@@ -37,16 +38,43 @@ public class Requisicao {
 
     public Requisicao(int tipo, Aluno aluno) {
         finalizado = false;
-        this.tipo = tipo;
-        resultado = false;
+        this.tipo = normalizarTipo(tipo);
+        resultado = null;
         alunos = new ArrayList<>();
         if (aluno != null) {
             alunos.add(aluno);
         }
     }
 
-    public void finalizar() {
-        finalizado = true;
+    private int normalizarTipo(int tipo) {
+        switch (tipo) {
+            case INSERT:
+            case UPDATE:
+            case DELETE:
+                return tipo;
+        }
+        return NO_TYPE;
+    }
+
+    public void executar() {
+        switch (tipo) {
+            case INSERT:
+                inserirAluno();
+                break;
+            case UPDATE:
+                alterarAluno();
+                break;
+            case DELETE:
+                removerAluno();
+                break;
+            case NO_TYPE:
+                resultado = null;
+        }
+        finalizar();
+    }
+
+    private void finalizar() {
+        finalizado = true;        
     }
 
     public int getTipo() {
@@ -61,12 +89,20 @@ public class Requisicao {
         return alunos;
     }
 
-    public boolean getResultado() {
+    public Object getResultado() {
         return resultado;
     }
 
-    public void setResultado(boolean resultado) {
-        this.resultado = resultado;
+    private void inserirAluno(){
+        
     }
-
+    
+    private void alterarAluno(){
+        
+    }
+    
+    private void removerAluno(){
+        
+    }
+    
 }

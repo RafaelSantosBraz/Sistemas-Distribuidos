@@ -11,6 +11,8 @@ package classes;
  */
 public class Aluno {
 
+    public static final int NO_ID = -1;
+    
     private final int ID;
     private String nome;
     private int idade;
@@ -18,6 +20,13 @@ public class Aluno {
 
     public Aluno(int ID) {
         this.ID = ID;
+        nome = "";
+        idade = 0;
+        RA = "";
+    }
+
+    public Aluno() {
+        ID = NO_ID;
         nome = "";
         idade = 0;
         RA = "";
