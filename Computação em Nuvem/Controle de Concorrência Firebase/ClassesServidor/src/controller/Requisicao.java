@@ -16,17 +16,17 @@ import java.util.List;
  * @author Rafael Braz
  */
 public class Requisicao {
-    
+
     public static final int NO_TYPE = -1;
     public static final int INSERT = 0;
     public static final int UPDATE = 1;
     public static final int DELETE = 2;
-    
+
     private final int tipo;
     private boolean finalizado;
     private final List<Aluno> alunos;
     private Object resultado;
-    
+
     public Requisicao(int tipo, List<Aluno> alunos) {
         finalizado = false;
         this.tipo = normalizarTipo(tipo);
@@ -37,7 +37,7 @@ public class Requisicao {
             this.alunos = alunos;
         }
     }
-    
+
     public Requisicao(int tipo, Aluno aluno) {
         finalizado = false;
         this.tipo = normalizarTipo(tipo);
@@ -47,7 +47,7 @@ public class Requisicao {
             alunos.add(aluno);
         }
     }
-    
+
     private int normalizarTipo(int tipo) {
         switch (tipo) {
             case INSERT:
@@ -57,45 +57,45 @@ public class Requisicao {
         }
         return NO_TYPE;
     }
-    
+
     public void executar() {
         switch (tipo) {
             case INSERT:
                 inserirAluno(0);
                 break;
             case UPDATE:
-                alterarAluno();
+                alterarAluno(0);
                 break;
             case DELETE:
-                removerAluno();
+                removerAluno(0);
                 break;
             case NO_TYPE:
                 resultado = null;
         }
         finalizar();
     }
-    
+
     private void finalizar() {
         finalizado = true;
         ControleEspera.notificarTerminoRequisicao();
     }
-    
+
     public int getTipo() {
         return tipo;
     }
-    
+
     public boolean isFinalizado() {
         return finalizado;
     }
-    
+
     public List<Aluno> getAlunos() {
         return alunos;
     }
-    
+
     public Object getResultado() {
         return resultado;
     }
-    
+
     private void inserirAluno(int index) {
         Client c = Client.create();
         int contador = getContador();
@@ -103,18 +103,27 @@ public class Requisicao {
         alunos.get(index).setID(contador);
         Gson gson = new Gson();
         String response = wr.type("application/json").put(String.class, gson.toJson(alunos.get(index)));
-        System.out.println(response);
-        resultado = true;
+        System.out.println("Inserir: " + response);
+        resultado = !response.equals("null");
     }
-    
-    private void alterarAluno() {
-        
+
+    private void alterarAluno(int index) {
+        Client c = Client.create();
+        WebResource wr = c.resource("https://fir-aula-teste.firebaseio.com/alunos/" + alunos.get(index).getID() + ".json");
+        Gson gson = new Gson();
+        String response = wr.type("application/json").put(String.class, gson.toJson(alunos.get(index)));
+        System.out.println("Alterar: " + response);
+        resultado = !response.equals("null");
     }
-    
-    private void removerAluno() {
-        
+
+    private void removerAluno(int index) {
+        Client c = Client.create();
+        WebResource wr = c.resource("https://fir-aula-teste.firebaseio.com/alunos/" + alunos.get(index).getID() + ".json");
+        String response = wr.delete(String.class);
+        System.out.println("Apagar: " + response);
+        resultado = response.equals("null");
     }
-    
+
     private int getContador() {
         int contador = 0;
         Client c = Client.create();
@@ -128,10 +137,10 @@ public class Requisicao {
         }
         contador++;
         response = wr.type("application/json").put(String.class, gson.toJson(contador));
-        System.out.println(response);
+        //System.out.println(response);
         return contador;
     }
-    
+
     private void inicializacontador(int contador) {
         Client c = Client.create();
         WebResource wr = c.resource("https://fir-aula-teste.firebaseio.com/Counter.json");

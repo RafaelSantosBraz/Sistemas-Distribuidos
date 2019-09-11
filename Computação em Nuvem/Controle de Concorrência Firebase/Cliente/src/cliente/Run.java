@@ -26,8 +26,8 @@ public class Run {
         Controladora c = new Controladora();
         Servico servico = c.getServico();
         try {
-            Aluno a = new Aluno("Rafael", 21, "120121");
-            System.out.println(servico.inserirAluno((new Gson()).toJson(a)));
+            Aluno a = new Aluno(-1, "Rafael", 12, "120121");
+            System.out.println(servico.excluirAluno((new Gson()).toJson(a)));
         } catch (RemoteException ex) {
             System.out.println(ex);
         }

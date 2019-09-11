@@ -37,13 +37,31 @@ public class ServicoServidor extends UnicastRemoteObject implements Servico {
     }
 
     @Override
-    public boolean alterarAluno(Aluno aluno) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean alterarAluno(String aluno) throws RemoteException {
+        try {
+            Requisicao r = new Requisicao(Requisicao.UPDATE, (new Gson()).fromJson(aluno, Aluno.class));
+            controladora.adicionarRequisicao(r);
+            while (!r.isFinalizado()) {
+                Thread.sleep(100);
+            }
+            return (Boolean) r.getResultado();
+        } catch (InterruptedException e) {
+            return false;
+        }
     }
 
     @Override
-    public boolean excluirAluno(Aluno aluno) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean excluirAluno(String aluno) throws RemoteException {
+        try {
+            Requisicao r = new Requisicao(Requisicao.DELETE, (new Gson()).fromJson(aluno, Aluno.class));
+            controladora.adicionarRequisicao(r);
+            while (!r.isFinalizado()) {
+                Thread.sleep(100);
+            }
+            return (Boolean) r.getResultado();
+        } catch (InterruptedException e) {
+            return false;
+        }
     }
 
 }
