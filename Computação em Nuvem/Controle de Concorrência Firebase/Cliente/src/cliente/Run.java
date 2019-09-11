@@ -12,6 +12,7 @@ import controller.Servico;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import view.Principal;
 
 /**
  *
@@ -23,7 +24,7 @@ public class Run {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       
+        new Principal().setVisible(true);
     }
-
+    
 }
