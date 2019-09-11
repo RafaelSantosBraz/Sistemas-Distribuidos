@@ -15,17 +15,16 @@ import java.util.List;
 public class ControleEspera {
     
     private final List<Requisicao> requisicoes;
+    private static int esperando;
     
     public ControleEspera() {
         requisicoes = new ArrayList<>();
+        esperando = 0;
+        verificarTermino();
     }
     
     public void adicionarRequisicao(Requisicao requisicao) {
         requisicoes.add(requisicao);
-    }
-    
-    private void removerRequisicao(Requisicao requisicao) {
-        requisicoes.remove(requisicao);
     }
     
     private Requisicao peek() {
@@ -37,12 +36,17 @@ public class ControleEspera {
         return aux;
     }
     
-    public void escalonar() {
+    public static void notificarTerminoRequisicao() {
+        esperando--;
+    }
+    
+    private void escalonar() {
         ArrayList<Requisicao> prontos = new ArrayList<>();
         Requisicao topo = peek();
         if (topo == null) {
             return;
         }
+        prontos.add(topo);
         requisicoes.forEach((t) -> {
             if (!dependenciasConjunto(prontos, t)) {
                 prontos.add(t);
@@ -53,6 +57,7 @@ public class ControleEspera {
                 requisicoes.remove(prontos.get(c));
             }
         }
+        esperando = prontos.size();
         executarRequisicoesProntas(prontos);
     }
     
@@ -70,4 +75,20 @@ public class ControleEspera {
         });
     }
     
+    private void verificarTermino() {
+        Thread verificador = new Thread(() -> {
+            try {
+                while (true) {
+                    if (esperando == 0 && requisicoes.size() > 0) {
+                        escalonar();
+                    } else {
+                        Thread.sleep(100);
+                    }
+                }
+            } catch (InterruptedException e) {
+                System.out.println("erro thread");
+            }
+        });
+        verificador.start();
+    }
 }

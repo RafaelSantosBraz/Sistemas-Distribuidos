@@ -5,6 +5,14 @@
  */
 package cliente;
 
+import classes.Aluno;
+import com.google.gson.Gson;
+import controller.Controladora;
+import controller.Servico;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Rafael Braz
@@ -15,7 +23,14 @@ public class Run {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Controladora c = new Controladora();
+        Servico servico = c.getServico();
+        try {
+            Aluno a = new Aluno("Rafael", 21, "120121");
+            System.out.println(servico.inserirAluno((new Gson()).toJson(a)));
+        } catch (RemoteException ex) {
+            System.out.println(ex);
+        }
     }
-    
+
 }

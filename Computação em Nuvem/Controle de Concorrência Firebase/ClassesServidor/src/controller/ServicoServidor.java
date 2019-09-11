@@ -6,21 +6,26 @@
 package controller;
 
 import classes.Aluno;
+import com.google.gson.Gson;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
+import java.rmi.server.UnicastRemoteObject;
 
 /**
  *
  * @author Rafael Braz
  */
-public class ServicoServidor implements Servico {
+public class ServicoServidor extends UnicastRemoteObject implements Servico {
 
-    private ControleEspera controladora = new ControleEspera();
-    
+    private final ControleEspera controladora;
+
+    public ServicoServidor() throws RemoteException {
+        controladora = new ControleEspera();
+    }
+
     @Override
-    public boolean inserirAluno(Aluno aluno) throws RemoteException {
+    public boolean inserirAluno(String aluno) throws RemoteException {
         try {
-            Requisicao r = new Requisicao(Requisicao.INSERT, aluno);
+            Requisicao r = new Requisicao(Requisicao.INSERT, (new Gson()).fromJson(aluno, Aluno.class));
             controladora.adicionarRequisicao(r);
             while (!r.isFinalizado()) {
                 Thread.sleep(100);

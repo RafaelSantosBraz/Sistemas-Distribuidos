@@ -5,6 +5,7 @@
  */
 package classes;
 
+
 /**
  *
  * @author Rafael Braz
@@ -12,8 +13,8 @@ package classes;
 public class Aluno {
 
     public static final int NO_ID = -1;
-    
-    private final int ID;
+
+    private int ID;
     private String nome;
     private int idade;
     private String RA;
@@ -37,6 +38,17 @@ public class Aluno {
         this.nome = nome;
         this.idade = idade;
         this.RA = RA;
+    }
+
+    public Aluno(String nome, int idade, String RA) {
+        ID = NO_ID;
+        this.nome = nome;
+        this.idade = idade;
+        this.RA = RA;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public int getID() {

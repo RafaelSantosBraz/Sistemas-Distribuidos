@@ -15,7 +15,7 @@ import java.rmi.RemoteException;
  */
 public interface Servico extends Remote {
 
-    public boolean inserirAluno(Aluno aluno) throws RemoteException;
+    public boolean inserirAluno(String aluno) throws RemoteException;
 
     public boolean alterarAluno(Aluno aluno) throws RemoteException;
 
