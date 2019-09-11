@@ -13,20 +13,31 @@ import java.util.List;
  * @author Rafael Braz
  */
 public class ControleEspera {
-    
-    private final List<Requisicao> requisicoes;
-    private static int esperando;
-    
-    public ControleEspera() {
+
+    //<editor-fold defaultstate="collapsed" desc="SINGLETON">
+    private static ControleEspera instancia;
+
+    public static ControleEspera getInstancia() {
+        if (instancia == null) {
+            instancia = new ControleEspera();
+        }
+        return instancia;
+    }
+
+    private ControleEspera() {
         requisicoes = new ArrayList<>();
         esperando = 0;
         verificarTermino();
     }
-    
+    //</editor-fold>   
+
+    private final List<Requisicao> requisicoes;
+    private static int esperando;
+
     public void adicionarRequisicao(Requisicao requisicao) {
         requisicoes.add(requisicao);
     }
-    
+
     private Requisicao peek() {
         if (requisicoes.isEmpty()) {
             return null;
@@ -35,11 +46,11 @@ public class ControleEspera {
         requisicoes.remove(aux);
         return aux;
     }
-    
+
     public static void notificarTerminoRequisicao() {
         esperando--;
     }
-    
+
     private void escalonar() {
         ArrayList<Requisicao> prontos = new ArrayList<>();
         Requisicao topo = peek();
@@ -60,21 +71,21 @@ public class ControleEspera {
         esperando = prontos.size();
         executarRequisicoesProntas(prontos);
     }
-    
+
     private boolean dependenciasConjunto(List<Requisicao> conjunto, Requisicao amostra) {
         return conjunto.stream().anyMatch((r) -> (dependenciaItensDados(r, amostra)));
     }
-    
+
     private boolean dependenciaItensDados(Requisicao r1, Requisicao r2) {
         return r1.getAlunos().stream().anyMatch((a1) -> (r2.getAlunos().stream().anyMatch((a2) -> (a1.getID() == a2.getID()))));
     }
-    
+
     private void executarRequisicoesProntas(List<Requisicao> requisicoes) {
         requisicoes.parallelStream().forEach((t) -> {
             t.executar();
         });
     }
-    
+
     private void verificarTermino() {
         Thread verificador = new Thread(() -> {
             try {

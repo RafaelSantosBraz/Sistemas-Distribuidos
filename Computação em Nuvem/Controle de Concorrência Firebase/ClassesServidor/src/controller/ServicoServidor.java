@@ -16,17 +16,15 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class ServicoServidor extends UnicastRemoteObject implements Servico {
 
-    private final ControleEspera controladora;
-
     public ServicoServidor() throws RemoteException {
-        controladora = new ControleEspera();
+
     }
 
     @Override
     public boolean inserirAluno(String aluno) throws RemoteException {
         try {
             Requisicao r = new Requisicao(Requisicao.INSERT, (new Gson()).fromJson(aluno, Aluno.class));
-            controladora.adicionarRequisicao(r);
+            ControleEspera.getInstancia().adicionarRequisicao(r);
             while (!r.isFinalizado()) {
                 Thread.sleep(100);
             }
@@ -40,7 +38,7 @@ public class ServicoServidor extends UnicastRemoteObject implements Servico {
     public boolean alterarAluno(String aluno) throws RemoteException {
         try {
             Requisicao r = new Requisicao(Requisicao.UPDATE, (new Gson()).fromJson(aluno, Aluno.class));
-            controladora.adicionarRequisicao(r);
+            ControleEspera.getInstancia().adicionarRequisicao(r);
             while (!r.isFinalizado()) {
                 Thread.sleep(100);
             }
@@ -54,7 +52,7 @@ public class ServicoServidor extends UnicastRemoteObject implements Servico {
     public boolean excluirAluno(String aluno) throws RemoteException {
         try {
             Requisicao r = new Requisicao(Requisicao.DELETE, (new Gson()).fromJson(aluno, Aluno.class));
-            controladora.adicionarRequisicao(r);
+            ControleEspera.getInstancia().adicionarRequisicao(r);
             while (!r.isFinalizado()) {
                 Thread.sleep(100);
             }
