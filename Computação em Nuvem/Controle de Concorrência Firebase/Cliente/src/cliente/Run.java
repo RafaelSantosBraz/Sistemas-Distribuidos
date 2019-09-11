@@ -23,14 +23,7 @@ public class Run {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Controladora c = new Controladora();
-        Servico servico = c.getServico();
-        try {
-            Aluno a = new Aluno(-1, "Rafael", 12, "120121");
-            System.out.println(servico.excluirAluno((new Gson()).toJson(a)));
-        } catch (RemoteException ex) {
-            System.out.println(ex);
-        }
+       
     }
 
 }
