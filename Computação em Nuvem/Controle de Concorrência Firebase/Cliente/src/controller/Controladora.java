@@ -74,4 +74,17 @@ public class Controladora {
             return false;
         }
     }
+
+    public boolean excluirAluno(int ID) {
+        Aluno a = new Aluno(ID);
+        try {
+            if (servico != null) {
+                return servico.excluirAluno(new Gson().toJson(a));
+            } else {
+                return false;
+            }
+        } catch (RemoteException e) {
+            return false;
+        }
+    }
 }
