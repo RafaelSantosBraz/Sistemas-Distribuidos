@@ -61,4 +61,17 @@ public class Controladora {
             return false;
         }
     }
+
+    public boolean alterarAluno(int ID, String nome, int idade, String RA) {
+        Aluno a = new Aluno(ID, nome, idade, RA);
+        try {
+            if (servico != null) {
+                return servico.alterarAluno(new Gson().toJson(a));
+            } else {
+                return false;
+            }
+        } catch (RemoteException e) {
+            return false;
+        }
+    }
 }
