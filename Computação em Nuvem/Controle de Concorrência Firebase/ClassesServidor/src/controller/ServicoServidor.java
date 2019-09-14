@@ -26,7 +26,7 @@ public class ServicoServidor extends UnicastRemoteObject implements Servico {
             Requisicao r = new Requisicao(Requisicao.INSERT, (new Gson()).fromJson(aluno, Aluno.class));
             ControleEspera.getInstancia().adicionarRequisicao(r);
             while (!r.isFinalizado()) {
-                Thread.sleep(100);
+                Thread.sleep(1);
             }
             return (Boolean) r.getResultado();
         } catch (InterruptedException e) {
@@ -40,7 +40,7 @@ public class ServicoServidor extends UnicastRemoteObject implements Servico {
             Requisicao r = new Requisicao(Requisicao.UPDATE, (new Gson()).fromJson(aluno, Aluno.class));
             ControleEspera.getInstancia().adicionarRequisicao(r);
             while (!r.isFinalizado()) {
-                Thread.sleep(100);
+                Thread.sleep(1);
             }
             return (Boolean) r.getResultado();
         } catch (InterruptedException e) {
@@ -54,7 +54,7 @@ public class ServicoServidor extends UnicastRemoteObject implements Servico {
             Requisicao r = new Requisicao(Requisicao.DELETE, (new Gson()).fromJson(aluno, Aluno.class));
             ControleEspera.getInstancia().adicionarRequisicao(r);
             while (!r.isFinalizado()) {
-                Thread.sleep(100);
+                Thread.sleep(1);
             }
             return (Boolean) r.getResultado();
         } catch (InterruptedException e) {

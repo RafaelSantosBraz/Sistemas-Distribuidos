@@ -57,12 +57,12 @@ public class ControleEspera {
         if (topo == null) {
             return;
         }
-        prontos.add(topo);
-        requisicoes.forEach((t) -> {
-            if (!dependenciasConjunto(prontos, t)) {
-                prontos.add(t);
+        prontos.add(topo);        
+        for (int c = 0; c < requisicoes.size(); c++) {
+            if (!dependenciasConjunto(prontos, requisicoes.get(c))) {
+                prontos.add(requisicoes.get(c));
             }
-        });
+        }
         if (prontos.size() > 1) {
             for (int c = 1; c < prontos.size(); c++) {
                 requisicoes.remove(prontos.get(c));
@@ -93,7 +93,7 @@ public class ControleEspera {
                     if (esperando == 0 && requisicoes.size() > 0) {
                         escalonar();
                     } else {
-                        Thread.sleep(100);
+                        Thread.sleep(1);
                     }
                 }
             } catch (InterruptedException e) {
