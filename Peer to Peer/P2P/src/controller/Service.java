@@ -14,7 +14,7 @@ import java.rmi.RemoteException;
  */
 public interface Service extends Remote {
 
-    public void receiveRequest(String fileName, String IP, int port) throws RemoteException;
+    public void receiveRequest(String fileName, String IP, int port, String regName) throws RemoteException;
 
     public boolean isFileAlreadyThere(String fileName) throws RemoteException;
 
