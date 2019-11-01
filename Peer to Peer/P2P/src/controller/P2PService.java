@@ -10,28 +10,31 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import model.Node;
 
 /**
  *
  * @author Rafael Braz
  */
 public class P2PService extends UnicastRemoteObject implements Service {
-    
+
+    private final Node localNode;
     private final FileControl fileControl;
-    private NodeControl nodeControl;
-    
-    public P2PService(String dirPath) throws RemoteException {
+    private final NodeControl nodeControl;
+
+    public P2PService(String dirPath, String IP, int port, String regName) throws RemoteException {
         super();
         fileControl = new FileControl(dirPath);
         nodeControl = new NodeControl();
+        localNode = new Node(IP, port, regName);
     }
-    
+
     @Override
-    public void receiveRequest(String fileName, String IP, int port, String regName) throws RemoteException {
+    public void receiveRequest(String fileName, Node sourceNode) throws RemoteException {
         if (fileControl.fileExists(fileName)) {
             try {
-                Registry reg = LocateRegistry.getRegistry(IP, port);
-                Service service = (Service) reg.lookup(regName);
+                Registry reg = LocateRegistry.getRegistry(sourceNode.getIP(), sourceNode.getPort());
+                Service service = (Service) reg.lookup(sourceNode.getRegName());
                 if (!service.isFileAlreadyThere(fileName)) {
                     service.receiveFile(fileName, fileControl.getFileContent(fileName));
                 }
@@ -39,18 +42,26 @@ public class P2PService extends UnicastRemoteObject implements Service {
                 System.err.println("Error sending file! " + e.getMessage());
             }
         } else {
-            
+            nodeControl.getNodes().parallelStream().forEach((t) -> {
+                try {
+                    Registry reg = LocateRegistry.getRegistry(t.getIP(), t.getPort());
+                    Service service = (Service) reg.lookup(t.getRegName());
+                    service.receiveRequest(fileName, sourceNode);
+                } catch (NotBoundException | RemoteException e) {
+                    System.err.println("Error sending request! " + e.getMessage());
+                }
+            });
         }
     }
-    
+
     @Override
     public boolean isFileAlreadyThere(String fileName) throws RemoteException {
         return fileControl.fileExists(fileName);
     }
-    
+
     @Override
     public void receiveFile(String fileName, byte[] content) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        fileControl.addFile(fileName, content);
     }
-    
+
 }

@@ -7,6 +7,7 @@ package controller;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import model.Node;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.rmi.RemoteException;
  */
 public interface Service extends Remote {
 
-    public void receiveRequest(String fileName, String IP, int port, String regName) throws RemoteException;
+    public void receiveRequest(String fileName, Node sourceNode) throws RemoteException;
 
     public boolean isFileAlreadyThere(String fileName) throws RemoteException;
 

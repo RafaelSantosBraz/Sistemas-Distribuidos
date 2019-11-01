@@ -5,6 +5,10 @@
  */
 package controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashMap;
 
 /**
@@ -28,10 +32,25 @@ public class FileControl {
     }
 
     public byte[] getFileContent(String fileName) {
-        return null;
+        try {
+            return Files.readAllBytes(new File(fileList.get(fileName)).toPath());
+        } catch (IOException e) {
+            return null;
+        }
     }
 
     public boolean fileExists(String fileName) {
         return fileList.containsKey(fileName);
     }
+
+    public void addFile(String fileName, byte[] content) {
+        String filePath = dirPath + File.separator + fileName;
+        fileList.put(fileName, filePath);
+        try (FileOutputStream stream = new FileOutputStream(new File(filePath))) {
+            stream.write(content);
+        } catch (Exception e) {
+            fileList.remove(fileName);
+        }
+    }
+
 }

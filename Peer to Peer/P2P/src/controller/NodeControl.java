@@ -5,10 +5,32 @@
  */
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import model.Node;
+
 /**
  *
  * @author Rafael Braz
  */
 public class NodeControl {
-    
+
+    private final List<Node> nodes;
+
+    public NodeControl() {
+        nodes = new ArrayList<>();
+    }
+
+    public void addNode(Node node) {
+        nodes.add(node);
+    }
+
+    public void removeNode(Node node) {
+        nodes.remove(node);
+    }
+
+    public List<Node> getNodes() {
+        return nodes;
+    }
+
 }
