@@ -29,9 +29,8 @@ public final class FileControl {
     public void updateFileList() {
         fileList.clear();
         File directory = new File(dirPath);
-        File[] files = directory.listFiles((p) -> {
-            System.out.println(p.getName().contains("."));
-            return p.getName().contains(".");
+        File[] files = directory.listFiles((File f) -> {
+            return f.isFile();
         });
         for (File f : files) {
             fileList.put(f.getName(), f.getAbsolutePath());

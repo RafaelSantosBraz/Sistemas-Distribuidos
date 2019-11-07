@@ -20,7 +20,7 @@ public class Run {
      */
     public static void main(String[] args) {
         try {
-            P2PService service = new P2PService("C:\\Users\\cc45966446830\\Documents\\GitHub\\Sistemas-Distribuidos\\Banco 24 Horas RMI", "172.16.200.73", 9876, "P2P", null);
+            P2PService service = new P2PService("D:\\GitHub\\Sistemas-Distribuidos\\Banco 24 Horas RMI", "localhost", 9876, "P2P", null);
             LocateRegistry.createRegistry(9876).rebind("P2P", service);
             System.out.println("RMI server runnig!");
             
