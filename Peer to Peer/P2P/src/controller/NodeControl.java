@@ -21,6 +21,10 @@ public class NodeControl {
         nodes = new ArrayList<>();
     }
 
+    public NodeControl(List<Node> nodes) {
+        this.nodes = nodes;
+    }
+
     public void addNode(Node node) {
         nodes.add(node);
     }

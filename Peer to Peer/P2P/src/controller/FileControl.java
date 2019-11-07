@@ -15,7 +15,7 @@ import java.util.HashMap;
  *
  * @author Rafael Braz
  */
-public class FileControl {
+public final class FileControl {
 
     private final String dirPath;
     private final HashMap<String, String> fileList;
@@ -28,7 +28,14 @@ public class FileControl {
 
     public void updateFileList() {
         fileList.clear();
-
+        File directory = new File(dirPath);
+        File[] files = directory.listFiles((p) -> {
+            System.out.println(p.getName().contains("."));
+            return p.getName().contains(".");
+        });
+        for (File f : files) {
+            fileList.put(f.getName(), f.getAbsolutePath());
+        }
     }
 
     public byte[] getFileContent(String fileName) {

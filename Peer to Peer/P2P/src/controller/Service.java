@@ -17,6 +17,8 @@ public interface Service extends Remote {
 
     public void receiveRequest(String fileName, Node sourceNode) throws RemoteException;
 
+    public void startRequest(String fileName) throws RemoteException;
+
     public boolean isFileAlreadyThere(String fileName) throws RemoteException;
 
     public void receiveFile(String fileName, byte[] content) throws RemoteException;
