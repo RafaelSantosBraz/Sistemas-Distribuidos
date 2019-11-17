@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Rafael Braz
  */
-public class Node implements Serializable{
+public class Node implements Serializable {
 
     private final String IP;
     private final int port;
@@ -33,6 +33,11 @@ public class Node implements Serializable{
 
     public String getRegName() {
         return regName;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s:%d->'%s'", IP, port, regName);
     }
 
 }

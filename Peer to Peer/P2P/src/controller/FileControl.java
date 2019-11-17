@@ -35,12 +35,21 @@ public final class FileControl {
         for (File f : files) {
             fileList.put(f.getName(), f.getAbsolutePath());
         }
+        printFiles();
+    }
+
+    private void printFiles() {
+        System.out.println("Local Files List:");
+        fileList.keySet().forEach((t) -> {
+            System.out.printf("\t'%s'\n", t);
+        });
     }
 
     public byte[] getFileContent(String fileName) {
         try {
             return Files.readAllBytes(new File(fileList.get(fileName)).toPath());
         } catch (IOException e) {
+            System.err.printf("Error reading file '%s' content! Message: %s\n", fileName, e.getMessage());
             return null;
         }
     }
@@ -52,9 +61,11 @@ public final class FileControl {
     public void addFile(String fileName, byte[] content) {
         String filePath = dirPath + File.separator + fileName;
         fileList.put(fileName, filePath);
-        try (FileOutputStream stream = new FileOutputStream(new File(filePath))) {
+        try {
+            FileOutputStream stream = new FileOutputStream(new File(filePath));
             stream.write(content);
         } catch (Exception e) {
+            System.err.printf("Error writing file '%s' content! Message: %s\n", fileName, e.getMessage());
             fileList.remove(fileName);
         }
     }
