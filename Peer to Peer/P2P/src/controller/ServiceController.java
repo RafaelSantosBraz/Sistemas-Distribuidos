@@ -57,4 +57,16 @@ public class ServiceController {
         }
     }
 
+    public boolean startRequest(String fileName) {
+        try {
+            service.startRequest(fileName);
+            return true;
+        } catch (RemoteException ex) {
+            return false;
+        }
+    }
+
+    public void notifyNewFile(){
+        ViewController.getInstance().notifyNewFile();
+    }
 }

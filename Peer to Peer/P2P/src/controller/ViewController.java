@@ -7,6 +7,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import model.Node;
 import view.MainView;
 
@@ -52,8 +53,16 @@ public class ViewController {
     public boolean startService(String regName, int port, String dirPath, List<Node> connectedNodes) {
         return ServiceController.getInstance().createService(dirPath, new Node(dirPath, port, regName), connectedNodes);
     }
-    
-    public void startView(){
+
+    public void startView() {
         new MainView().setVisible(true);
+    }
+
+    public boolean startDownload(String fileName) {
+        return ServiceController.getInstance().startRequest(fileName);
+    }
+
+    public void notifyNewFile() {
+        JOptionPane.showMessageDialog(null, "Arquivo recebido!", "Serviço", JOptionPane.INFORMATION_MESSAGE);
     }
 }

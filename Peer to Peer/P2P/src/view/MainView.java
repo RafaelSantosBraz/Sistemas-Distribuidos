@@ -193,7 +193,11 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if (!ViewController.getInstance().startDownload(jTextField2.getText())) {
+            JOptionPane.showMessageDialog(null, "Não foi possível iniciar a requisição!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        jTextField2.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -219,7 +223,7 @@ public class MainView extends javax.swing.JFrame {
         }
         String regName = jTextField5.getText();
         String dirPath = jTextField3.getText();
-        if (!ViewController.getInstance().startService(regName, port, dirPath, connectedNodes)){
+        if (!ViewController.getInstance().startService(regName, port, dirPath, connectedNodes)) {
             JOptionPane.showMessageDialog(null, "Não foi possível iniciar o serviço!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }

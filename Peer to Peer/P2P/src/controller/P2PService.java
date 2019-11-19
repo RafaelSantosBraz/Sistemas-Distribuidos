@@ -63,6 +63,7 @@ public class P2PService extends UnicastRemoteObject implements Service {
     public void receiveFile(String fileName, byte[] content) throws RemoteException {
         fileControl.addFile(fileName, content);
         System.out.printf("File '%s' received.\n", fileName);
+        ServiceController.getInstance().notifyNewFile();
     }
 
     @Override
