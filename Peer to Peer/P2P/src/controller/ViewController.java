@@ -50,8 +50,8 @@ public class ViewController {
         return res;
     }
 
-    public boolean startService(String regName, int port, String dirPath, List<Node> connectedNodes) {
-        return ServiceController.getInstance().createService(dirPath, new Node(dirPath, port, regName), connectedNodes);
+    public boolean startService(String IP, String regName, int port, String dirPath, List<Node> connectedNodes) {
+        return ServiceController.getInstance().createService(dirPath, new Node(IP, port, regName), connectedNodes);
     }
 
     public void startView() {

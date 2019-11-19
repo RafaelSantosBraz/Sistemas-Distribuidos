@@ -10,8 +10,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.rmi.server.*;
 import model.Node;
 
 /**
@@ -48,11 +47,12 @@ public class ServiceController {
     public boolean createService(String dirPath, Node localNode, List<Node> connectedNodes) {
         try {
             service = new P2PService(dirPath, localNode, connectedNodes);
-            Registry reg = LocateRegistry.createRegistry(localNode.getPort());
+            System.setProperty("java.rmi.server.hostname", localNode.getIP());
+            Registry reg = LocateRegistry.createRegistry(localNode.getPort());            
             reg.rebind(localNode.getRegName(), service);
             System.out.println("RMI server runnig!");
             return true;
-        } catch (RemoteException ex) {
+        } catch (Exception ex) {
             return false;
         }
     }
@@ -66,7 +66,7 @@ public class ServiceController {
         }
     }
 
-    public void notifyNewFile(){
+    public void notifyNewFile() {
         ViewController.getInstance().notifyNewFile();
     }
 }
