@@ -20,12 +20,14 @@ import model.Node;
 public class P2PService extends UnicastRemoteObject implements Service {
 
     private final Node localNode;
-    private final FileControl fileControl;
+    private static FileControl fileControl = null;
     private final List<Node> connectedNodes;
 
     public P2PService(String dirPath, Node localNode, List<Node> connectedNodes) throws RemoteException {
         super();
-        fileControl = new FileControl(dirPath);
+        if (fileControl == null){
+            fileControl = new FileControl(dirPath);
+        }        
         this.connectedNodes = connectedNodes;
         this.localNode = localNode;
     }
