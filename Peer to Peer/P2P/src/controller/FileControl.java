@@ -68,6 +68,7 @@ public final class FileControl {
             System.err.printf("Error writing file '%s' content! Message: %s\n", fileName, e.getMessage());
             fileList.remove(fileName);
         }
+        printFiles();
     }
 
 }

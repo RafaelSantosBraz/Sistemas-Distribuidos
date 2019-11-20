@@ -63,6 +63,6 @@ public class ViewController {
     }
 
     public void notifyNewFile() {
-        JOptionPane.showMessageDialog(null, "Arquivo recebido!", "Serviço", JOptionPane.INFORMATION_MESSAGE);
+        //JOptionPane.showMessageDialog(null, "Arquivo recebido!", "Serviço", JOptionPane.INFORMATION_MESSAGE);
     }
 }

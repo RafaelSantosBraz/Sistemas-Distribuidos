@@ -10,6 +10,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.List;
 import model.Node;
 
@@ -22,14 +23,16 @@ public class P2PService extends UnicastRemoteObject implements Service {
     private final Node localNode;
     private static FileControl fileControl = null;
     private final List<Node> connectedNodes;
+    private final List<LogItem> log;
 
     public P2PService(String dirPath, Node localNode, List<Node> connectedNodes) throws RemoteException {
         super();
-        if (fileControl == null){
+        if (fileControl == null) {
             fileControl = new FileControl(dirPath);
-        }        
+        }
         this.connectedNodes = connectedNodes;
         this.localNode = localNode;
+        log = new ArrayList<>();
     }
 
     @Override
@@ -48,9 +51,12 @@ public class P2PService extends UnicastRemoteObject implements Service {
                     System.err.printf("Error sending file '%s' to %s! Message: %s\n", fileName, sourceNode.toString(), e.getMessage());
                 }
             } else {
-                sendRequest(fileName, sourceNode);
+                if (!isThereLog(new LogItem(fileName, sourceNode))) {
+                    sendRequest(fileName, sourceNode);
+                }
             }
         }
+        log.add(new LogItem(fileName, sourceNode));
     }
 
     @Override
@@ -74,15 +80,22 @@ public class P2PService extends UnicastRemoteObject implements Service {
 
     private void sendRequest(String fileName, Node sourceNode) {
         connectedNodes.forEach((t) -> {
-            try {                               
-                Registry reg = LocateRegistry.getRegistry(t.getIP(), t.getPort());                
-                Service service = (Service) reg.lookup(t.getRegName());                
-                service.receiveRequest(fileName, sourceNode);
-                System.out.printf("Request sent to %s.\n", t.toString());
+            try {
+                if (!t.toString().equals(sourceNode.toString())) {
+                    Registry reg = LocateRegistry.getRegistry(t.getIP(), t.getPort());
+                    Service service = (Service) reg.lookup(t.getRegName());
+                    service.receiveRequest(fileName, sourceNode);
+                    System.out.printf("Request sent to %s.\n", t.toString());
+                }
             } catch (Exception e) {
                 System.err.printf("Error sending request to %s! Message: %s\n", t.toString(), e.getMessage());
             }
         });
     }
 
+    private boolean isThereLog(LogItem item) {
+        return log.stream().anyMatch((t) -> {
+            return t.getFileName().equals(item.getFileName()) && t.getNode().toString().equals(item.getNode().toString());
+        });
+    }
 }
