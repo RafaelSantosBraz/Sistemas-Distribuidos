@@ -37,6 +37,7 @@ public class P2PService extends UnicastRemoteObject implements Service {
 
     @Override
     public void receiveRequest(String fileName, Node sourceNode) throws RemoteException {
+        log.add(new LogItem(fileName, sourceNode));
         System.out.printf("Request for file '%s' from %s received.\n", fileName, sourceNode.toString());
         if (!sourceNode.toString().equals(localNode.toString())) {
             if (fileControl.fileExists(fileName)) {
@@ -56,7 +57,6 @@ public class P2PService extends UnicastRemoteObject implements Service {
                 }
             }
         }
-        log.add(new LogItem(fileName, sourceNode));
     }
 
     @Override
@@ -94,7 +94,7 @@ public class P2PService extends UnicastRemoteObject implements Service {
     }
 
     private boolean isThereLog(LogItem item) {
-        return log.stream().anyMatch((t) -> {
+        return log.subList(0, log.size() - 1).stream().anyMatch((t) -> {
             return t.getFileName().equals(item.getFileName()) && t.getNode().toString().equals(item.getNode().toString());
         });
     }
