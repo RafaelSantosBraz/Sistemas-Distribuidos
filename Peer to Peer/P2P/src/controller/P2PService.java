@@ -21,15 +21,13 @@ import model.Node;
 public class P2PService extends UnicastRemoteObject implements Service {
 
     private final Node localNode;
-    private static FileControl fileControl = null;
+    private final FileControl fileControl;
     private final List<Node> connectedNodes;
     private final List<LogItem> log;
 
     public P2PService(String dirPath, Node localNode, List<Node> connectedNodes) throws RemoteException {
         super();
-        if (fileControl == null) {
-            fileControl = new FileControl(dirPath);
-        }
+        fileControl = new FileControl(dirPath);
         this.connectedNodes = connectedNodes;
         this.localNode = localNode;
         log = new ArrayList<>();
@@ -97,5 +95,9 @@ public class P2PService extends UnicastRemoteObject implements Service {
         return log.subList(0, log.size() - 1).stream().anyMatch((t) -> {
             return t.getFileName().equals(item.getFileName()) && t.getNode().toString().equals(item.getNode().toString());
         });
+    }
+
+    public void refreshFileList() {
+        fileControl.updateFileList();
     }
 }

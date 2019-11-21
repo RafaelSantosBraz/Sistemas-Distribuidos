@@ -48,7 +48,7 @@ public class ServiceController {
         try {
             service = new P2PService(dirPath, localNode, connectedNodes);
             System.setProperty("java.rmi.server.hostname", localNode.getIP());
-            Registry reg = LocateRegistry.createRegistry(localNode.getPort());            
+            Registry reg = LocateRegistry.createRegistry(localNode.getPort());
             reg.rebind(localNode.getRegName(), service);
             System.out.println("RMI server runnig!");
             return true;
@@ -68,5 +68,9 @@ public class ServiceController {
 
     public void notifyNewFile() {
         ViewController.getInstance().notifyNewFile();
+    }
+
+    public void refreshFileList() {
+        service.refreshFileList();
     }
 }

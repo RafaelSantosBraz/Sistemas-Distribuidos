@@ -32,6 +32,8 @@ public class ViewController {
     }
     //</editor-fold>
 
+    private MainView view;
+
     public List<Node> createNodeList(String[] inf) {
         List<Node> res = new ArrayList<>();
         for (String s : inf) {
@@ -55,7 +57,8 @@ public class ViewController {
     }
 
     public void startView() {
-        new MainView().setVisible(true);
+        view = new MainView();
+        view.setVisible(true);
     }
 
     public boolean startDownload(String fileName) {
@@ -63,6 +66,10 @@ public class ViewController {
     }
 
     public void notifyNewFile() {
-        //JOptionPane.showMessageDialog(null, "Arquivo recebido!", "Serviço", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(view, "Arquivo recebido!", "Serviço", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void refreshFileList() {
+        ServiceController.getInstance().refreshFileList();
     }
 }
