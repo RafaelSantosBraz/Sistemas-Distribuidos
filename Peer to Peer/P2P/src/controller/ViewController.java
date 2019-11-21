@@ -7,6 +7,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import javax.swing.JOptionPane;
 import model.Node;
 import view.MainView;
@@ -18,7 +19,7 @@ import view.MainView;
 public class ViewController {
 
     //<editor-fold defaultstate="collapsed" desc="SINGLETON">
-    private static ViewController instance;
+    private static ViewController instance;       
 
     private ViewController() {
 
@@ -34,6 +35,10 @@ public class ViewController {
 
     private MainView view;
 
+    public void updateFiles(Set<String> fileNames) {
+        view.updateFiles(fileNames);
+    }
+    
     public List<Node> createNodeList(String[] inf) {
         List<Node> res = new ArrayList<>();
         for (String s : inf) {
@@ -57,8 +62,7 @@ public class ViewController {
     }
 
     public void startView() {
-        view = new MainView();
-        view.setVisible(true);
+        (view = new MainView()).setVisible(true);
     }
 
     public boolean startDownload(String fileName) {
@@ -66,7 +70,7 @@ public class ViewController {
     }
 
     public void notifyNewFile() {
-        JOptionPane.showMessageDialog(view, "Arquivo recebido!", "Serviço", JOptionPane.INFORMATION_MESSAGE);
+        //JOptionPane.showMessageDialog(view, "Arquivo recebido!", "Serviço", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void refreshFileList() {

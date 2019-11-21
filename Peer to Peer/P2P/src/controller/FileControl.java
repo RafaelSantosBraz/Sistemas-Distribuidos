@@ -9,7 +9,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -28,14 +30,14 @@ public final class FileControl {
 
     public void updateFileList() {
         fileList.clear();
-        File directory = new File(dirPath);
+        File directory = new File(dirPath);        
         File[] files = directory.listFiles((File f) -> {
             return f.isFile();
         });
         for (File f : files) {
             fileList.put(f.getName(), f.getAbsolutePath());
         }
-        printFiles();
+        printFiles();                
     }
 
     private void printFiles() {
@@ -43,6 +45,7 @@ public final class FileControl {
         fileList.keySet().forEach((t) -> {
             System.out.printf("\t'%s'\n", t);
         });
+        ViewController.getInstance().updateFiles(fileList.keySet());
     }
 
     public byte[] getFileContent(String fileName) {
